@@ -3307,3 +3307,5 @@ I'm filled with emotion
 As I look
 
 Into your perfect face
+We will eventually have a game with mini games!
+hi im scott
