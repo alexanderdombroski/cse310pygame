@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 
+# Hello friends
 #square class. currently dependant on Coordinate
 class Square(pygame.sprite.Sprite):
     def __init__(self):
