@@ -2,7 +2,7 @@ import pygame
 from pygame.locals import *
 
 class Wall(pygame.sprite.Sprite):
-    def __init__(self, color, left, top, width, height):
+    def __init__(self, color, left: int, top: int, width: int, height: int):
         super(Wall, self).__init__()
 
         self.image = pygame.Surface((width,height))
