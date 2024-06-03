@@ -1,3 +1,6 @@
+# This is an example of how to use abstract methods for polymorphism/inheritance 
+# like you could using a C# parent class or interface
+
 from abc import ABC, abstractmethod
 
 class animal(ABC):

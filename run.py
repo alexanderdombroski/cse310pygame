@@ -1,3 +1,5 @@
+# This file will server as the main entry point of the program.
+
 import pygame
 from Wall import Wall, BreakableWall
 from globals import all_sprites, all_walls
