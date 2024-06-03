@@ -1,9 +1,14 @@
+from typing import *
 import pygame
 from pygame.locals import *
+from pygame.sprite import Group
 
 class Square(pygame.sprite.Sprite):
-    def __init__(self, screen_width, screen_height):
-        super(Square, self).__init__()
+    def __init__(self, screen_width: int, screen_height: int, groups: List[Group] = None):
+        if groups == None:
+            super(Square, self).__init__()
+        else:
+            super().__init__(self, groups)
         
         self.width = 35
         self.color = (0, 200, 0)
