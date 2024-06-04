@@ -1,16 +1,15 @@
-import pygame
+from pygame import *
 from pygame.locals import *
-from Square import *
-from Wall2 import *
 from sprite_groups import all_walls, all_sprites
 from room import Room
 
-# init pygame, window, square1
-pygame.init()
+# init pygame, window, room
+init()
 
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 600
-window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+window = display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+
 
 WALL_THICKNESS = 35
 start_room = Room(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, all_walls, (128, 128, 128))
@@ -30,7 +29,7 @@ running = True
 while running:   
     
     # Handles Quitting
-    running = not any(event.type == pygame.QUIT for event in pygame.event.get())
+    running = not any(event.type == QUIT for event in event.get())
 
 
     # Fill the screen with black
@@ -40,7 +39,7 @@ while running:
 
     all_sprites.draw(window)
 
-    pygame.display.flip()
+    display.flip()
 
-    pygame.time.Clock().tick(60)        
+    time.Clock().tick(60)        
 

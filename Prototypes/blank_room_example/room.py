@@ -3,6 +3,7 @@ from pygame import *
 from sprite_groups import all_sprites
 from Wall2 import Wall
 from Square import Square
+from main import WALL_THICKNESS
 
 class Room:
     def __init__(
@@ -19,7 +20,7 @@ class Room:
         self.wall_group = wall_group
         self.default_wall_color = default_wall_color
 
-    def build_wall(self, left: int, top: int, width: int = 35, height: int = 35, color: Tuple[int, int, int] = None):
+    def build_wall(self, left: int, top: int, width: int = WALL_THICKNESS, height: int = WALL_THICKNESS, color: Tuple[int, int, int] = None):
         if color is None: # Neccessary because class properties can't be used as function parameter defaults
             color = self.default_wall_color
 
