@@ -1,18 +1,22 @@
 import pygame
 from pygame.locals import *
+from typing import *
 
 class Wall(pygame.sprite.Sprite):
-    def __init__(self, color, left, top, width, height, groups=None):
+    def __init__(
+        self, 
+        color: Tuple[int, int, int], 
+        left: int, 
+        top: int, 
+        width: int, 
+        height: int, 
+        groups: List[pygame.sprite.Group] = None
+    ):
+        
         # Add the sprites to groups
-        if groups == None:
-            super(Wall, self).__init__()
-        else:
-            super().__init__(self, groups)
+        super().__init__(*groups if groups else [])
 
-        self.image = pygame.Surface((width,height))
+        self.image = pygame.Surface((width, height))
         self.image.fill(pygame.Color(color))
-
-        self.rect = self.image.get_rect()
-        self.rect.x = left
-        self.rect.y = top
-        pygame.draw.rect(self.image, color, pygame.Rect(left, top, width, height))
+        
+        self.rect = self.image.get_rect(topleft=(left, top))
