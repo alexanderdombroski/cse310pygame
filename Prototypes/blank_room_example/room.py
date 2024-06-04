@@ -1,0 +1,34 @@
+from typing import * # Used for fixed typing
+from pygame import *
+from sprite_groups import all_sprites
+from Wall2 import Wall
+from Square import Square
+
+class Room:
+    def __init__(
+        self,
+        start_x: int,
+        start_y: int,
+        wall_group: sprite.Group,
+        default_wall_color: Tuple[int, int, int] = (128, 128, 128)
+    ):
+        
+        self.player = Square(start_x, start_y, [all_sprites])
+
+        # Wall Properties
+        self.wall_group = wall_group
+        self.default_wall_color = default_wall_color
+
+    def build_wall(self, left: int, top: int, width: int = 35, height: int = 35, color: Tuple[int, int, int] = None):
+        if color is None: # Neccessary because class properties can't be used as function parameter defaults
+            color = self.default_wall_color
+
+        Wall(color, left, top, width, height, [self.wall_group, all_sprites])
+    
+    def exit_room(self):
+        # probs change this, but something will be neccessary
+        for group in [all_sprites, self.wall_group]: group.empty()
+
+    def update_player_movement(self):
+        self.player.move(key.get_pressed())
+
