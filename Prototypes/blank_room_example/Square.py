@@ -9,7 +9,7 @@ class Square(sprite.Sprite):
         start_x: int, 
         start_y: int, 
         groups: List[sprite.Group] = None
-    ):
+    ) -> None:
         
         super().__init__(*groups if groups else [])
         
@@ -31,13 +31,13 @@ class Square(sprite.Sprite):
             "bottom": False
         }
 
-    def print_direction(self):
+    def print_direction(self) -> None:
         print(self.facing)
 
-    def change_color(self, new_color: Tuple[int, int, int]):
+    def change_color(self, new_color: Tuple[int, int, int]) -> None:
         self.image.fill(new_color)
 
-    def update_collisions(self, walls: sprite.Group):
+    def update_collisions(self, walls: sprite.Group) -> None:
         self.collisions = {
             "left": False,
             "top": False,
@@ -56,7 +56,8 @@ class Square(sprite.Sprite):
                 if self.rect.bottom >= wall.rect.top and self.rect.top < wall.rect.top:
                     self.collisions["bottom"] = True
 
-    def move(self, keys):
+    def move(self) -> None:
+        keys = key.get_pressed()
         self.update_collisions(all_walls)
         if (keys[K_w] or keys[K_UP]) and not self.collisions["top"]:
             self.rect.y -= self.speed
