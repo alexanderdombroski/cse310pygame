@@ -61,7 +61,7 @@ class Square(sprite.Sprite):
                 if self.rect.bottom >= wall.rect.top and self.rect.top < wall.rect.top:
                     self.collisions["bottom"] = True
 
-    def move(self):
+    def move(self) -> None:
         keys = key.get_pressed()
         self.update_collisions(all_walls)
         if (keys[K_w] or keys[K_UP]) and not self.collisions["top"]:

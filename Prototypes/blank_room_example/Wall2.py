@@ -11,7 +11,7 @@ class Wall(sprite.Sprite):
         width: int, 
         height: int, 
         groups: List[sprite.Group] = None
-    ):
+    ) -> None:
         
         # Add the sprites to groups
         super().__init__(*groups if groups else [])

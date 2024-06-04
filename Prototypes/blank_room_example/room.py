@@ -25,7 +25,7 @@ class Room:
         self.default_wall_color = default_wall_color
 
     
-    def enter_room(self):
+    def enter_room(self) -> None:
         # Makes a room visible
         global all_sprites, all_walls, all_exits, current_room
         all_sprites.empty()
@@ -40,7 +40,7 @@ class Room:
         self.player.rect.x = self.start_x
         self.player.rect.y = self.start_y
 
-    def update_player_movement(self):
+    def update_player_movement(self) -> None:
         self.player.move()
 
     # --------- Add Room Features ---------
@@ -50,7 +50,7 @@ class Room:
 
         Wall(color, left, top, width, height, [self.room_walls, self.room_sprites])
 
-    def build_border(self):
+    def build_border(self) -> None:
         self.build_wall(0, 0, height=SCREEN_HEIGHT) # Left
         self.build_wall(0, 0, width=SCREEN_WIDTH) # Top
         self.build_wall(SCREEN_WIDTH - WALL_THICKNESS, 0, height=SCREEN_HEIGHT) # Right
