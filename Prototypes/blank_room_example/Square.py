@@ -1,7 +1,7 @@
 from typing import * # Used for fixed typing
 from pygame import *
 from pygame.locals import *
-from sprite_groups import all_walls
+from constants import all_walls, all_exits
 
 class Square(sprite.Sprite):
     def __init__(
@@ -37,7 +37,12 @@ class Square(sprite.Sprite):
     def change_color(self, new_color: Tuple[int, int, int]):
         self.image.fill(new_color)
 
-    def update_collisions(self, walls: sprite.Group):
+    def update_collisions(self, walls: sprite.Group) -> None:
+        for exit in all_exits:
+            if self.rect.colliderect(exit.rect):
+                exit.change_room()
+                return None # End the function early cause new room
+        
         self.collisions = {
             "left": False,
             "top": False,
@@ -56,7 +61,8 @@ class Square(sprite.Sprite):
                 if self.rect.bottom >= wall.rect.top and self.rect.top < wall.rect.top:
                     self.collisions["bottom"] = True
 
-    def move(self, keys):
+    def move(self):
+        keys = key.get_pressed()
         self.update_collisions(all_walls)
         if (keys[K_w] or keys[K_UP]) and not self.collisions["top"]:
             self.rect.y -= self.speed
