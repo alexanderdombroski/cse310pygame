@@ -18,6 +18,7 @@ class Square(sprite.Sprite):
         self.facing = "right"
         self.speed = 5
 
+        #change Surface((w, w)) to a png
         self.image = Surface((self.width,self.width))
         self.image.fill(self.color)
 

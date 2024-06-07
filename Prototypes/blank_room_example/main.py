@@ -62,6 +62,7 @@ while running:
 
     all_sprites.draw(window)
 
+    #once sprites has a .png, change to blit
     display.flip()
 
     time.Clock().tick(60)        
