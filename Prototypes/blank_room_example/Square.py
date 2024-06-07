@@ -1,7 +1,6 @@
 from typing import * # Used for fixed typing
 from pygame import *
-from pygame.locals import *
-from constants import all_walls, all_exits
+from constants import all_sprites, all_walls, all_exits, SCREEN_HEIGHT, SCREEN_WIDTH
 
 class Square(sprite.Sprite):
     def __init__(
@@ -18,6 +17,7 @@ class Square(sprite.Sprite):
         self.facing = "right"
         self.speed = 5
 
+        #change Surface((w, w)) to a png
         self.image = Surface((self.width,self.width))
         self.image.fill(self.color)
 
@@ -76,3 +76,12 @@ class Square(sprite.Sprite):
         if (keys[K_d] or keys[K_RIGHT]) and not self.collisions["right"]:
             self.rect.x += self.speed
             self.facing = "right"
+    
+    def teleport(self, x: int = None, y: int = None) -> None:
+        # Allows player to teleport to a new x/y value(s) if provided
+        if x != None:
+            self.rect.x = x
+        if y != None:
+            self.rect.y = y
+
+PLAYER = Square(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, all_sprites)
