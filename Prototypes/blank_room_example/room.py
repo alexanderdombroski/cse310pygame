@@ -1,25 +1,25 @@
 from typing import * # Used for fixed typing
 from pygame import *
 from Wall2 import Wall
-from Square import Square
+from Square import PLAYER
 from constants import all_sprites, all_walls, all_exits, WALL_THICKNESS, SCREEN_HEIGHT, SCREEN_WIDTH, current_room
 from passage import Exit
 
 class Room:
     def __init__(
         self,
-        start_x: int,
-        start_y: int,
+        start_x: int = None,
+        start_y: int = None,
         default_wall_color: Tuple[int, int, int] = (128, 128, 128)
     ) -> None:
         
         self.room_sprites = sprite.Group()
         self.room_walls = sprite.Group()
         self.room_exits = sprite.Group()
-        self.player = Square(start_x, start_y, [self.room_sprites])
 
         self.start_x = start_x
         self.start_y = start_y
+        PLAYER.teleport(start_x, start_y)
 
         # Wall Properties
         self.default_wall_color = default_wall_color
@@ -32,16 +32,14 @@ class Room:
         all_walls.empty()
         all_exits.empty()
         all_sprites.add(self.room_sprites.copy())
+        all_sprites.add(PLAYER)
         all_walls.add(self.room_walls.copy())
         all_exits.add(self.room_exits.copy())
         
         # Reset movement
         current_room[0] = self
-        self.player.rect.x = self.start_x
-        self.player.rect.y = self.start_y
+        PLAYER.teleport(self.start_x, self.start_y)
 
-    def update_player_movement(self) -> None:
-        self.player.move()
 
     # --------- Add Room Features ---------
     def build_wall(self, left: int, top: int, width: int = WALL_THICKNESS, height: int = WALL_THICKNESS, color: Tuple[int, int, int] = None) -> None:
