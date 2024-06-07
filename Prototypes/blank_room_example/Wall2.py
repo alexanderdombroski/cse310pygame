@@ -1,5 +1,4 @@
 from pygame import *
-from pygame.locals import *
 from typing import *
 
 class Wall(sprite.Sprite):
