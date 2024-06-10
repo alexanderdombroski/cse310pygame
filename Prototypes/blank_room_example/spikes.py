@@ -5,23 +5,21 @@ class Spike(sprite.Sprite):
     def __init__(
         self, 
         color: tuple[int, int, int],
-        point_one: tuple[int, int],
-        point_two: tuple[int, int],
-        point_three: tuple[int, int],
+        start_coordinate: tuple[int, int],
         groups: List[sprite.Group] = None
             ) -> None:
         super.__init__(*groups if groups else [])
 
-        points = []
-        width = 0
-        points.add(point_one, point_two, point_three)
-        for i, point in points.enumerate():
-            if i == 0:
-                width = 0
-            else: 
-                point[0] - point[0]
+        width = 50
 
-        # self.image = Surface()
+        start_x = start_coordinate[0]
+        start_y = start_coordinate[1]
+
+        point_1 = start_coordinate
+        point_2 = (start_x, start_y + width)
+        point_3 = (start_x + width, (start_y + width))
+
+        self.image = Surface(width, width)
         # draw.polygon(screen, color, (point_one, point_two, point_three))
 
         
