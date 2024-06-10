@@ -1,6 +1,6 @@
 from typing import * # Used for fixed typing
 from pygame import *
-from constants import all_sprites, all_walls, all_exits, SCREEN_HEIGHT, SCREEN_WIDTH
+from constants import all_sprites, all_walls, all_exits, all_ice, all_mud, SCREEN_HEIGHT, SCREEN_WIDTH, PLAYER_SPEED
 
 class Square(sprite.Sprite):
     def __init__(
@@ -15,7 +15,7 @@ class Square(sprite.Sprite):
         self.width = 35
         self.color = (100, 200, 0)
         self.facing = "right"
-        self.speed = 5
+        self.speed = PLAYER_SPEED
 
         #change Surface((w, w)) to a png
         self.image = Surface((self.width,self.width))
@@ -43,6 +43,9 @@ class Square(sprite.Sprite):
                 exit.change_room()
                 return None # End the function early cause new room
         
+        self.__change_speed(sprite.spritecollideany(self, all_ice), 2)
+        self.__change_speed(sprite.spritecollideany(self, all_mud), 0.5)
+
         self.collisions = {
             "left": False,
             "top": False,
@@ -84,5 +87,22 @@ class Square(sprite.Sprite):
             self.rect.x = x
         if y != None:
             self.rect.y = y
+
+    def __change_speed(self, condition: bool, speed_modifier: int) -> None:
+        new_speed = PLAYER_SPEED * speed_modifier
+        if condition:
+            self.speed = new_speed
+        elif (self.speed == new_speed):
+            # Leaves other speed modifiers alone
+            self.speed = PLAYER_SPEED
+            # Snap back to grid
+            self.__snap_to_grid()
+    
+    def __snap_to_grid(self) -> None:
+        # Align the player relative to speed
+        self.teleport(
+            round(self.rect.x / self.speed) * self.speed,
+            round(self.rect.y / self.speed) * self.speed
+        )
 
 PLAYER = Square(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, all_sprites)

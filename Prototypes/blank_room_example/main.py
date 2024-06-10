@@ -18,6 +18,10 @@ start_room = Room(default_wall_color=(128, 128, 128))
 start_room.build_border()
 start_room.build_wall(500, 300, 30, 60) # pillar
 
+# Ice Test
+start_room.build_ice(100, 100, 100, 100)
+start_room.build_mud(200, 100, 100, 100)
+
 # Room Two
 room2 = Room(default_wall_color=(128, 0, 228))
 room2.build_border()
