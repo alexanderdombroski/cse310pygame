@@ -51,15 +51,16 @@ class Square(sprite.Sprite):
         }
 
         for wall in walls:
-            if self.rect.colliderect(wall.rect): # Nesting this if statement prevents unnessessary checks
-                if self.rect.left <= wall.rect.right and self.rect.right > wall.rect.right:
-                    self.collisions["left"] = True
+            if wall.vertically_aligned(self.rect.left, self.rect.right):
                 if self.rect.top <= wall.rect.bottom and self.rect.bottom > wall.rect.bottom:
-                    self.collisions["top"] = True
-                if self.rect.right >= wall.rect.left and self.rect.left < wall.rect.left:
-                    self.collisions["right"] = True
+                    self.collisions["top"] = wall.collide_top(self.rect.top, self.rect.bottom)
                 if self.rect.bottom >= wall.rect.top and self.rect.top < wall.rect.top:
-                    self.collisions["bottom"] = True
+                    self.collisions["bottom"] = wall.collide_bottom(self.rect.top, self.rect.bottom)
+            if wall.horizontally_aligned(self.rect.top, self.rect.bottom):    
+                if self.rect.left <= wall.rect.right and self.rect.right > wall.rect.right:
+                    self.collisions["left"] = wall.collide_left(self.rect.left, self.rect.right)
+                if self.rect.right >= wall.rect.left and self.rect.left < wall.rect.left:
+                    self.collisions["right"] = wall.collide_right(self.rect.left, self.rect.right)
 
     def move(self) -> None:
         keys = key.get_pressed()
