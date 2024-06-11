@@ -20,7 +20,7 @@ class Spike(sprite.Sprite):
         point_3 = (start_x + width, (start_y + width))
 
         self.image = Surface(width, width)
-        # draw.polygon(screen, color, (point_one, point_two, point_three))
+        draw.polygon(self.image, color, (point_1, point_2, point_3))
 
         
         # pass
