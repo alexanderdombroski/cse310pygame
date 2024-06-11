@@ -10,8 +10,8 @@ all_ice = Group()
 all_mud = Group()
 
 # Constants
-SCREEN_WIDTH = 1200
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 1050 + 70
+SCREEN_HEIGHT = 630 + 70
 WALL_THICKNESS = 35
 
 PLAYER_SPEED = 5

@@ -12,14 +12,15 @@ class Square(sprite.Sprite):
         
         super().__init__(*groups if groups else [])
         
-        self.width = 35
-        self.color = (100, 200, 0)
+        # self.width = 35
+        # self.color = (100, 200, 0)
         self.facing = "right"
         self.speed = PLAYER_SPEED
 
         #change Surface((w, w)) to a png
-        self.image = Surface((self.width,self.width))
-        self.image.fill(self.color)
+        # self.image = Surface((self.width,self.width))
+        # self.image.fill(self.color)
+        self.image = image.load("Prototypes/blank_room_example/player_sprite_big.png")
 
         # Center the square in the screen
         self.rect = self.image.get_rect(center=(start_x, start_y))

@@ -12,7 +12,8 @@ class Room:
         self,
         start_x: int = None,
         start_y: int = None,
-        default_wall_color: Tuple[int, int, int] = (128, 128, 128)
+        default_wall_color: Tuple[int, int, int] = (128, 128, 128),
+        build_border: bool = True
     ) -> None:
         
         self.room_sprites = sprite.Group()
@@ -27,6 +28,8 @@ class Room:
 
         # Wall Properties
         self.default_wall_color = default_wall_color
+        if build_border:
+            self.build_border()
 
     
     def enter_room(self) -> None:
@@ -48,19 +51,27 @@ class Room:
         current_room[0] = self
         PLAYER.teleport(self.start_x, self.start_y)
 
+        # color: Tuple[int, int, int], 
+#         left: int, 
+#         top: int, 
+#         length: int,
+#         is_horizontal: bool,
+#         # width: int, 
+#         # height: int, 
+#         groups: List[sprite.Group] = None
 
     # --------- Add Room Features ---------
-    def build_wall(self, left: int, top: int, width: int = WALL_THICKNESS, height: int = WALL_THICKNESS, color: Tuple[int, int, int] = None) -> None:
+    def build_wall(self, left: int, top: int, length: int, is_horizontal: bool, color: Tuple[int, int, int] = None) -> None:
         if color is None: # Neccessary because class properties can't be used as function parameter defaults
             color = self.default_wall_color
 
-        Wall(color, left, top, width, height, [self.room_walls, self.room_sprites])
+        Wall(color, left, top, length, is_horizontal, [self.room_walls, self.room_sprites])
 
     def build_border(self) -> None:
-        self.build_wall(0, 0, height=SCREEN_HEIGHT) # Left
-        self.build_wall(0, 0, width=SCREEN_WIDTH) # Top
-        self.build_wall(SCREEN_WIDTH - WALL_THICKNESS, 0, height=SCREEN_HEIGHT) # Right
-        self.build_wall(0, SCREEN_HEIGHT - WALL_THICKNESS, width=SCREEN_WIDTH) # Bottom
+        self.build_wall(0, 0, length=SCREEN_HEIGHT, is_horizontal=False) # Left
+        self.build_wall(0, 0, length=SCREEN_WIDTH, is_horizontal=True) # Top
+        self.build_wall(SCREEN_WIDTH - WALL_THICKNESS, 0, length=SCREEN_HEIGHT, is_horizontal=False) # Right
+        self.build_wall(0, SCREEN_HEIGHT - WALL_THICKNESS, length=SCREEN_WIDTH, is_horizontal=True) # Bottom
 
     def build_passage(self, exit_type: Type[Exit], *args: Tuple, **kwargs: Dict[str, Any]) -> None:
         exit = exit_type(*args, **kwargs)
