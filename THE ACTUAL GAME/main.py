@@ -14,6 +14,7 @@ init()
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 
 window = display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), NOFRAME)
+background_image = image.load("Prototypes/blank_room_example/test_background.png").convert()
 
 #define background color -- remove this later
 background_color = (0,0,0)
@@ -47,9 +48,14 @@ while running:
 
 
     # Fill the screen with black
-    window.fill(background_color)
+    # tile_surface_with_image(window, image.load("Prototypes/blank_room_example/floor_tile.png").convert())
+    # window.fill(background_color)
+    window.blit(background_image, (0,0))
 
     PLAYER.move()
+    # PLAYER.print_self_coordinates()
+
+
 
     all_sprites.draw(window)
 
@@ -57,4 +63,5 @@ while running:
     display.flip()
 
     time.Clock().tick(60)        
+
 

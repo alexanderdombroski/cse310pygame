@@ -35,6 +35,9 @@ class Square(sprite.Sprite):
     def print_direction(self) -> None:
         print(self.facing)
 
+    def print_self_coordinates(self) -> None:
+        print(f"top:{self.rect.top}, bottom:{self.rect.bottom}, left:{self.rect.left}, right:{self.rect.right} ")
+
     def change_color(self, new_color: Tuple[int, int, int]) -> None:
         self.image.fill(new_color)
 
@@ -55,16 +58,25 @@ class Square(sprite.Sprite):
         }
 
         for wall in walls:
+            
             if wall.vertically_aligned(self.rect.left, self.rect.right):
                 if self.rect.top <= wall.rect.bottom and self.rect.bottom > wall.rect.bottom:
-                    self.collisions["top"] = wall.collide_top(self.rect.top, self.rect.bottom)
+                    # self.collisions["top"] = wall.collide_top(self.rect.top, self.rect.bottom)
+                    self.collisions["top"] = True
                 if self.rect.bottom >= wall.rect.top and self.rect.top < wall.rect.top:
-                    self.collisions["bottom"] = wall.collide_bottom(self.rect.top, self.rect.bottom)
+                    # self.collisions["bottom"] = wall.collide_bottom(self.rect.top, self.rect.bottom)
+                    self.collisions["bottom"] = True
             if wall.horizontally_aligned(self.rect.top, self.rect.bottom):    
                 if self.rect.left <= wall.rect.right and self.rect.right > wall.rect.right:
-                    self.collisions["left"] = wall.collide_left(self.rect.left, self.rect.right)
+                    # self.collisions["left"] = wall.collide_left(self.rect.left, self.rect.right)
+                    self.collisions["left"] = True
                 if self.rect.right >= wall.rect.left and self.rect.left < wall.rect.left:
-                    self.collisions["right"] = wall.collide_right(self.rect.left, self.rect.right)
+                    # self.collisions["right"] = wall.collide_right(self.rect.left, self.rect.right)
+                    self.collisions["right"] = True
+
+                # I'm a wall with info:         [top:300, bottom:370, left:500, right:535]
+                # big_player not clipping info: [top:370, bottom:440, left:510, right:580]
+                # big_player clipping info:     [top:360, bottom:430, left:490, right:560]
 
     def move(self) -> None:
         keys = key.get_pressed()
