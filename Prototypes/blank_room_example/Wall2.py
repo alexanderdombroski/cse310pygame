@@ -22,7 +22,7 @@ class Wall(sprite.Sprite):
         tile_width, tile_height = tile_image.get_size()
 
         
-        if not is_horizontal:
+        if not is_horizontal: #change this later
             # Create the wall surface
             self.image = Surface((tile_width, length))
             # Tile the image on the wall surface
