@@ -13,7 +13,7 @@ init()
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 
 window = display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), NOFRAME)
-background_image = image.load("THE ACTUAL GAME/test_background.png").convert()
+background_image = image.load("test_background.png").convert()
 
 #define background color -- remove this later
 background_color = (0,0,0)

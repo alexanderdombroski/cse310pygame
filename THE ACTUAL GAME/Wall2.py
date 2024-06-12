@@ -19,7 +19,7 @@ class Wall(sprite.Sprite):
         super().__init__(*groups if groups else [])
 
 
-        tile_image = image.load("THE ACTUAL GAME/wall_tile.png")
+        tile_image = image.load("wall_tile.png")
         tile_width, tile_height = tile_image.get_size()
 
         self.is_horizontal = is_horizontal
