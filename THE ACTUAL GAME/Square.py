@@ -58,12 +58,12 @@ class Square(sprite.Sprite):
         }
 
         for wall in walls:
-            if wall.vertically_aligned(self.rect.left, self.rect.right):
+            if wall.is_vertically_aligned(self.rect.left, self.rect.right):
                 if self.rect.top <= wall.rect.bottom and self.rect.bottom > wall.rect.bottom:
                     self.collisions["top"] = wall.collide_top(self.rect.top, self.rect.bottom)
                 if self.rect.bottom >= wall.rect.top and self.rect.top < wall.rect.top:
                     self.collisions["bottom"] = wall.collide_bottom(self.rect.top, self.rect.bottom)
-            if wall.horizontally_aligned(self.rect.top, self.rect.bottom):    
+            if wall.is_horizontally_aligned(self.rect.top, self.rect.bottom):    
                 if self.rect.left <= wall.rect.right and self.rect.right > wall.rect.right:
                     self.collisions["left"] = wall.collide_left(self.rect.left, self.rect.right)
                 if self.rect.right >= wall.rect.left and self.rect.left < wall.rect.left:

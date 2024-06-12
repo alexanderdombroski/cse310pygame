@@ -5,7 +5,7 @@ from constants import all_sprites, SCREEN_HEIGHT, SCREEN_WIDTH, WALL_THICKNESS, 
 from room import Room
 from passage import Exit
 from Square import PLAYER
-from Rooms import create_scotts_room, create_start_room, start_room, scotts_room
+from Rooms import create_scotts_room, create_start_room, start_room
 
 # init pygame, window, room
 init()

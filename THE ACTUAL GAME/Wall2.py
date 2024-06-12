@@ -53,7 +53,7 @@ class Wall(sprite.Sprite):
         # print(f"top:{self.rect.top}, bottom:{self.rect.bottom}, left:{self.rect.left}, right:{self.rect.right} ")
 
     
-    def vertically_aligned(self, x_left: int, x_right: int) -> bool:
+    def is_vertically_aligned(self, x_left: int, x_right: int) -> bool:
         x_midpoint = (x_left + x_right) / 2
         if x_left >= self.rect.left and x_left < self.rect.right:
             return True
@@ -65,7 +65,7 @@ class Wall(sprite.Sprite):
             return False
 
         
-    def horizontally_aligned(self, y_left: int, y_right: int) -> bool:
+    def is_horizontally_aligned(self, y_left: int, y_right: int) -> bool:
         if y_left >= self.rect.top and y_left < self.rect.bottom:
             return True
         elif y_right <= self.rect.bottom and y_right > self.rect.top:
