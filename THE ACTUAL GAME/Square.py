@@ -20,7 +20,10 @@ class Square(sprite.Sprite):
         #change Surface((w, w)) to a png
         # self.image = Surface((self.width,self.width))
         # self.image.fill(self.color)
-        self.image = image.load("player_sprite_big.png")
+        # self.image = image.load("player_sprite_big.png")
+        # self.image = image.load("entity70px.png")
+        self.image = image.load("antler_blob.png")
+        
 
         # Center the square in the screen
         self.rect = self.image.get_rect(center=(start_x, start_y))
