@@ -20,7 +20,7 @@ class Square(sprite.Sprite):
         #change Surface((w, w)) to a png
         # self.image = Surface((self.width,self.width))
         # self.image.fill(self.color)
-        self.image = image.load("Prototypes/blank_room_example/player_sprite_big.png")
+        self.image = image.load("THE ACTUAL GAME/player_sprite_big.png")
 
         # Center the square in the screen
         self.rect = self.image.get_rect(center=(start_x, start_y))
@@ -58,21 +58,16 @@ class Square(sprite.Sprite):
         }
 
         for wall in walls:
-            
             if wall.vertically_aligned(self.rect.left, self.rect.right):
                 if self.rect.top <= wall.rect.bottom and self.rect.bottom > wall.rect.bottom:
-                    # self.collisions["top"] = wall.collide_top(self.rect.top, self.rect.bottom)
-                    self.collisions["top"] = True
+                    self.collisions["top"] = wall.collide_top(self.rect.top, self.rect.bottom)
                 if self.rect.bottom >= wall.rect.top and self.rect.top < wall.rect.top:
-                    # self.collisions["bottom"] = wall.collide_bottom(self.rect.top, self.rect.bottom)
-                    self.collisions["bottom"] = True
+                    self.collisions["bottom"] = wall.collide_bottom(self.rect.top, self.rect.bottom)
             if wall.horizontally_aligned(self.rect.top, self.rect.bottom):    
                 if self.rect.left <= wall.rect.right and self.rect.right > wall.rect.right:
-                    # self.collisions["left"] = wall.collide_left(self.rect.left, self.rect.right)
-                    self.collisions["left"] = True
+                    self.collisions["left"] = wall.collide_left(self.rect.left, self.rect.right)
                 if self.rect.right >= wall.rect.left and self.rect.left < wall.rect.left:
-                    # self.collisions["right"] = wall.collide_right(self.rect.left, self.rect.right)
-                    self.collisions["right"] = True
+                    self.collisions["right"] = wall.collide_right(self.rect.left, self.rect.right)
 
                 # I'm a wall with info:         [top:300, bottom:370, left:500, right:535]
                 # big_player not clipping info: [top:370, bottom:440, left:510, right:580]

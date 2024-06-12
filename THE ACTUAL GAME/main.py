@@ -1,7 +1,6 @@
 from pygame import *
 from pygame.locals import *
 import os
-import sys
 from constants import all_sprites, SCREEN_HEIGHT, SCREEN_WIDTH, WALL_THICKNESS, current_room
 from room import Room
 from passage import Exit
@@ -14,7 +13,7 @@ init()
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 
 window = display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), NOFRAME)
-background_image = image.load("Prototypes/blank_room_example/test_background.png").convert()
+background_image = image.load("THE ACTUAL GAME/test_background.png").convert()
 
 #define background color -- remove this later
 background_color = (0,0,0)

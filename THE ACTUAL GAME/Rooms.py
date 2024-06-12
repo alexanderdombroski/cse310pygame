@@ -1,10 +1,11 @@
 from constants import all_sprites, SCREEN_HEIGHT, SCREEN_WIDTH, WALL_THICKNESS, current_room
 from room import Room, Exit
 
+scotts_room = Room(SCREEN_WIDTH - WALL_THICKNESS * 3, SCREEN_HEIGHT - WALL_THICKNESS * 3, (190, 0, 0))
 start_room = Room(default_wall_color=(128, 128, 128))
-scotts_room = Room(SCREEN_WIDTH - WALL_THICKNESS * 2, SCREEN_HEIGHT - WALL_THICKNESS * 2, (190, 0, 0))
 
 def create_start_room():
+
     # Room One
     start_room.build_wall(500, 300, 70, is_horizontal=False) # pillar
 

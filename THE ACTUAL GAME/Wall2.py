@@ -19,7 +19,7 @@ class Wall(sprite.Sprite):
         super().__init__(*groups if groups else [])
 
 
-        tile_image = image.load("Prototypes/blank_room_example/wall_tile.png")
+        tile_image = image.load("THE ACTUAL GAME/wall_tile.png")
         tile_width, tile_height = tile_image.get_size()
 
         self.is_horizontal = is_horizontal
@@ -54,26 +54,25 @@ class Wall(sprite.Sprite):
 
     
     def vertically_aligned(self, x_left: int, x_right: int) -> bool:
-        # if x_left >= self.rect.left and x_left < self.rect.right:
-        #     return True
-        # elif x_right <= self.rect.right and x_right > self.rect.left:
-        #     return True
-        # else:
-        #     return False
-        return self.is_horizontal
+        x_midpoint = (x_left + x_right) / 2
+        if x_left >= self.rect.left and x_left < self.rect.right:
+            return True
+        elif x_right <= self.rect.right and x_right > self.rect.left:
+            return True
+        elif x_midpoint >=self.rect.left and x_midpoint <=self.rect.right:
+            return True
+        else:
+            return False
+
         
     def horizontally_aligned(self, y_left: int, y_right: int) -> bool:
-        # if y_left >= self.rect.top and y_left < self.rect.bottom:
-        #     return True
-        # elif y_right <= self.rect.bottom and y_right > self.rect.top:
-        #     return True
-        # else:
-        #     return False
-        # if is_horizontal:
-        #     return True
-        # else:
-        #     return False
-        return self.is_horizontal
+        if y_left >= self.rect.top and y_left < self.rect.bottom:
+            return True
+        elif y_right <= self.rect.bottom and y_right > self.rect.top:
+            return True
+        else:
+            return False
+
 
     
 
@@ -86,7 +85,10 @@ class Wall(sprite.Sprite):
 
     def collide_top(self, y_top: int, y_bottom: int) -> bool:
         return y_top <= self.rect.bottom and y_bottom > self.rect.bottom
+    #   if self.rect.top <= wall.rect.bottom and self.rect.bottom > wall.rect.bottom:
 
     def collide_bottom(self, y_top: int, y_bottom: int) -> bool:
         return y_bottom >= self.rect.top and y_top < self.rect.top
+    
+
     
