@@ -2,7 +2,7 @@ from constants import all_sprites, SCREEN_HEIGHT, SCREEN_WIDTH, WALL_THICKNESS, 
 from room import Room, Exit
 
 start_room = Room(start_x = SCREEN_WIDTH // 2, start_y=SCREEN_HEIGHT - 105, default_wall_color=(128, 128, 128))
-# 
+
 def create_start_room():
 
     # Room One
@@ -31,6 +31,10 @@ def create_scotts_room():
     
     scotts_room.build_wall(25*35,0,14*35,False)
     scotts_room.build_wall(26*35,0,14*35,False)
+
+    scotts_room.build_spike((255,255,255), (100,100))
+
+
     # # X, Y, Width, Height
     # for i in range(3, 34, 2):
     #     thickness_factor = 2 if i % 4 == 3 else 1

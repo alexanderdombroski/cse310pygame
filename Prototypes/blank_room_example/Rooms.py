@@ -16,6 +16,7 @@ def create_start_room():
 def create_scotts_room():
     # Room 3 (scotts_room)
     scotts_room.build_passage(Exit, start_room,  1.66 * WALL_THICKNESS, SCREEN_HEIGHT - 2 * WALL_THICKNESS)
+    scotts_room.build_spike((255,255,255), (50,100))
     start_room.build_passage(Exit, scotts_room, SCREEN_WIDTH // 2 - WALL_THICKNESS // 2, WALL_THICKNESS)
     # X, Y, Width, Height
     for i in range(3, 34, 2):

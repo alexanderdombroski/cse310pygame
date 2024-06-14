@@ -8,6 +8,7 @@ all_walls = Group()
 all_exits = Group()
 all_ice = Group()
 all_mud = Group()
+all_spikes = Group()
 
 # Constants
 SCREEN_WIDTH = 1050 + 70

@@ -6,6 +6,7 @@ from constants import all_sprites, all_walls, all_exits, all_ice, all_mud, WALL_
 from passage import Exit
 from ice import Ice
 from mud import Mud
+from spikes import Spike
 
 class Room:
     def __init__(
@@ -21,6 +22,7 @@ class Room:
         self.room_exits = sprite.Group()
         self.room_ice = sprite.Group()
         self.room_mud = sprite.Group()
+        self.room_spikes = sprite.Group()
 
         self.start_x = start_x
         self.start_y = start_y

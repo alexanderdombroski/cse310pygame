@@ -2,10 +2,12 @@ from typing import * # Used for fixed typing
 from pygame import *
 from Wall2 import Wall
 from Square import PLAYER
-from constants import all_sprites, all_walls, all_exits, all_ice, all_mud, WALL_THICKNESS, SCREEN_HEIGHT, SCREEN_WIDTH, current_room
+from constants import all_sprites, all_walls, all_exits, all_ice, all_mud, all_spikes, WALL_THICKNESS, SCREEN_HEIGHT, SCREEN_WIDTH, current_room
 from passage import Exit
 from ice import Ice
 from mud import Mud
+from spikes import Spike
+
 
 class Room:
     def __init__(
@@ -21,6 +23,8 @@ class Room:
         self.room_exits = sprite.Group()
         self.room_ice = sprite.Group()
         self.room_mud = sprite.Group()
+        self.room_spikes = sprite.Group()
+
 
         self.start_x = start_x
         self.start_y = start_y
@@ -46,6 +50,7 @@ class Room:
         all_exits.add(self.room_exits.copy())
         all_ice.add(self.room_ice.copy())
         all_mud.add(self.room_mud.copy())
+        all_spikes.add(self.room_spikes.copy())
         
         # Reset movement
         current_room[0] = self
@@ -86,3 +91,6 @@ class Room:
     
     def build_mud(self, left: int, top: int, width: int = WALL_THICKNESS, height: int = WALL_THICKNESS) -> None:
         Mud(left, top, width, height, [self.room_mud, self.room_sprites])
+
+    def build_spike(self, color: tuple[int, int, int], start_coordinate: tuple[int, int]) -> None:
+        Spike(color, start_coordinate, [self.room_spikes, self.room_sprites])
