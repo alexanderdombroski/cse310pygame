@@ -8,8 +8,6 @@ class Wall(sprite.Sprite):
         left: int, 
         top: int, 
         height: int,
-        # is_horizontal: bool = True,
-        # print_postion:bool = False,
         width: int, 
         groups: List[sprite.Group] = None
     ) -> None:
@@ -20,32 +18,25 @@ class Wall(sprite.Sprite):
 
         tile_image = image.load("images/wall_tile.png")
         tile_width, tile_height = tile_image.get_size()
-        print(tile_height, tile_width)
+        
         # Generate Image Tiles
         self.image = Surface((width, height))
         for x in range(0, width, tile_width):
             for y in range(0, height, tile_height):
                 self.image.blit(tile_image, (x, y))
-        
-        image.save(self.image, "images/wall_tile.png")
-            
+                    
         
         # Set the position
         self.rect = self.image.get_rect(topleft=(left, top))
 
-        # if print_postion:
-        #     print(f" I'm a wall with info: [top:{self.rect.top}, bottom:{self.rect.bottom}, left:{self.rect.left}, right:{self.rect.right}]")
 
-
-        # self.image = Surface((width, height))
         # self.image.fill(Color(color))
         
         # self.rect = self.image.get_rect(topleft=(left, top))
 
-    # def print_self_coordinates(self) -> None:
-        # print(f"top:{self.rect.top}, bottom:{self.rect.bottom}, left:{self.rect.left}, right:{self.rect.right} ")
 
     
+    # Collision Detection
     def is_vertically_aligned(self, x_left: int, x_right: int) -> bool:
         x_midpoint = (x_left + x_right) / 2
         if x_left >= self.rect.left and x_left < self.rect.right:
@@ -67,9 +58,6 @@ class Wall(sprite.Sprite):
             return False
 
 
-    
-
-    # Collision Detection
     def collide_left(self, x_left: int, x_right: int) -> bool:
         return x_left <= self.rect.right and x_right > self.rect.right
 
