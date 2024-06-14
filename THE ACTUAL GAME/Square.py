@@ -1,6 +1,6 @@
 from typing import * # Used for fixed typing
 from pygame import *
-from constants import all_sprites, all_walls, all_exits, all_ice, all_mud, all_spikes, SCREEN_HEIGHT, SCREEN_WIDTH, PLAYER_SPEED
+from constants import all_sprites, all_walls, all_exits, all_ice, all_mud, all_spikes, SCREEN_HEIGHT, SCREEN_WIDTH, PLAYER_SPEED, current_room
 
 class Square(sprite.Sprite):
     def __init__(
@@ -16,8 +16,6 @@ class Square(sprite.Sprite):
         # self.color = (100, 200, 0)
         self.facing = "right"
         self.speed = PLAYER_SPEED
-        self.start_x = start_x
-        self.start_y = start_y
 
         #change Surface((w, w)) to a png
         # self.image = Surface((self.width,self.width))
@@ -49,7 +47,7 @@ class Square(sprite.Sprite):
     def update_collisions(self, walls: sprite.Group) -> None:
         for spike in all_spikes:
             if self.rect.colliderect(spike.rect):
-                self.teleport(self.start_x, self.start_y)
+                self.teleport(current_room[0].start_x, current_room[0].start_y)
                 
 
         for exit in all_exits:
