@@ -7,11 +7,10 @@ class Wall(sprite.Sprite):
         color: Tuple[int, int, int], 
         left: int, 
         top: int, 
-        length: int,
-        is_horizontal: bool = True,
+        height: int,
+        # is_horizontal: bool = True,
         # print_postion:bool = False,
-        # width: int, 
-        # height: int, 
+        width: int, 
         groups: List[sprite.Group] = None
     ) -> None:
         
@@ -19,22 +18,16 @@ class Wall(sprite.Sprite):
         super().__init__(*groups if groups else [])
 
 
-        tile_image = image.load("wall_tile.png")
+        tile_image = image.load("images/wall_tile.png")
         tile_width, tile_height = tile_image.get_size()
-
-        self.is_horizontal = is_horizontal
         
-        if is_horizontal: #change this later
-            # Create the wall surface
-            self.image = Surface((length, tile_width))
-            for i in range(length // tile_height):
-                self.image.blit(tile_image, (i * tile_height, 0))
-        else:
-            # Create the wall surface
-            self.image = Surface((tile_width, length))
-            # Tile the image on the wall surface
-            for i in range(length // tile_height):
-                self.image.blit(tile_image, (0, i * tile_height))
+        # Generate Image Tiles
+        self.image = Surface((width, height))
+        for x in range(left, width+left, tile_width):
+            for y in range(top, height+top, tile_height):
+                self.image.blit(tile_image, (x, y))
+        
+        image.save(self.image, "images/wall_tile.png")
             
         
         # Set the position

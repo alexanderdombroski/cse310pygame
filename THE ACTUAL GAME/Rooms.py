@@ -6,7 +6,7 @@ start_room = Room(start_x = SCREEN_WIDTH // 2, start_y=SCREEN_HEIGHT - 105, defa
 def create_start_room():
 
     # Room One
-    start_room.build_wall(500, 300, 70, is_horizontal=False) # pillar
+    start_room.build_wall(500, 300, 70) # pillar
 
     # Ice Test
     start_room.build_ice(105, 105, 300, 100)
@@ -20,17 +20,17 @@ def create_scotts_room():
     scotts_room.build_passage(Exit, start_room,  2.5 * WALL_THICKNESS, SCREEN_HEIGHT - 2 * WALL_THICKNESS)
     start_room.build_passage(Exit, scotts_room, SCREEN_WIDTH // 2 - WALL_THICKNESS // 2, WALL_THICKNESS)
 
-    scotts_room.build_wall(5*35,5*35,14*35,False)
-    scotts_room.build_wall(6*35,5*35,14*35,False)
+    scotts_room.build_wall(5*35,5*35,14*35)
+    scotts_room.build_wall(6*35,5*35,14*35)
     
-    scotts_room.build_wall(13*35,0,14*35,False)
-    scotts_room.build_wall(12*35,0,14*35,False)
+    scotts_room.build_wall(13*35,0,14*35)
+    scotts_room.build_wall(12*35,0,14*35)
     
-    scotts_room.build_wall(19*35,5*35,14*35,False)
-    scotts_room.build_wall(18*35,5*35,14*35,False)
+    scotts_room.build_wall(19*35,5*35,14*35)
+    scotts_room.build_wall(18*35,5*35,14*35)
     
-    scotts_room.build_wall(25*35,0,14*35,False)
-    scotts_room.build_wall(26*35,0,14*35,False)
+    scotts_room.build_wall(25*35,0,14*35)
+    scotts_room.build_wall(26*35,0,14*35)
     # # X, Y, Width, Height
     # for i in range(3, 34, 2):
     #     thickness_factor = 2 if i % 4 == 3 else 1
