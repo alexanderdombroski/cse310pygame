@@ -22,7 +22,7 @@ class Square(sprite.Sprite):
         # self.image.fill(self.color)
         # self.image = image.load("player_sprite_big.png")
         # self.image = image.load("entity70px.png")
-        self.image = image.load("antler_blob.png")
+        self.image = image.load("images/antler_blob.png")
         
 
         # Center the square in the screen
