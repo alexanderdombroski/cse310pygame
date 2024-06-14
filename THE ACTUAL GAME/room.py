@@ -44,6 +44,7 @@ class Room:
         all_exits.empty()
         all_ice.empty()
         all_mud.empty()
+        all_spikes.empty()
         all_sprites.add(self.room_sprites.copy())
         all_sprites.add(PLAYER)
         all_walls.add(self.room_walls.copy())
