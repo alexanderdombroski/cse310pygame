@@ -32,7 +32,7 @@ def create_scotts_room():
     scotts_room.build_wall(25*35,0,14*35)
     scotts_room.build_wall(26*35,0,14*35)
 
-    scotts_room.build_spike((255,255,255), (100,100))
+    scotts_room.build_spike((255,255,255), (WALL_THICKNESS,100))
 
 
     # # X, Y, Width, Height
