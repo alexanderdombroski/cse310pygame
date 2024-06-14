@@ -20,11 +20,11 @@ class Wall(sprite.Sprite):
 
         tile_image = image.load("images/wall_tile.png")
         tile_width, tile_height = tile_image.get_size()
-        
+        print(tile_height, tile_width)
         # Generate Image Tiles
         self.image = Surface((width, height))
-        for x in range(left, width+left, tile_width):
-            for y in range(top, height+top, tile_height):
+        for x in range(0, width, tile_width):
+            for y in range(0, height, tile_height):
                 self.image.blit(tile_image, (x, y))
         
         image.save(self.image, "images/wall_tile.png")
