@@ -68,4 +68,4 @@ def create_tutorial_room():
     tutorial_room.build_mud(105, 305, 300, 100)
 
     # spike example
-    tutorial_room.build_spike((255,255,255), start_coordinate=(700, 300))
+    tutorial_room.build_spike((255,255,255), start_coordinate=(700, 300), direction= "l")
