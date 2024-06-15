@@ -6,17 +6,39 @@ class Spike(sprite.Sprite):
         self, 
         color: tuple[int, int, int],
         start_coordinate: tuple[int, int],
+        direction: str,
         groups: List[sprite.Group] = None
     ) -> None:
         super().__init__(*groups if groups else [])
 
-        width = 50
-        height = 50
+        long_side = 34
+        short_side = 20
 
-        point_1 = (0, 0)
-        point_2 = (0, width)
-        point_3 = (width, height // 2)
+        match (direction):
+            case "l": 
+                point_1 = (short_side, 0)
+                point_2 = (short_side, long_side)
+                point_3 = (0, long_side // 2)
+                self.image = Surface((short_side, long_side))
+                self.rect = self.image.get_rect(topright=start_coordinate)
+            case "r":
+                point_1 = (0, 0)
+                point_2 = (0, long_side)
+                point_3 = (short_side, long_side // 2)
+                self.image = Surface((short_side, long_side))
+                self.rect = self.image.get_rect(topleft=start_coordinate)
+            case "u":
+                point_1 = (0, short_side)
+                point_2 = (long_side, short_side)
+                point_3 = (long_side // 2, 0)
+                self.image = Surface((long_side, short_side))
+                self.rect = self.image.get_rect(bottomleft=start_coordinate)
+            case "d":
+                point_1 = (0, 0)
+                point_2 = (long_side, 0)
+                point_3 = (long_side // 2, short_side)
+                self.image = Surface((long_side, short_side))
+                self.rect = self.image.get_rect(topleft=start_coordinate)
 
-        self.image = Surface((width, height))
-        self.rect = self.image.get_rect(topleft=start_coordinate)
-        draw.polygon(self.image, color, (point_1, point_2, point_3))
+
+        draw.polygon(self.image, color, (point_1, point_2, point_3))                
