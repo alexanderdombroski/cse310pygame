@@ -92,5 +92,6 @@ class Room:
     def build_mud(self, left: int, top: int, width: int = WALL_THICKNESS, height: int = WALL_THICKNESS) -> None:
         Mud(left, top, width, height, [self.room_mud, self.room_sprites])
 
-    def build_spike(self, color: tuple[int, int, int], start_coordinate: tuple[int, int]) -> None:
-        Spike(color, start_coordinate, [self.room_spikes, self.room_sprites])
+    def build_spike(self, color: tuple[int, int, int], start_coordinate: tuple[int, int], direction: str) -> None:
+        # Spike(color, start_coordinate, [self.room_spikes, self.room_sprites], direction)
+        Spike(color, start_coordinate, direction, [self.room_spikes, self.room_sprites])

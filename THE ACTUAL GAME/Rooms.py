@@ -31,8 +31,19 @@ def create_scotts_room():
     
     scotts_room.build_wall(25*35,0,14*35)
     scotts_room.build_wall(26*35,0,14*35)
+    
+    for i in range(1, 19):
+        scotts_room.build_spike((255,255,255), (WALL_THICKNESS, WALL_THICKNESS * i), "r")
+        if i > 4:
+            scotts_room.build_spike((255,255,255), (WALL_THICKNESS * 5, WALL_THICKNESS * i), "l")
+        if i > 1 and i < 11:
+            scotts_room.build_spike((255,255,255), (WALL_THICKNESS * i, WALL_THICKNESS), "d")
+        if i < 14:
+            scotts_room.build_spike((255,255,255), (WALL_THICKNESS * 12, WALL_THICKNESS * i), "l")
 
-    scotts_room.build_spike((255,255,255), (WALL_THICKNESS,100))
+
+    scotts_room.build_spike((255,255,255), (WALL_THICKNESS * 6, WALL_THICKNESS * 5), "u")
+    scotts_room.build_spike((255,255,255), (WALL_THICKNESS * 5, WALL_THICKNESS * 5), "u")
 
 
     # # X, Y, Width, Height
