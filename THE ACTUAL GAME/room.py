@@ -2,12 +2,12 @@ from typing import * # Used for fixed typing
 from pygame import *
 from Wall2 import Wall
 from Square import PLAYER
-from constants import all_sprites, all_walls, all_exits, all_ice, all_mud, all_spikes, WALL_THICKNESS, SCREEN_HEIGHT, SCREEN_WIDTH, current_room
+from constants import all_sprites, all_walls, all_exits, all_ice, all_mud, all_spikes, all_text, WALL_THICKNESS, SCREEN_HEIGHT, SCREEN_WIDTH, DEFAULT_FONT_COLOR, DEFAULT_FONT_SIZE, current_room
 from passage import Exit
 from ice import Ice
 from mud import Mud
 from spikes import Spike
-
+from text.text import Text
 
 class Room:
     def __init__(
@@ -24,7 +24,7 @@ class Room:
         self.room_ice = sprite.Group()
         self.room_mud = sprite.Group()
         self.room_spikes = sprite.Group()
-
+        self.room_text = sprite.Group()
 
         self.start_x = start_x
         self.start_y = start_y
@@ -38,13 +38,13 @@ class Room:
     
     def enter_room(self) -> None:
         # Makes a room visible
-        global all_sprites, all_walls, all_exits, all_ice, all_mud, current_room
         all_sprites.empty()
         all_walls.empty()
         all_exits.empty()
         all_ice.empty()
         all_mud.empty()
         all_spikes.empty()
+        all_text.empty()
         all_sprites.add(self.room_sprites.copy())
         all_sprites.add(PLAYER)
         all_walls.add(self.room_walls.copy())
@@ -52,6 +52,7 @@ class Room:
         all_ice.add(self.room_ice.copy())
         all_mud.add(self.room_mud.copy())
         all_spikes.add(self.room_spikes.copy())
+        all_text.add(self.room_text.copy())
         
         # Reset movement
         current_room[0] = self
@@ -96,3 +97,6 @@ class Room:
     def build_spike(self, color: tuple[int, int, int], start_coordinate: tuple[int, int], direction: str) -> None:
         # Spike(color, start_coordinate, [self.room_spikes, self.room_sprites], direction)
         Spike(color, start_coordinate, direction, [self.room_spikes, self.room_sprites])
+
+    def build_text(self, text: str, left: int, top: int, color: tuple[int, int, int] = DEFAULT_FONT_COLOR, size = DEFAULT_FONT_SIZE):
+        Text(text, left, top, color, size, [self.room_text, self.room_sprites])

@@ -54,6 +54,8 @@ def create_scotts_room():
 
 def create_tutorial_room():
 
+    tutorial_room.build_text("Welcome!", 700, 100, size=40)
+
     #create doorways
     start_room.build_passage(Exit, tutorial_room, WALL_THICKNESS, SCREEN_HEIGHT // 2 - WALL_THICKNESS // 2)
     tutorial_room.build_passage(Exit, start_room, SCREEN_WIDTH // 2 - WALL_THICKNESS // 2, WALL_THICKNESS)
