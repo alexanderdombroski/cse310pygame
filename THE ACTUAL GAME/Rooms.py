@@ -71,3 +71,6 @@ def create_tutorial_room():
 
     # spike example
     tutorial_room.build_spike((255,255,255), start_coordinate=(700, 300), direction= "l")
+
+    # boulder example
+    tutorial_room.build_boulder(35,35,300,300,500,200)
