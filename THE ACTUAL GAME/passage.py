@@ -14,20 +14,20 @@ class Exit(sprite.Sprite):
     ) -> None:
         super().__init__()
 
-        self.__image = Surface((width, width))
-        self.__image.fill(Color(color))
+        self.image = Surface((width, width))
+        self.image.fill(Color(color))
         
         self.rect = self.image.get_rect(topleft=(left, top))
         self.destination = destination
 
         tile_image = image.load("images/locked.png" if locked else "images/gate.png")
-        self.__image.blit(tile_image, (0, 0))
+        self.image.blit(tile_image, (0, 0))
         
     def change_room(self) -> None:
         self.destination.enter_room()
 
     def unlock(self) -> None:
-        self.__image.blit(image.load("images/gate.png"), (0, 0))
+        self.image.blit(image.load("images/gate.png"), (0, 0))
 
 
 
