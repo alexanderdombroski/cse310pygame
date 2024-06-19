@@ -28,11 +28,10 @@ class Square(sprite.Sprite):
         # Center the square in the screen
         self.rect = self.image.get_rect(center=(start_x, start_y))
 
-        self.collisions = {
-            "left": False,
-            "top": False,
-            "right": False,
-            "bottom": False
+
+
+        self.inventory = {
+            "keys": 0
         }
 
     def print_direction(self) -> None:
@@ -58,7 +57,7 @@ class Square(sprite.Sprite):
         self.__change_speed(sprite.spritecollideany(self, all_ice), 2)
         self.__change_speed(sprite.spritecollideany(self, all_mud), 0.5)
 
-        self.collisions = {
+        collisions = {
             "left": False,
             "top": False,
             "right": False,
@@ -68,14 +67,14 @@ class Square(sprite.Sprite):
         for wall in walls:
             if wall.is_vertically_aligned(self.rect.left, self.rect.right):
                 if self.rect.top <= wall.rect.bottom and self.rect.bottom > wall.rect.bottom:
-                    self.collisions["top"] = wall.collide_top(self.rect.top, self.rect.bottom)
+                    collisions["top"] = wall.collide_top(self.rect.top, self.rect.bottom)
                 if self.rect.bottom >= wall.rect.top and self.rect.top < wall.rect.top:
-                    self.collisions["bottom"] = wall.collide_bottom(self.rect.top, self.rect.bottom)
+                    collisions["bottom"] = wall.collide_bottom(self.rect.top, self.rect.bottom)
             if wall.is_horizontally_aligned(self.rect.top, self.rect.bottom):    
                 if self.rect.left <= wall.rect.right and self.rect.right > wall.rect.right:
-                    self.collisions["left"] = wall.collide_left(self.rect.left, self.rect.right)
+                    collisions["left"] = wall.collide_left(self.rect.left, self.rect.right)
                 if self.rect.right >= wall.rect.left and self.rect.left < wall.rect.left:
-                    self.collisions["right"] = wall.collide_right(self.rect.left, self.rect.right)
+                    collisions["right"] = wall.collide_right(self.rect.left, self.rect.right)
 
                 # I'm a wall with info:         [top:300, bottom:370, left:500, right:535]
                 # big_player not clipping info: [top:370, bottom:440, left:510, right:580]
@@ -120,5 +119,7 @@ class Square(sprite.Sprite):
             round(self.rect.x / self.speed) * self.speed,
             round(self.rect.y / self.speed) * self.speed
         )
+
+    
 
 PLAYER = Square(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, all_sprites)
