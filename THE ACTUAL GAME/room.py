@@ -7,6 +7,7 @@ from passage import Exit
 from ice import Ice
 from mud import Mud
 from spikes import Spike
+from boulder import Boulder
 from text.text import Text
 
 class Room:
@@ -25,6 +26,7 @@ class Room:
         self.room_mud = sprite.Group()
         self.room_spikes = sprite.Group()
         self.room_text = sprite.Group()
+        self.room_boulder = sprite.Group()
 
         self.start_x = start_x
         self.start_y = start_y
@@ -100,3 +102,6 @@ class Room:
 
     def build_text(self, text: str, left: int, top: int, color: tuple[int, int, int] = DEFAULT_FONT_COLOR, size = DEFAULT_FONT_SIZE):
         Text(text, left, top, color, size, [self.room_text, self.room_sprites])
+
+    def build_boulder(self, left, top, width, height, boulder_x, boulder_y) -> None:
+        Boulder(left, top, width, height, boulder_x, boulder_y, [self.room_boulder, self.room_sprites])
