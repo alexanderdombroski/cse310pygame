@@ -1,7 +1,7 @@
 from pygame import *
 from pygame.locals import *
 import os
-from constants import all_sprites, SCREEN_HEIGHT, SCREEN_WIDTH, WALL_THICKNESS, current_room
+from constants import all_sprites, SCREEN_HEIGHT, SCREEN_WIDTH, WALL_THICKNESS, current_room, all_spikes
 from room import Room
 from passage import Exit
 from Square import PLAYER

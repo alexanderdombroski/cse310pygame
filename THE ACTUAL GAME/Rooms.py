@@ -32,18 +32,47 @@ def create_scotts_room():
     scotts_room.build_wall(25*35,0,14*35)
     scotts_room.build_wall(26*35,0,14*35)
     
-    for i in range(1, 19):
+    for i in range(1, 33):
+        # Spikes on the left and right walls of the screen.
         scotts_room.build_spike((255,255,255), (WALL_THICKNESS, WALL_THICKNESS * i), "r")
+        scotts_room.build_spike((255,255,255), (SCREEN_WIDTH - WALL_THICKNESS, WALL_THICKNESS * i), "l")
+
+        # Left and right spikes on pillars from the bottom.
         if i > 4:
             scotts_room.build_spike((255,255,255), (WALL_THICKNESS * 5, WALL_THICKNESS * i), "l")
+            scotts_room.build_spike((255,255,255), (WALL_THICKNESS * 7, WALL_THICKNESS * i), "r")
+            scotts_room.build_spike((255,255,255), (WALL_THICKNESS * 18, WALL_THICKNESS * i), "l")
+            scotts_room.build_spike((255,255,255), (WALL_THICKNESS * 20, WALL_THICKNESS * i), "r")
+
+        # First section of down spikes from ceiling.
         if i > 1 and i < 11:
             scotts_room.build_spike((255,255,255), (WALL_THICKNESS * i, WALL_THICKNESS), "d")
+        
+        if i > 11 and i < 14:
+            scotts_room.build_spike((255,255,255), (WALL_THICKNESS * i, WALL_THICKNESS * 14), "d")
+        if i > 24 and i < 27:
+            scotts_room.build_spike((255,255,255), (WALL_THICKNESS * i, WALL_THICKNESS * 14), "d")
+
+        # Left and right spikes on first wall pillar from top.
         if i < 14:
             scotts_room.build_spike((255,255,255), (WALL_THICKNESS * 12, WALL_THICKNESS * i), "l")
+            scotts_room.build_spike((255,255,255), (WALL_THICKNESS * 14, WALL_THICKNESS * i), "r")
+            scotts_room.build_spike((255,255,255), (WALL_THICKNESS * 25, WALL_THICKNESS * i), "l")
+            scotts_room.build_spike((255,255,255), (WALL_THICKNESS * 27, WALL_THICKNESS * i), "r")
+        
+        # Second section of down spikes from ceiling.
+        if i > 14 and i < 24:
+            scotts_room.build_spike((255,255,255), (WALL_THICKNESS * i, WALL_THICKNESS), "d")
+        
+        # First up spikes.
+        if i > 4 and i < 7:
+            scotts_room.build_spike((255,255,255), (WALL_THICKNESS * i, WALL_THICKNESS * 5), "u")
+        
+        # Second up spikes.
+        if i > 17 and i < 20:
+            scotts_room.build_spike((255,255,255), (WALL_THICKNESS * i, WALL_THICKNESS * 5), "u")
 
-
-    scotts_room.build_spike((255,255,255), (WALL_THICKNESS * 6, WALL_THICKNESS * 5), "u")
-    scotts_room.build_spike((255,255,255), (WALL_THICKNESS * 5, WALL_THICKNESS * 5), "u")
+            
 
 
     # # X, Y, Width, Height
@@ -53,8 +82,6 @@ def create_scotts_room():
 
 
 def create_tutorial_room():
-
-    tutorial_room.build_text("Welcome!", 700, 100, size=40)
 
     #create doorways
     start_room.build_passage(Exit, tutorial_room, WALL_THICKNESS, SCREEN_HEIGHT // 2 - WALL_THICKNESS // 2)

@@ -41,4 +41,10 @@ class Spike(sprite.Sprite):
                 self.rect = self.image.get_rect(topleft=start_coordinate)
 
 
-        draw.polygon(self.image, color, (point_1, point_2, point_3))                
+        draw.polygon(self.image, color, (point_1, point_2, point_3))   
+
+    def move_spikes(self):
+        keys = key.get_pressed()
+
+        if keys[K_LEFT] or keys[K_RIGHT] or keys[K_UP] or keys[K_DOWN]:
+            self.rect.x += 5             
