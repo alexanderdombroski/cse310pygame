@@ -42,7 +42,10 @@ class Room:
     
     def enter_room(self) -> None:
         # Makes a room visible
+        # UPDATE THIS WITH EVERY NEW OBJECT IN BOTH PLACES
+        global all_sprites, all_walls, all_exits, all_ice, all_mud, current_room
         all_sprites.empty()
+
         all_walls.empty()
         all_exits.empty()
         all_ice.empty()
@@ -50,8 +53,10 @@ class Room:
         all_spikes.empty()
         all_text.empty()
         all_collectables.empty()
+
         all_sprites.add(self.room_sprites.copy())
         all_sprites.add(PLAYER)
+        
         all_walls.add(self.room_walls.copy())
         all_exits.add(self.room_exits.copy())
         all_ice.add(self.room_ice.copy())
