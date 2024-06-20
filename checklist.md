@@ -1,7 +1,11 @@
 # WE NEED TO PUSH TO MAIN
 
-Here's what we should do before
+Before Pushing to Main
 [ ] Rename THE ACTUAL GAME folder
 [ ] Organize files more?
 [X] Add Launch configuration
-[ ] anything else?
+
+
+Alex's todo
+[ ] Make a room builder class
+[ ] Add keys and finish gates
