@@ -17,7 +17,7 @@ class Ice(sprite.Sprite):
         self.image = Surface((width, height))
         self.image.fill(Color((173, 216, 230)))
         
-        tile_image = image.load("images/ice.png")
+        tile_image = image.load("THE ACTUAL GAME/images/ice.png")
         tile_width, tile_height = tile_image.get_size()
         
         # Generate Image Tiles

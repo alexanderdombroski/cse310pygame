@@ -16,7 +16,7 @@ class Wall(sprite.Sprite):
         super().__init__(*groups if groups else [])
 
 
-        tile_image = image.load("images/wall_tile.png")
+        tile_image = image.load("THE ACTUAL GAME/images/wall_tile.png")
         tile_width, tile_height = tile_image.get_size()
         
         # Generate Image Tiles

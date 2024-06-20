@@ -17,7 +17,7 @@ class Mud(sprite.Sprite):
         self.image = Surface((width, height))
         self.image.fill(Color((101, 67, 33)))
         
-        tile_image = image.load("images/mud.png")
+        tile_image = image.load("THE ACTUAL GAME/images/mud.png")
         tile_width, tile_height = tile_image.get_size()
         
         # Generate Image Tiles
