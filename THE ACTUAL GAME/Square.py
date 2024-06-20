@@ -22,17 +22,16 @@ class Square(sprite.Sprite):
         # self.image.fill(self.color)
         # self.image = image.load("player_sprite_big.png")
         # self.image = image.load("entity70px.png")
-        self.image = image.load("images/antler_blob.png")
+        self.image = image.load("THE ACTUAL GAME/images/antler_blob.png")
         
 
         # Center the square in the screen
         self.rect = self.image.get_rect(center=(start_x, start_y))
 
-        self.collisions = {
-            "left": False,
-            "top": False,
-            "right": False,
-            "bottom": False
+
+
+        self.inventory = {
+            "keys": 0
         }
 
     def print_direction(self) -> None:
@@ -120,5 +119,7 @@ class Square(sprite.Sprite):
             round(self.rect.x / self.speed) * self.speed,
             round(self.rect.y / self.speed) * self.speed
         )
+
+    
 
 PLAYER = Square(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, all_sprites)

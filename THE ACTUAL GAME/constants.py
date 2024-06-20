@@ -21,5 +21,9 @@ PLAYER_SPEED = 5
 DEFAULT_FONT_SIZE = 32
 DEFAULT_FONT_COLOR = (255, 255, 255)
 
+COLLECTABLE_PATHS = {
+    
+}
+
 # Pointers
 current_room = [] # Theres no pointers in python, so were using a list lol

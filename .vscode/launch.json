@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Cave Explorer Game :)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/THE ACTUAL GAME/main.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

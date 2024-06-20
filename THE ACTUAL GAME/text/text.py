@@ -17,7 +17,7 @@ class Text(sprite.Sprite):
 
         # Configure text
         self.text = text
-        self.font = font.Font("text/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf", size)
+        self.font = font.Font("THE ACTUAL GAME/text/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf", size)
         self.color = color
 
         # Call Pygame Constructors

@@ -10,7 +10,7 @@ class Exit(sprite.Sprite):
         top: int, 
         width: int = WALL_THICKNESS,
         color: Tuple[int, int, int] = (0, 0, 0),
-        locked: bool = True
+        locked: bool = False
     ) -> None:
         super().__init__()
 
@@ -20,7 +20,7 @@ class Exit(sprite.Sprite):
         self.rect = self.image.get_rect(topleft=(left, top))
         self.destination = destination
 
-        tile_image = image.load("images/locked.png" if locked else "images/gate.png")
+        tile_image = image.load("THE ACTUAL GAME/images/locked.png" if locked else "THE ACTUAL GAME/images/gate.png")
         self.image.blit(tile_image, (0, 0))
         
     def change_room(self) -> None:
@@ -28,6 +28,13 @@ class Exit(sprite.Sprite):
 
     def unlock(self) -> None:
         self.image.blit(image.load("images/gate.png"), (0, 0))
+
+
+
+
+# class Switch
+
+
 
 # class Door(Exit):
 #     pass
