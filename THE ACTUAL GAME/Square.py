@@ -76,10 +76,6 @@ class Square(sprite.Sprite):
                 if self.rect.right >= wall.rect.left and self.rect.left < wall.rect.left:
                     self.collisions["right"] = wall.collide_right(self.rect.left, self.rect.right)
 
-                # I'm a wall with info:         [top:300, bottom:370, left:500, right:535]
-                # big_player not clipping info: [top:370, bottom:440, left:510, right:580]
-                # big_player clipping info:     [top:360, bottom:430, left:490, right:560]
-
     def move(self) -> None:
         keys = key.get_pressed()
         self.update_collisions(all_walls)

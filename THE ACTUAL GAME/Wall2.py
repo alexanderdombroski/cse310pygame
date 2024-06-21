@@ -28,13 +28,6 @@ class Wall(sprite.Sprite):
         
         # Set the position
         self.rect = self.image.get_rect(topleft=(left, top))
-
-
-        # self.image.fill(Color(color))
-        
-        # self.rect = self.image.get_rect(topleft=(left, top))
-
-
     
     # Collision Detection
     def is_vertically_aligned(self, x_left: int, x_right: int) -> bool:
