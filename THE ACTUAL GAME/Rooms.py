@@ -94,3 +94,5 @@ def create_tutorial_room():
 
     # boulder example
     tutorial_room.build_boulder(35,35,300,300,500,200)
+
+    tutorial_room.build_collectable(35, 105, "key")

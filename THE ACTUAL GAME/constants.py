@@ -10,6 +10,7 @@ all_ice = Group()
 all_mud = Group()
 all_spikes = Group()
 all_text = Group()
+all_collectables = Group()
 
 # Constants
 SCREEN_WIDTH = 1050 + 70
@@ -22,7 +23,7 @@ DEFAULT_FONT_SIZE = 32
 DEFAULT_FONT_COLOR = (255, 255, 255)
 
 COLLECTABLE_PATHS = {
-    
+    "key": "THE ACTUAL GAME/images/key.png"
 }
 
 # Pointers

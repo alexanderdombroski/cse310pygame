@@ -2,13 +2,14 @@ from typing import * # Used for fixed typing
 from pygame import *
 from Wall2 import Wall
 from Square import PLAYER
-from constants import all_sprites, all_walls, all_exits, all_ice, all_mud, all_spikes, all_text, WALL_THICKNESS, SCREEN_HEIGHT, SCREEN_WIDTH, DEFAULT_FONT_COLOR, DEFAULT_FONT_SIZE, current_room
+from constants import all_sprites, all_walls, all_exits, all_ice, all_mud, all_spikes, all_text, all_collectables, WALL_THICKNESS, SCREEN_HEIGHT, SCREEN_WIDTH, DEFAULT_FONT_COLOR, DEFAULT_FONT_SIZE, current_room
 from passage import Exit
 from ice import Ice
 from mud import Mud
 from spikes import Spike
 from boulder import Boulder
 from text.text import Text
+from collectable import Collectable
 
 class Room:
     def __init__(
@@ -27,6 +28,7 @@ class Room:
         self.room_spikes = sprite.Group()
         self.room_text = sprite.Group()
         self.room_boulder = sprite.Group()
+        self.room_collectables = sprite.Group()
 
         self.start_x = start_x
         self.start_y = start_y
@@ -47,6 +49,7 @@ class Room:
         all_mud.empty()
         all_spikes.empty()
         all_text.empty()
+        all_collectables.empty()
         all_sprites.add(self.room_sprites.copy())
         all_sprites.add(PLAYER)
         all_walls.add(self.room_walls.copy())
@@ -55,6 +58,7 @@ class Room:
         all_mud.add(self.room_mud.copy())
         all_spikes.add(self.room_spikes.copy())
         all_text.add(self.room_text.copy())
+        all_collectables.add(self.room_collectables.copy())
         
         # Reset movement
         current_room[0] = self
@@ -105,3 +109,6 @@ class Room:
 
     def build_boulder(self, left, top, width, height, boulder_x, boulder_y) -> None:
         Boulder(left, top, width, height, boulder_x, boulder_y, [self.room_boulder, self.room_sprites])
+
+    def build_collectable(self, left: int, top: int, name: str):
+        Collectable(left, top, name, [self.room_collectables, self.room_sprites])
