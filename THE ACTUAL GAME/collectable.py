@@ -17,12 +17,13 @@ class Collectable(sprite.Sprite):
 
         # Init Properties
         self.name = name
-        self.rect = self.image.get_rect(topleft=(left, top))
 
         # Draw Image
         self.image = Surface((35, 35))
         tile_image = image.load(COLLECTABLE_PATHS[name])
         self.image.blit(tile_image, (0, 0))
+        
+        self.rect = self.image.get_rect(topleft=(left, top))
 
     def pickup(self):
         PLAYER.inventory[self.name] += 1
