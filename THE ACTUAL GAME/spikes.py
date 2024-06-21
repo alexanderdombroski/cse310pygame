@@ -19,25 +19,25 @@ class Spike(sprite.Sprite):
                 point_1 = (short_side, 0)
                 point_2 = (short_side, long_side)
                 point_3 = (0, long_side // 2)
-                self.image = Surface((short_side, long_side))
+                self.image = Surface((short_side, long_side), SRCALPHA)
                 self.rect = self.image.get_rect(topright=start_coordinate)
             case "r":
                 point_1 = (0, 0)
                 point_2 = (0, long_side)
                 point_3 = (short_side, long_side // 2)
-                self.image = Surface((short_side, long_side))
+                self.image = Surface((short_side, long_side), SRCALPHA)
                 self.rect = self.image.get_rect(topleft=start_coordinate)
             case "u":
                 point_1 = (0, short_side)
                 point_2 = (long_side, short_side)
                 point_3 = (long_side // 2, 0)
-                self.image = Surface((long_side, short_side))
+                self.image = Surface((long_side, short_side), SRCALPHA)
                 self.rect = self.image.get_rect(bottomleft=start_coordinate)
             case "d":
                 point_1 = (0, 0)
                 point_2 = (long_side, 0)
                 point_3 = (long_side // 2, short_side)
-                self.image = Surface((long_side, short_side))
+                self.image = Surface((long_side, short_side), SRCALPHA)
                 self.rect = self.image.get_rect(topleft=start_coordinate)
 
 

@@ -71,14 +71,8 @@ def create_scotts_room():
         # Second up spikes.
         if i > 17 and i < 20:
             scotts_room.build_spike((255,255,255), (WALL_THICKNESS * i, WALL_THICKNESS * 5), "u")
-
-            
-
-
-    # # X, Y, Width, Height
-    # for i in range(3, 34, 2):
-    #     thickness_factor = 2 if i % 4 == 3 else 1
-    #     scotts_room.build_wall(SCREEN_WIDTH - WALL_THICKNESS * i, WALL_THICKNESS * thickness_factor, WALL_THICKNESS, SCREEN_HEIGHT - (35*3))
+    scotts_room.build_spike((255,255,255), (0,0), "r")
+    scotts_room.build_passage(Exit, tutorial_room, 100, 0)
 
 
 def create_tutorial_room():
