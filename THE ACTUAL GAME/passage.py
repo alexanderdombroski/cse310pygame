@@ -7,7 +7,8 @@ class Exit(sprite.Sprite):
         self, 
         destination, # Needs to be a room, but cannot specify cause circular imports :(
         left: int, 
-        top: int, 
+        top: int,
+        direction: str = "u", # Left means you enter from the left (it is facing left).
         width: int = WALL_THICKNESS,
         color: Tuple[int, int, int] = (0, 0, 0),
         locked: bool = False
@@ -20,6 +21,14 @@ class Exit(sprite.Sprite):
         self.destination = destination
 
         tile_image = image.load("THE ACTUAL GAME/images/locked.png" if locked else "THE ACTUAL GAME/images/gate.png")
+
+        if direction == "l":
+            tile_image = transform.rotate(tile_image, 90)
+        elif direction == "d":
+            tile_image = transform.rotate(tile_image, 180)
+        elif direction == "r":
+            tile_image = transform.rotate(tile_image, 270)
+        
         self.image.blit(tile_image, (0, 0))
         
     def change_room(self) -> None:

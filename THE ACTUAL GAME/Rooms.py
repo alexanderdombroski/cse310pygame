@@ -9,15 +9,15 @@ def create_start_room():
 
 def create_room_two():
     room2 = Room(default_wall_color=(128, 0, 228))
-    start_room.build_passage(Exit, room2, SCREEN_WIDTH - WALL_THICKNESS * 2, SCREEN_HEIGHT / 2)
-    room2.build_passage(Exit, start_room, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    start_room.build_passage(Exit, room2, SCREEN_WIDTH - WALL_THICKNESS * 2, SCREEN_HEIGHT / 2, "r")
+    room2.build_passage(Exit, start_room, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, "u")
 
 
 def create_scotts_room():
     # Room 3 (scotts_room)
 
-    scotts_room = Room(start_x=SCREEN_WIDTH - WALL_THICKNESS * 4, start_y=50 , default_wall_color=(190, 0, 0))
-    scotts_room.build_passage(Exit, start_room,  2.5 * WALL_THICKNESS, SCREEN_HEIGHT - 2 * WALL_THICKNESS)
+    scotts_room = Room(start_x=SCREEN_WIDTH - WALL_THICKNESS * 4, start_y=100 , default_wall_color=(190, 0, 0))
+    scotts_room.build_passage(Exit, start_room,  2.5 * WALL_THICKNESS, SCREEN_HEIGHT - 2 * WALL_THICKNESS, "d")
     start_room.build_passage(Exit, scotts_room, SCREEN_WIDTH // 2 - WALL_THICKNESS // 2, WALL_THICKNESS)
 
     scotts_room.build_wall(5*35,5*35,14*35)
@@ -71,15 +71,14 @@ def create_scotts_room():
         # Second up spikes.
         if i > 17 and i < 20:
             scotts_room.build_spike((255,255,255), (WALL_THICKNESS * i, WALL_THICKNESS * 5), "u")
-    scotts_room.build_spike((255,255,255), (0,0), "r")
-    scotts_room.build_passage(Exit, tutorial_room, 100, 0)
+    scotts_room.build_passage(Exit, tutorial_room, SCREEN_WIDTH - WALL_THICKNESS * 3.5, 5, "u")
 
 
 def create_tutorial_room():
 
     #create doorways
-    start_room.build_passage(Exit, tutorial_room, WALL_THICKNESS, SCREEN_HEIGHT // 2 - WALL_THICKNESS // 2)
-    tutorial_room.build_passage(Exit, start_room, SCREEN_WIDTH // 2 - WALL_THICKNESS // 2, WALL_THICKNESS)
+    start_room.build_passage(Exit, tutorial_room, WALL_THICKNESS, SCREEN_HEIGHT // 2 - WALL_THICKNESS // 2, "l")
+    tutorial_room.build_passage(Exit, start_room, SCREEN_WIDTH // 2 - WALL_THICKNESS // 2, WALL_THICKNESS, "u")
 
     # TODO add text to explain how to play and describe objects 
 
