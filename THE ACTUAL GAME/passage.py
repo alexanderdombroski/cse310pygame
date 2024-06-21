@@ -14,8 +14,7 @@ class Exit(sprite.Sprite):
     ) -> None:
         super().__init__()
 
-        self.image = Surface((width, width))
-        self.image.fill(Color(color))
+        self.image = Surface((width, width), SRCALPHA)
         
         self.rect = self.image.get_rect(topleft=(left, top))
         self.destination = destination
