@@ -1,16 +1,31 @@
 from constants import all_sprites, SCREEN_HEIGHT, SCREEN_WIDTH, WALL_THICKNESS, current_room
 from room import Room, Exit
 
-tutorial_room = Room(start_x = SCREEN_WIDTH // 2, start_y=SCREEN_HEIGHT - 105)
-start_room = Room(start_x = SCREEN_WIDTH // 2, start_y=SCREEN_HEIGHT - 105, default_wall_color=(128, 128, 128))
+tutorial_room = Room(start_x = SCREEN_WIDTH // 2, start_y=SCREEN_HEIGHT - WALL_THICKNESS * 3)
+start_room = Room(start_x = (SCREEN_WIDTH -35) // 2, start_y=SCREEN_HEIGHT - WALL_THICKNESS * 5, default_wall_color=(128, 128, 128))
 
 def create_start_room():
     pass
 
 def create_room_two():
-    room2 = Room(default_wall_color=(128, 0, 228))
+    room2 = Room(start_x=WALL_THICKNESS, start_y= (SCREEN_HEIGHT -WALL_THICKNESS) // 2)
     start_room.build_passage(Exit, room2, SCREEN_WIDTH - WALL_THICKNESS * 2, SCREEN_HEIGHT / 2, "r")
-    room2.build_passage(Exit, start_room, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, "u")
+    room2.build_passage(Exit, start_room, SCREEN_WIDTH // 2 + SCREEN_WIDTH // 3, SCREEN_HEIGHT // 2, "u")
+
+    room_name = room2
+    room_name.build_wall(5*35,5*35,14*35)
+    room_name.build_wall(6*35,5*35,14*35)
+    
+    room_name.build_wall(13*35,0,14*35)
+    room_name.build_wall(12*35,0,14*35)
+    
+    room_name.build_wall(19*35,5*35,14*35)
+    room_name.build_wall(18*35,5*35,14*35)
+    
+    room_name.build_wall(25*35,0,14*35)
+    room_name.build_wall(26*35,0,14*35)
+
+    room_name.build_spike((255,255,255), (WALL_THICKNESS,100))
 
 
 def create_scotts_room():
@@ -77,8 +92,8 @@ def create_scotts_room():
 def create_tutorial_room():
 
     #create doorways
-    start_room.build_passage(Exit, tutorial_room, WALL_THICKNESS, SCREEN_HEIGHT // 2 - WALL_THICKNESS // 2, "l")
-    tutorial_room.build_passage(Exit, start_room, SCREEN_WIDTH // 2 - WALL_THICKNESS // 2, WALL_THICKNESS, "u")
+    start_room.build_passage(Exit, tutorial_room, (SCREEN_WIDTH-WALL_THICKNESS) // 2, SCREEN_HEIGHT - WALL_THICKNESS * 2, "l")
+    tutorial_room.build_passage(Exit, start_room, (SCREEN_WIDTH -WALL_THICKNESS) // 2, WALL_THICKNESS, "u")
 
     # TODO add text to explain how to play and describe objects 
 
@@ -94,5 +109,36 @@ def create_tutorial_room():
 
     # boulder example
     tutorial_room.build_boulder(35,35,300,300,500,200)
+    
+    room_name = tutorial_room
+    
+    #trigger example
+    trigger1 = room_name.build_trigger(385, SCREEN_HEIGHT - WALL_THICKNESS * 5)
+    trigger2 = room_name.build_trigger(455, SCREEN_HEIGHT - WALL_THICKNESS * 5)
+    trigger3 = room_name.build_trigger(525, SCREEN_HEIGHT - WALL_THICKNESS * 5)
+    trigger4 = room_name.build_trigger(595, SCREEN_HEIGHT - WALL_THICKNESS * 5)
+
+    #trap example
+    arrow_spitter1 = room_name.build_arrow_spitter(280, 0, rotation_degrees_ccw=180)
+    arrow_spitter2 = room_name.build_arrow_spitter(350, SCREEN_HEIGHT - WALL_THICKNESS, rotation_degrees_ccw=0)
+    arrow_spitter3 = room_name.build_arrow_spitter(0, SCREEN_HEIGHT - WALL_THICKNESS * 4, rotation_degrees_ccw=270)
+    arrow_spitter4 = room_name.build_arrow_spitter(SCREEN_WIDTH - WALL_THICKNESS, SCREEN_HEIGHT - WALL_THICKNESS * 6, rotation_degrees_ccw=90)
+
+    # connect trap and trigger
+    trigger1.set_linked_trap(arrow_spitter1)
+    trigger2.set_linked_trap(arrow_spitter2)
+    trigger3.set_linked_trap(arrow_spitter3)
+    trigger4.set_linked_trap(arrow_spitter4)
+
+    arrow_spitter1.set_linked_trigger(trigger1)
+    arrow_spitter2.set_linked_trigger(trigger2)
+    arrow_spitter3.set_linked_trigger(trigger3)
+    arrow_spitter4.set_linked_trigger(trigger4)
+    
+
+
+
+
+
 
     tutorial_room.build_collectable(35, 105, "key")

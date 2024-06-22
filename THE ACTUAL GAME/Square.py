@@ -1,6 +1,6 @@
 from typing import * # Used for fixed typing
 from pygame import *
-from constants import all_sprites, all_walls, all_exits, all_ice, all_mud, all_spikes, SCREEN_HEIGHT, SCREEN_WIDTH, PLAYER_SPEED, current_room
+from constants import all_sprites, all_walls, all_exits, all_ice, all_mud, all_spikes, all_triggers, all_attacks, SCREEN_HEIGHT, SCREEN_WIDTH, PLAYER_SPEED, current_room
 
 class Square(sprite.Sprite):
     def __init__(
@@ -47,7 +47,22 @@ class Square(sprite.Sprite):
         for spike in all_spikes:
             if self.rect.colliderect(spike.rect):
                 self.teleport(current_room[0].start_x, current_room[0].start_y)
-                
+
+        for trigger in all_triggers:
+                    trigger.last_contact_bool = trigger.current_contact_bool
+
+                    if self.rect.colliderect(trigger.rect):# check for collision
+                        trigger.current_contact_bool = True
+
+                    else:
+                        trigger.current_contact_bool = False
+                                
+                    if (trigger.current_contact_bool == True) and (trigger.last_contact_bool == False):
+                        trigger.linked_trap.spit_arrow(trigger.linked_trap.attack_groups)
+
+        for attack in all_attacks:
+            if self.rect.colliderect(attack.rect):
+                self.teleport(current_room[0].start_x, current_room[0].start_y)
 
         for exit in all_exits:
             if self.rect.colliderect(exit.rect):
@@ -75,6 +90,7 @@ class Square(sprite.Sprite):
                     self.collisions["left"] = wall.collide_left(self.rect.left, self.rect.right)
                 if self.rect.right >= wall.rect.left and self.rect.left < wall.rect.left:
                     self.collisions["right"] = wall.collide_right(self.rect.left, self.rect.right)
+
 
     def move(self) -> None:
         keys = key.get_pressed()

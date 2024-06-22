@@ -11,6 +11,9 @@ all_mud = Group()
 all_spikes = Group()
 all_text = Group()
 all_collectables = Group()
+all_triggers = Group()
+all_arrow_spitters = Group()
+all_attacks = Group()
 
 # Constants
 SCREEN_WIDTH = 1050 + 70

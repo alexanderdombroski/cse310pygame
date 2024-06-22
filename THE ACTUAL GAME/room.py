@@ -2,7 +2,7 @@ from typing import * # Used for fixed typing
 from pygame import *
 from Wall2 import Wall
 from Square import PLAYER
-from constants import all_sprites, all_walls, all_exits, all_ice, all_mud, all_spikes, all_text, all_collectables, WALL_THICKNESS, SCREEN_HEIGHT, SCREEN_WIDTH, DEFAULT_FONT_COLOR, DEFAULT_FONT_SIZE, current_room
+from constants import all_sprites, all_walls, all_exits, all_ice, all_mud, all_spikes, all_text, all_collectables, all_triggers, all_arrow_spitters, all_attacks, WALL_THICKNESS, SCREEN_HEIGHT, SCREEN_WIDTH, DEFAULT_FONT_COLOR, DEFAULT_FONT_SIZE, current_room
 from passage import Exit
 from ice import Ice
 from mud import Mud
@@ -10,6 +10,9 @@ from spikes import Spike
 from boulder import Boulder
 from text.text import Text
 from collectable import Collectable
+from Trigger import Trigger
+from arrow_spitter import Arrow_Spitter
+
 
 class Room:
     def __init__(
@@ -28,22 +31,26 @@ class Room:
         self.room_spikes = sprite.Group()
         self.room_text = sprite.Group()
         self.room_boulder = sprite.Group()
-        self.room_collectables = sprite.Group()
+        self.room_collectables = sprite.Group()        
+        self.room_triggers =  sprite.Group()
+        self.room_arrow_spitters = sprite.Group()
+        self.room_attacks = sprite.Group()
+
 
         self.start_x = start_x
         self.start_y = start_y
         PLAYER.teleport(start_x, start_y)
+        #small bug where defining a room without start x/y makes player unkillable
 
         # Wall Properties
         self.default_wall_color = default_wall_color
         if build_border:
-            self.build_border()
-
+            self.build_border()        
     
     def enter_room(self) -> None:
         # Makes a room visible
-        # UPDATE THIS WITH EVERY NEW OBJECT IN BOTH PLACES
-        global all_sprites, all_walls, all_exits, all_ice, all_mud, current_room
+        # UPDATE THIS WITH EVERY NEW OBJECT IN AT LEAST 4 PLACES
+        global all_sprites, all_walls, all_exits, all_ice, all_mud, all_spikes, all_triggers, all_arrow_spitters, all_attacks, current_room
         all_sprites.empty()
 
         all_walls.empty()
@@ -53,6 +60,9 @@ class Room:
         all_spikes.empty()
         all_text.empty()
         all_collectables.empty()
+        all_triggers.empty()
+        all_arrow_spitters.empty()
+        all_attacks.empty()
 
         all_sprites.add(self.room_sprites.copy())
         all_sprites.add(PLAYER)
@@ -64,12 +74,16 @@ class Room:
         all_spikes.add(self.room_spikes.copy())
         all_text.add(self.room_text.copy())
         all_collectables.add(self.room_collectables.copy())
+        all_triggers.add(self.room_triggers.copy())
+        all_arrow_spitters.add(self.room_arrow_spitters.copy())
+        all_attacks.add(self.room_attacks)
+
         
         # Reset movement
         current_room[0] = self
         PLAYER.teleport(self.start_x, self.start_y)
 
-        # color: Tuple[int, int, int], 
+#         color: Tuple[int, int, int], 
 #         left: int, 
 #         top: int, 
 #         length: int,
@@ -117,3 +131,31 @@ class Room:
 
     def build_collectable(self, left: int, top: int, name: str):
         Collectable(left, top, name, [self.room_collectables, self.room_sprites])
+
+    def build_trigger(
+            self,
+            left: int, 
+            top: int, 
+            width: int = WALL_THICKNESS, 
+            height: int = WALL_THICKNESS, 
+            color: Tuple[int, int, int] = (0,255,0), 
+            groups: List[sprite.Group] = None, 
+            linked_trap = "",):
+        # Trigger(left, top, width, height, color, [self.room_triggers, self.room_sprites], linked_trap)
+        return Trigger(left, top, width, height, color, [self.room_triggers, self.room_sprites], linked_trap)
+
+    def build_arrow_spitter(
+            self, 
+            left: int, 
+            top: int, 
+            width: int = WALL_THICKNESS, 
+            height: int = WALL_THICKNESS, 
+            color: Tuple[int, int, int] = (0,0,255), 
+            second_color: Tuple[int, int, int] = (255, 0, 255),
+            groups: List[sprite.Group] = None, 
+            attack_groups: List[sprite.Group] = None,
+            linked_trigger = "",
+            rotation_degrees_ccw:int = 0 # 0:up, 90:left, 180:down, 270:right
+    ):
+        # Arrow_Spitter(left, top, width, height, color, [self.room_arrow_spitters, self.room_sprites], linked_trigger, rotation_degrees_ccw)
+        return Arrow_Spitter(left=left, top=top, width=width, height=height, color=color, groups=[self.room_arrow_spitters, self.room_sprites], attack_groups= [all_attacks, self.room_sprites, all_sprites], linked_trigger=linked_trigger, second_color=second_color, rotation_degrees_ccw=rotation_degrees_ccw)

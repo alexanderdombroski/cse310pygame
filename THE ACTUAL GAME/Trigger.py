@@ -11,14 +11,28 @@ class Trigger(sprite.Sprite):
         height: int = WALL_THICKNESS, 
         color: Tuple[int, int, int] = (0,255,0), 
         groups: List[sprite.Group] = None, 
+        linked_trap = "",
     ) -> None:
         
-        super().__init__()
+        super().__init__(*groups if groups else [])
 
-        self.image = Surface((width, height))
-        self.image.fill(Color(color))
+        self.image = image.load("images/button_unpressed.png")
         
         self.rect = self.image.get_rect(topleft=(left, top))
 
+        self.linked_trap = linked_trap
+
+        self.last_contact_bool = False
+        self.current_contact_bool = False
+
+        self.send_signal = False    
+
+    def set_linked_trap(self, trap):
+        self.linked_trap = trap
+
     def update(self):
-        pass
+        if self.current_contact_bool and not self.last_contact_bool:
+            self.image = image.load("images/button_pressed.png")
+
+        elif not self.current_contact_bool and self.last_contact_bool:
+            self.image = image.load("images/button_unpressed.png")
