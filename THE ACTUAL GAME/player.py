@@ -11,37 +11,31 @@ class Square(sprite.Sprite):
     ) -> None:
         
         super().__init__(*groups if groups else [])
-        
-        # self.width = 35
-        # self.color = (100, 200, 0)
+
         self.facing = "right"
         self.speed = PLAYER_SPEED
 
-        #change Surface((w, w)) to a png
-        # self.image = Surface((self.width,self.width))
-        # self.image.fill(self.color)
-        # self.image = image.load("player_sprite_big.png")
-        # self.image = image.load("entity70px.png")
         self.image = image.load("THE ACTUAL GAME/images/antler_blob.png")
         
-
         # Center the square in the screen
         self.rect = self.image.get_rect(center=(start_x, start_y))
-
-
 
         self.inventory = {
             "keys": 0
         }
 
+
     def print_direction(self) -> None:
         print(self.facing)
+
 
     def print_self_coordinates(self) -> None:
         print(f"top:{self.rect.top}, bottom:{self.rect.bottom}, left:{self.rect.left}, right:{self.rect.right} ")
 
+
     def change_color(self, new_color: Tuple[int, int, int]) -> None:
         self.image.fill(new_color)
+
 
     def update_collisions(self, walls: sprite.Group) -> None:
         for spike in all_spikes:
@@ -108,12 +102,14 @@ class Square(sprite.Sprite):
             self.rect.x += self.speed
             self.facing = "right"
     
+
     def teleport(self, x: int = None, y: int = None) -> None:
         # Allows player to teleport to a new x/y value(s) if provided
         if x != None:
             self.rect.x = x
         if y != None:
             self.rect.y = y
+
 
     def __change_speed(self, condition: bool, speed_modifier: int) -> None:
         new_speed = PLAYER_SPEED * speed_modifier
@@ -125,13 +121,12 @@ class Square(sprite.Sprite):
             # Snap back to grid
             self.__snap_to_grid()
     
+
     def __snap_to_grid(self) -> None:
         # Align the player relative to speed
         self.teleport(
             round(self.rect.x / self.speed) * self.speed,
             round(self.rect.y / self.speed) * self.speed
         )
-
-    
 
 PLAYER = Square(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, all_sprites)

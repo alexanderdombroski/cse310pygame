@@ -56,9 +56,7 @@ class Arrow_Spitter(sprite.Sprite):
         left_param = self.rect.x
         top_param=self.rect.y
 
-        if self.rotation_degrees_ccw == 90:
-            pass
-        elif self.rotation_degrees_ccw == 180:
+        if self.rotation_degrees_ccw == 180:
             top_param = self.rect.bottom
         elif self.rotation_degrees_ccw == 270:
             left_param = self.rect.right

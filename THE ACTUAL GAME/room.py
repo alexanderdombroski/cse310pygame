@@ -36,21 +36,19 @@ class Room:
         self.room_arrow_spitters = sprite.Group()
         self.room_attacks = sprite.Group()
 
-
         self.start_x = start_x
         self.start_y = start_y
         PLAYER.teleport(start_x, start_y)
-        #small bug where defining a room without start x/y makes player unkillable
+        #small bug where defining a room without start x/y makes player unkillable (unable to be teleported to start of room)
 
         # Wall Properties
         self.default_wall_color = default_wall_color
         if build_border:
             self.build_border()        
     
+
     def enter_room(self) -> None:
         # Makes a room visible
-        # UPDATE THIS WITH EVERY NEW OBJECT IN AT LEAST 4 PLACES
-        global all_sprites, all_walls, all_exits, all_ice, all_mud, all_spikes, all_triggers, all_arrow_spitters, all_attacks, current_room
         all_sprites.empty()
 
         all_walls.empty()
@@ -77,7 +75,6 @@ class Room:
         all_triggers.add(self.room_triggers.copy())
         all_arrow_spitters.add(self.room_arrow_spitters.copy())
         all_attacks.add(self.room_attacks)
-
         
         # Reset movement
         current_room[0] = self
@@ -99,11 +96,13 @@ class Room:
 
         Wall(color, left, top, length, width, [self.room_walls, self.room_sprites])
 
+
     def build_border(self) -> None:
         self.build_wall(0, 0, length=SCREEN_HEIGHT) # Left
         self.build_wall(0, 0, width=SCREEN_WIDTH) # Top
         self.build_wall(SCREEN_WIDTH - WALL_THICKNESS, 0, length=SCREEN_HEIGHT) # Right
         self.build_wall(0, SCREEN_HEIGHT - WALL_THICKNESS, width=SCREEN_WIDTH) # Bottom
+
 
     def build_passage(self, exit_type: Type[Exit], *args: Tuple, **kwargs: Dict[str, Any]) -> None:
         exit = exit_type(*args, **kwargs)
@@ -113,23 +112,30 @@ class Room:
         # *args is for required arguments
         # **kwargs is for optional arguments
     
+
     def build_ice(self, left: int, top: int, width: int = WALL_THICKNESS, height: int = WALL_THICKNESS) -> None:
         Ice(left, top, width, height, [self.room_ice, self.room_sprites])
     
+
     def build_mud(self, left: int, top: int, width: int = WALL_THICKNESS, height: int = WALL_THICKNESS) -> None:
         Mud(left, top, width, height, [self.room_mud, self.room_sprites])
+
 
     def build_spike(self, color: tuple[int, int, int], start_coordinate: tuple[int, int], direction: str) -> None:
         Spike(color, start_coordinate, direction, [self.room_spikes, self.room_sprites])
 
+
     def build_text(self, text: str, left: int, top: int, color: tuple[int, int, int] = DEFAULT_FONT_COLOR, size = DEFAULT_FONT_SIZE):
         Text(text, left, top, color, size, [self.room_text, self.room_sprites])
+
 
     def build_boulder(self, left, top, width, height, boulder_x, boulder_y) -> None:
         Boulder(left, top, width, height, boulder_x, boulder_y, [self.room_boulder, self.room_sprites])
 
+
     def build_collectable(self, left: int, top: int, name: str):
         Collectable(left, top, name, [self.room_collectables, self.room_sprites])
+
 
     def build_trigger(
             self,
@@ -141,6 +147,7 @@ class Room:
             groups: List[sprite.Group] = None, 
             linked_trap = "",):
         return Trigger(left, top, width, height, color, [self.room_triggers, self.room_sprites], linked_trap)
+
 
     def build_arrow_spitter(
             self, 

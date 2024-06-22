@@ -39,12 +39,8 @@ class Projectile(sprite.Sprite):
             self.image.fill(Color((255, 0, 255)))
             self.rect = self.image.get_rect(topleft=(self.start_x, self.start_y))
 
-        
-
-
         self.attack_creation_time = time.time()
         self.delta_time = 0
-
 
 
     def move(self):
@@ -56,7 +52,6 @@ class Projectile(sprite.Sprite):
             self.rect.y -= self.speed
             self.delta_y = self.start_y - self.rect.y
             
-
             if self.delta_y <= self.full_height:
                 self.image = transform.scale(self.image, (self.width, self.delta_y))
                 self.rect = self.image.get_rect(topleft = (self.rect.x, self.rect.y)) #update the rect size
@@ -93,7 +88,6 @@ class Projectile(sprite.Sprite):
                 self.rect.x += self.speed
         
 
-
     def update(self):
         self.delta_time = time.time() - self.attack_creation_time # find how many seconds ago attack was created
         if self.delta_time >= self.lifespan: # check if lifespan is over
@@ -101,15 +95,3 @@ class Projectile(sprite.Sprite):
             self.kill() # kill sprite if lifespan over
         else:
             self.move()
-
-
-
-
-
-# print("\n\n\n\nProjectile After Initialization:")
-# print(f"top: {self.rect.top}")
-# print(f"bottom: {self.rect.bottom}")
-# print(f"left: {self.rect.left}")
-# print(f"right: {self.rect.right}")
-# print(f"x: {self.rect.x}")
-# print(f"y: {self.rect.y}")

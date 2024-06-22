@@ -27,8 +27,10 @@ class Trigger(sprite.Sprite):
 
         self.send_signal = False    
 
+
     def set_linked_trap(self, trap):
         self.linked_trap = trap
+
 
     def update(self):
         if self.current_contact_bool and not self.last_contact_bool:

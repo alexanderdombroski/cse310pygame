@@ -91,6 +91,9 @@ def create_tutorial_room():
 
     # boulder example
     tutorial_room.build_boulder(35,35,300,300,500,200)
+
+    #key example
+    tutorial_room.build_collectable(35, 105, "key")
     
     room_name = tutorial_room
     
@@ -116,11 +119,3 @@ def create_tutorial_room():
     arrow_spitter2.set_linked_trigger(trigger2)
     arrow_spitter3.set_linked_trigger(trigger3)
     arrow_spitter4.set_linked_trigger(trigger4)
-    
-
-
-
-
-
-
-    tutorial_room.build_collectable(35, 105, "key")

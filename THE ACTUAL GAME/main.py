@@ -34,8 +34,6 @@ current_room.append(tutorial_room)
 tutorial_room.enter_room()
 running = True
 
-frozen_state = False
-
 while running:
     # Handles Quitting
     running = not any(event.type == QUIT for event in event.get())
