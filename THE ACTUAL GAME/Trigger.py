@@ -16,7 +16,7 @@ class Trigger(sprite.Sprite):
         
         super().__init__(*groups if groups else [])
 
-        self.image = image.load("images/button_unpressed.png")
+        self.image = image.load("THE ACTUAL GAME/images/button_unpressed.png")
         
         self.rect = self.image.get_rect(topleft=(left, top))
 
@@ -32,7 +32,7 @@ class Trigger(sprite.Sprite):
 
     def update(self):
         if self.current_contact_bool and not self.last_contact_bool:
-            self.image = image.load("images/button_pressed.png")
+            self.image = image.load("THE ACTUAL GAME/images/button_pressed.png")
 
         elif not self.current_contact_bool and self.last_contact_bool:
-            self.image = image.load("images/button_unpressed.png")
+            self.image = image.load("THE ACTUAL GAME/images/button_unpressed.png")

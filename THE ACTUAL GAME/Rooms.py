@@ -12,20 +12,20 @@ def create_room_two():
     start_room.build_passage(Exit, room2, SCREEN_WIDTH - WALL_THICKNESS * 2, SCREEN_HEIGHT / 2, "r")
     room2.build_passage(Exit, start_room, SCREEN_WIDTH // 2 + SCREEN_WIDTH // 3, SCREEN_HEIGHT // 2, "u")
 
-    room_name = room2
-    room_name.build_wall(5*35,5*35,14*35)
-    room_name.build_wall(6*35,5*35,14*35)
+    # room_name = room2
+    # room_name.build_wall(5*35,5*35,14*35)
+    # room_name.build_wall(6*35,5*35,14*35)
     
-    room_name.build_wall(13*35,0,14*35)
-    room_name.build_wall(12*35,0,14*35)
+    # room_name.build_wall(13*35,0,14*35)
+    # room_name.build_wall(12*35,0,14*35)
     
-    room_name.build_wall(19*35,5*35,14*35)
-    room_name.build_wall(18*35,5*35,14*35)
+    # room_name.build_wall(19*35,5*35,14*35)
+    # room_name.build_wall(18*35,5*35,14*35)
     
-    room_name.build_wall(25*35,0,14*35)
-    room_name.build_wall(26*35,0,14*35)
+    # room_name.build_wall(25*35,0,14*35)
+    # room_name.build_wall(26*35,0,14*35)
 
-    room_name.build_spike((255,255,255), (WALL_THICKNESS,100))
+    # room_name.build_spike((255,255,255), (WALL_THICKNESS,100))
 
 
 def create_scotts_room():
