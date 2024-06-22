@@ -36,20 +36,9 @@ running = True
 
 frozen_state = False
 
-while running:   
-    
+while running:
     # Handles Quitting
-    # running = not any(event.type == QUIT for event in event.get())
-    # frozen_state = not any (event.type == KEYDOWN for event in event.get()) and not any (event.key == K_SPACE for event in event.get())
-
-    for evan in event.get():
-        if evan.type == QUIT:
-            quit()
-
-        if evan.type == KEYDOWN:
-            if evan.key == K_SPACE:
-                frozen_state = not frozen_state
-                # print(frozen_state)
+    running = not any(event.type == QUIT for event in event.get())
 
     #GIVE KEYBOARD SHORTCUT to quit (hold `q` `u` `i` `t` simultaneously) or `R_ctrl` & `q`
     keys = key.get_pressed()
@@ -57,40 +46,15 @@ while running:
         running = False
     elif keys[K_q] and keys[K_LCTRL]:
         running = False
-        
 
+    # Fill the screen with background image
+    window.blit(background_image, (0,0))
 
-    if not frozen_state:
-        # Fill the screen with background image
-        window.blit(background_image, (0,0))
+    PLAYER.move()
 
-        PLAYER.move()
+    all_sprites.update()
+    all_sprites.draw(window)
 
-        all_sprites.update()
-        all_sprites.draw(window)
+    display.flip()
 
-        display.flip()
-
-
-            
-
-        time.Clock().tick(60)        
-
-
-    # # Handles Quitting
-    # running = not any(event.type == QUIT for event in event.get())
-
-    # #GIVE KEYBOARD SHORTCUT to quit (hold `q` `u` `i` `t` simultaneously) or `R_ctrl` & `q`
-    # for event in event.get():
-
-    #     keys = key.get_pressed()
-    #     if keys[K_q] and keys[K_u] and keys[K_i] and keys[K_t]:
-    #         running = False
-    #     elif keys[K_q] and keys[K_LCTRL]:
-    #         running = False
-    #         if event.type == KEYDOWN:
-    #             if event.key == K_SPACE:
-    #                 frozen_state = not frozen_state
-    #                 print(frozen_state)
-
-    # if not frozen_state:
+    time.Clock().tick(60)

@@ -120,7 +120,6 @@ class Room:
         Mud(left, top, width, height, [self.room_mud, self.room_sprites])
 
     def build_spike(self, color: tuple[int, int, int], start_coordinate: tuple[int, int], direction: str) -> None:
-        # Spike(color, start_coordinate, [self.room_spikes, self.room_sprites], direction)
         Spike(color, start_coordinate, direction, [self.room_spikes, self.room_sprites])
 
     def build_text(self, text: str, left: int, top: int, color: tuple[int, int, int] = DEFAULT_FONT_COLOR, size = DEFAULT_FONT_SIZE):
@@ -141,7 +140,6 @@ class Room:
             color: Tuple[int, int, int] = (0,255,0), 
             groups: List[sprite.Group] = None, 
             linked_trap = "",):
-        # Trigger(left, top, width, height, color, [self.room_triggers, self.room_sprites], linked_trap)
         return Trigger(left, top, width, height, color, [self.room_triggers, self.room_sprites], linked_trap)
 
     def build_arrow_spitter(
@@ -157,5 +155,4 @@ class Room:
             linked_trigger = "",
             rotation_degrees_ccw:int = 0 # 0:up, 90:left, 180:down, 270:right
     ):
-        # Arrow_Spitter(left, top, width, height, color, [self.room_arrow_spitters, self.room_sprites], linked_trigger, rotation_degrees_ccw)
         return Arrow_Spitter(left=left, top=top, width=width, height=height, color=color, groups=[self.room_arrow_spitters, self.room_sprites], attack_groups= [all_attacks, self.room_sprites, all_sprites], linked_trigger=linked_trigger, second_color=second_color, rotation_degrees_ccw=rotation_degrees_ccw)

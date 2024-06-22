@@ -11,7 +11,8 @@ class Projectile(sprite.Sprite):
         height: int = 35 * 2, 
         groups: List[sprite.Group] = None,
         speed:int = 6,
-        rotation_degrees_ccw : int = 0 # 0:up, 90:left, 180:down, 270:right
+        rotation_degrees_ccw : int = 0, # 0:up, 90:left, 180:down, 270:right
+        lifespan:float = 2
     ) -> None:
         
         # Add the sprites to groups
@@ -23,7 +24,7 @@ class Projectile(sprite.Sprite):
         self.full_height = height
         self.rotation_degrees_ccw = rotation_degrees_ccw
         self.speed = speed
-        self.lifespan = 1.5
+        self.lifespan = lifespan
 
         
         self.only_once:bool = True
