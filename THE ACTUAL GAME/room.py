@@ -10,7 +10,7 @@ from spikes import Spike
 from boulder import Boulder
 from text.text import Text
 from collectable import Collectable
-from Trigger import Trigger
+from trigger import Trigger
 from arrow_spitter import Arrow_Spitter
 
 
