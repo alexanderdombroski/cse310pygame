@@ -1,4 +1,4 @@
-from constants import all_sprites, SCREEN_HEIGHT, SCREEN_WIDTH, WALL_THICKNESS, current_room
+from constants import  SCREEN_HEIGHT, SCREEN_WIDTH, WALL_THICKNESS#, current_room, all_sprites
 from room import Room, Exit
 
 tutorial_room = Room(start_x = SCREEN_WIDTH // 2, start_y=SCREEN_HEIGHT - WALL_THICKNESS * 3)
@@ -12,25 +12,7 @@ def create_room_two():
     start_room.build_passage(Exit, room2, SCREEN_WIDTH - WALL_THICKNESS * 2, SCREEN_HEIGHT / 2, "r")
     room2.build_passage(Exit, start_room, SCREEN_WIDTH // 2 + SCREEN_WIDTH // 3, SCREEN_HEIGHT // 2, "u")
 
-    # room_name = room2
-    # room_name.build_wall(5*35,5*35,14*35)
-    # room_name.build_wall(6*35,5*35,14*35)
-    
-    # room_name.build_wall(13*35,0,14*35)
-    # room_name.build_wall(12*35,0,14*35)
-    
-    # room_name.build_wall(19*35,5*35,14*35)
-    # room_name.build_wall(18*35,5*35,14*35)
-    
-    # room_name.build_wall(25*35,0,14*35)
-    # room_name.build_wall(26*35,0,14*35)
-
-    # room_name.build_spike((255,255,255), (WALL_THICKNESS,100))
-
-
 def create_scotts_room():
-    # Room 3 (scotts_room)
-
     scotts_room = Room(start_x=SCREEN_WIDTH - WALL_THICKNESS * 4, start_y=100 , default_wall_color=(190, 0, 0))
     scotts_room.build_passage(Exit, start_room,  2.5 * WALL_THICKNESS, SCREEN_HEIGHT - 2 * WALL_THICKNESS, "d")
     start_room.build_passage(Exit, scotts_room, SCREEN_WIDTH // 2 - WALL_THICKNESS // 2, WALL_THICKNESS)
@@ -92,7 +74,7 @@ def create_scotts_room():
 def create_tutorial_room():
 
     #create doorways
-    start_room.build_passage(Exit, tutorial_room, (SCREEN_WIDTH-WALL_THICKNESS) // 2, SCREEN_HEIGHT - WALL_THICKNESS * 2, "l")
+    start_room.build_passage(Exit, tutorial_room, (SCREEN_WIDTH-WALL_THICKNESS) // 2, SCREEN_HEIGHT - WALL_THICKNESS * 2, "u")
     tutorial_room.build_passage(Exit, start_room, (SCREEN_WIDTH -WALL_THICKNESS) // 2, WALL_THICKNESS, "u")
 
     # TODO add text to explain how to play and describe objects 
