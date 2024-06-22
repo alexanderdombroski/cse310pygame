@@ -1,7 +1,7 @@
 from pygame import *
 from typing import *
 from constants import COLLECTABLE_PATHS
-from Square import PLAYER
+from player import PLAYER
 
 class Collectable(sprite.Sprite):
     def __init__(

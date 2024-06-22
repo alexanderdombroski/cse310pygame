@@ -1,7 +1,7 @@
 from typing import * # Used for fixed typing
 from pygame import *
-from Wall2 import Wall
-from Square import PLAYER
+from wall import Wall
+from player import PLAYER
 from constants import all_sprites, all_walls, all_exits, all_ice, all_mud, all_spikes, all_text, all_collectables, all_triggers, all_arrow_spitters, all_attacks, WALL_THICKNESS, SCREEN_HEIGHT, SCREEN_WIDTH, DEFAULT_FONT_COLOR, DEFAULT_FONT_SIZE, current_room
 from passage import Exit
 from ice import Ice

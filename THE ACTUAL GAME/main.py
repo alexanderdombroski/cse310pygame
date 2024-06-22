@@ -4,8 +4,8 @@ import os
 from constants import all_sprites, SCREEN_HEIGHT, SCREEN_WIDTH, WALL_THICKNESS, current_room, all_spikes
 from room import Room
 from passage import Exit
-from Square import PLAYER
-from Rooms import create_scotts_room, create_start_room, create_room_two, create_tutorial_room, start_room, tutorial_room
+from player import PLAYER
+from rooms import create_scotts_room, create_start_room, create_room_two, create_tutorial_room, start_room, tutorial_room
 from attack import Projectile
 
 # init pygame, window, room
