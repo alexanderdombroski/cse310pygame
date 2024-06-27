@@ -1,6 +1,7 @@
 from pygame import *
 from typing import *
 from constants import WALL_THICKNESS
+from player import PLAYER
 
 class Exit(sprite.Sprite):
     def __init__(
@@ -20,6 +21,8 @@ class Exit(sprite.Sprite):
         self.rect = self.image.get_rect(topleft=(left, top))
         self.destination = destination
 
+        self.locked = locked
+
         tile_image = image.load("THE ACTUAL GAME/images/locked.png" if locked else "THE ACTUAL GAME/images/gate.png")
 
         if direction == "l":
@@ -30,12 +33,23 @@ class Exit(sprite.Sprite):
             tile_image = transform.rotate(tile_image, 270)
         
         self.image.blit(tile_image, (0, 0))
+
+        # Sounds
+        self.unlock_sound = mixer.Sound("THE ACTUAL GAME/sounds/unlock-door.mp3")
         
     def change_room(self) -> None:
-        self.destination.enter_room()
+        if self.locked:
+            if (PLAYER.inventory["key"]):
+                self.unlock()
+                self.destination.enter_room()
+        else:
+            self.destination.enter_room()
 
     def unlock(self) -> None:
-        self.image.blit(image.load("images/gate.png"), (0, 0))
+        self.image.blit(image.load("THE ACTUAL GAME/images/gate.png"), (0, 0))
+        self.unlock_sound.play()
+        self.locked = False
+        PLAYER.inventory["key"] -= 1
 
 
 

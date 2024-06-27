@@ -1,6 +1,6 @@
 from typing import * # Used for fixed typing
 from pygame import *
-from constants import all_sprites, all_walls, all_exits, all_ice, all_mud, all_spikes, all_triggers, all_attacks, SCREEN_HEIGHT, SCREEN_WIDTH, PLAYER_SPEED, current_room
+from constants import all_sprites, all_walls, all_exits, all_ice, all_mud, all_spikes, all_triggers, all_attacks, all_collectables, SCREEN_HEIGHT, SCREEN_WIDTH, PLAYER_SPEED, current_room
 
 class Square(sprite.Sprite):
     def __init__(
@@ -21,7 +21,7 @@ class Square(sprite.Sprite):
         self.rect = self.image.get_rect(center=(start_x, start_y))
 
         self.inventory = {
-            "keys": 0
+            "key": 0
         }
 
 
@@ -63,6 +63,9 @@ class Square(sprite.Sprite):
                 exit.change_room()
                 return None # End the function early cause new room
         
+        if (collectable := sprite.spritecollideany(self, all_collectables)):
+            collectable.pickup()
+
         self.__change_speed(sprite.spritecollideany(self, all_ice), 2)
         self.__change_speed(sprite.spritecollideany(self, all_mud), 0.5)
 
