@@ -1,6 +1,7 @@
 # File that holds a list of all constants
 # This is good codding practice for orginaztion and prevents circular imports
 from pygame.sprite import Group
+from pygame import display, NOFRAME
 
 # Global Sprite Groups
 all_sprites = Group()
@@ -31,3 +32,6 @@ COLLECTABLE_PATHS = {
 
 # Pointers
 current_room = [] # Theres no pointers in python, so were using a list lol
+
+
+WINDOW = display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), NOFRAME)
