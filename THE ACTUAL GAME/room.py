@@ -104,13 +104,10 @@ class Room:
         self.build_wall(0, SCREEN_HEIGHT - WALL_THICKNESS, width=SCREEN_WIDTH) # Bottom
 
 
-    def build_passage(self, exit_type: Type[Exit], *args: Tuple, **kwargs: Dict[str, Any]) -> None:
-        exit = exit_type(*args, **kwargs)
+    def build_passage(self, destination: Self, left: int, top: int, direction: Literal["u", "l", "d", "r"] = "u", locked: bool = False) -> None:
+        exit = Exit(destination, left, top, direction, locked = locked)
         self.room_sprites.add(exit)
         self.room_exits.add(exit)
-        # Creates an exit of the specified type
-        # *args is for required arguments
-        # **kwargs is for optional arguments
     
 
     def build_ice(self, left: int, top: int, width: int = WALL_THICKNESS, height: int = WALL_THICKNESS) -> None:
