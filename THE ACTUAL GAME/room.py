@@ -3,7 +3,7 @@ from pygame import *
 from wall import Wall
 from player import PLAYER
 from constants import all_sprites, all_walls, all_exits, all_ice, all_mud, all_spikes, all_text, all_collectables, all_triggers, all_arrow_spitters, all_attacks, WALL_THICKNESS, SCREEN_HEIGHT, SCREEN_WIDTH, DEFAULT_FONT_COLOR, DEFAULT_FONT_SIZE, current_room
-from passage import Exit
+from exit import Exit
 from ice import Ice
 from mud import Mud
 from spikes import Spike

@@ -1,9 +1,9 @@
 from pygame import *
 from pygame.locals import *
 import os
-from constants import all_sprites, SCREEN_HEIGHT, SCREEN_WIDTH, WALL_THICKNESS, current_room, all_spikes
+from constants import WINDOW, all_sprites, SCREEN_HEIGHT, SCREEN_WIDTH, WALL_THICKNESS, current_room, all_spikes
 from room import Room
-from passage import Exit
+from exit import Exit
 from player import PLAYER
 from rooms import create_scotts_room, create_start_room, create_room_two, create_tutorial_room, start_room, tutorial_room
 from attack import Projectile
@@ -13,7 +13,6 @@ init()
 
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 
-window = display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), NOFRAME)
 background_image = image.load("THE ACTUAL GAME/images/test_background.png").convert()
 
 #define background color -- remove this later
@@ -46,12 +45,12 @@ while running:
         running = False
 
     # Fill the screen with background image
-    window.blit(background_image, (0,0))
+    WINDOW.blit(background_image, (0,0))
 
     PLAYER.move()
 
     all_sprites.update()
-    all_sprites.draw(window)
+    all_sprites.draw(WINDOW)
 
     display.flip()
 

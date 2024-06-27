@@ -1,7 +1,9 @@
 from pygame import *
 from typing import *
-from constants import WALL_THICKNESS
+from constants import WALL_THICKNESS, all_sprites
 from player import PLAYER
+import time
+from constants import WINDOW
 
 class Exit(sprite.Sprite):
     def __init__(
@@ -10,13 +12,12 @@ class Exit(sprite.Sprite):
         left: int, 
         top: int,
         direction: str = "u", # Left means you enter from the left (it is facing left).
-        width: int = WALL_THICKNESS,
         color: Tuple[int, int, int] = (0, 0, 0),
         locked: bool = False
     ) -> None:
         super().__init__()
 
-        self.image = Surface((width, width), SRCALPHA)
+        self.image = Surface((WALL_THICKNESS, WALL_THICKNESS), SRCALPHA)
         
         self.rect = self.image.get_rect(topleft=(left, top))
         self.destination = destination
@@ -40,26 +41,25 @@ class Exit(sprite.Sprite):
     def change_room(self) -> None:
         if self.locked:
             if (PLAYER.inventory["key"]):
+                print("hi")
                 self.unlock()
-                self.destination.enter_room()
         else:
             self.destination.enter_room()
 
     def unlock(self) -> None:
+        # Unlock door
         self.image.blit(image.load("THE ACTUAL GAME/images/gate.png"), (0, 0))
-        self.unlock_sound.play()
+        all_sprites.update()
+        all_sprites.draw(WINDOW)
+        display.flip()
+
+
         self.locked = False
         PLAYER.inventory["key"] -= 1
+        
+        # Wait for sound to finish
+        self.unlock_sound.play()
+        time.sleep(1)
 
-
-
-
-# class Switch
-
-
-
-# class Door(Exit):
-#     pass
-
-# class Ladder(Exit):
-#     pass
+        # Enter Room
+        self.destination.enter_room()

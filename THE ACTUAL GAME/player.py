@@ -61,7 +61,6 @@ class Square(sprite.Sprite):
         for exit in all_exits:
             if self.rect.colliderect(exit.rect):
                 exit.change_room()
-                return None # End the function early cause new room
         
         if (collectable := sprite.spritecollideany(self, all_collectables)):
             collectable.pickup()
