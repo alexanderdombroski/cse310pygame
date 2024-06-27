@@ -1,7 +1,13 @@
 from pygame import *
 from typing import *
-from constants import COLLECTABLE_PATHS
 from player import PLAYER
+
+COLLECTABLE_DATA = {
+    "key": [
+        "THE ACTUAL GAME/images/key.png",
+        "THE ACTUAL GAME/sounds/key-get.mp3"
+    ]
+}
 
 class Collectable(sprite.Sprite):
     def __init__(
@@ -20,11 +26,15 @@ class Collectable(sprite.Sprite):
 
         # Draw Image
         self.image = Surface((35, 35))
-        tile_image = image.load(COLLECTABLE_PATHS[name])
+        tile_image = image.load(COLLECTABLE_DATA[name][0])
         self.image.blit(tile_image, (0, 0))
         
         self.rect = self.image.get_rect(topleft=(left, top))
 
+        # Sounds
+        self.pickup_sound = mixer.Sound(COLLECTABLE_DATA[name][1])
+
     def pickup(self):
+        self.pickup_sound.play()
         PLAYER.inventory[self.name] += 1
         sprite.Sprite.kill(self) # Remove from groups and delete
