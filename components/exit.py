@@ -37,14 +37,15 @@ class Exit(sprite.Sprite):
 
         # Sounds
         self.unlock_sound = mixer.Sound("components/sounds/unlock-door.mp3")
+        self.door_sound = mixer.Sound("components\sounds\open-door.mp3")
         
     def change_room(self) -> None:
         if self.locked:
             if (PLAYER.inventory["key"]):
-                print("hi")
                 self.unlock()
         else:
             self.destination.enter_room()
+            self.door_sound.play()
 
     def unlock(self) -> None:
         # Unlock door
