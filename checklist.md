@@ -10,3 +10,11 @@ Before Pushing to Main
 Alex's todo
 [ ] Make a room builder class
 [ ] Add keys and finish gates
+
+
+Feature Ideas
+* Lightning (Random)
+* Patrol Enemy
+* Pushable/Object
+* Sounds
+* 
