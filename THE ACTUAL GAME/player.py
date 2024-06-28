@@ -21,7 +21,8 @@ class Square(sprite.Sprite):
         self.rect = self.image.get_rect(center=(start_x, start_y))
 
         self.inventory = {
-            "key": 0
+            "key": 0,
+            "coin": 0
         }
 
 

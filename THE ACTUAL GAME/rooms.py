@@ -93,6 +93,7 @@ def create_tutorial_room():
 
     #key example
     tutorial_room.build_collectable(35, 105, "key")
+    tutorial_room.build_collectable(35, 175, "coin")
     
     room_name = tutorial_room
     

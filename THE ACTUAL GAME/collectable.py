@@ -6,6 +6,10 @@ COLLECTABLE_DATA = {
     "key": [
         "THE ACTUAL GAME/images/key.png",
         "THE ACTUAL GAME/sounds/key-get.mp3"
+    ],
+    "coin": [
+        "THE ACTUAL GAME/images/coin.png",
+        "THE ACTUAL GAME/sounds/coin-collect.mp3"
     ]
 }
 

@@ -9,7 +9,8 @@ Before Pushing to Main
 
 Alex's todo
 [ ] Make a room builder class
-[ ] Add keys and finish gates
+[X] Add keys and finish gates
+[ ] Coins
 
 
 Feature Ideas
@@ -17,4 +18,3 @@ Feature Ideas
 * Patrol Enemy
 * Pushable/Object
 * Sounds
-* 
