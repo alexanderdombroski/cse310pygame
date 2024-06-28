@@ -1,6 +1,6 @@
 from pygame import *
 from typing import *
-from constants import WALL_THICKNESS
+from components.constants import WALL_THICKNESS
 
 class Trigger(sprite.Sprite):
     def __init__(
@@ -16,7 +16,7 @@ class Trigger(sprite.Sprite):
         
         super().__init__(*groups if groups else [])
 
-        self.image = image.load("THE ACTUAL GAME/images/button_unpressed.png")
+        self.image = image.load("components/images/button_unpressed.png")
         
         self.rect = self.image.get_rect(topleft=(left, top))
 
@@ -27,7 +27,7 @@ class Trigger(sprite.Sprite):
 
         self.send_signal = False    
 
-        self.press_sound = mixer.Sound("THE ACTUAL GAME/sounds/button-pressed.mp3")
+        self.press_sound = mixer.Sound("components/sounds/button-pressed.mp3")
 
 
     def set_linked_trap(self, trap):
@@ -36,8 +36,8 @@ class Trigger(sprite.Sprite):
 
     def update(self):
         if self.current_contact_bool and not self.last_contact_bool:
-            self.image = image.load("THE ACTUAL GAME/images/button_pressed.png")
+            self.image = image.load("components/images/button_pressed.png")
             self.press_sound.play()
 
         elif not self.current_contact_bool and self.last_contact_bool:
-            self.image = image.load("THE ACTUAL GAME/images/button_unpressed.png")
+            self.image = image.load("components/images/button_unpressed.png")

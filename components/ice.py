@@ -1,7 +1,7 @@
 from pygame import *
 from typing import *
 
-class Mud(sprite.Sprite):
+class Ice(sprite.Sprite):
     def __init__(
         self, 
         left: int, 
@@ -15,9 +15,9 @@ class Mud(sprite.Sprite):
         super().__init__(*groups if groups else [])
 
         self.image = Surface((width, height))
-        self.image.fill(Color((101, 67, 33)))
+        self.image.fill(Color((173, 216, 230)))
         
-        tile_image = image.load("THE ACTUAL GAME/images/mud.png")
+        tile_image = image.load("components/images/ice.png")
         tile_width, tile_height = tile_image.get_size()
         
         # Generate Image Tiles

@@ -17,7 +17,7 @@ class Boulder(sprite.Sprite):
         self.image = Surface((width, height), flags=pygame.SRCALPHA)
 
         # Load the image
-        boulder_image = image.load("THE ACTUAL GAME/images/boulder.png").convert_alpha()
+        boulder_image = image.load("components/images/boulder.png").convert_alpha()
 
         self.image.blit(boulder_image, (0, 0))
 

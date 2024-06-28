@@ -1,4 +1,4 @@
-from constants import DEFAULT_FONT_SIZE, DEFAULT_FONT_COLOR
+from components.constants import DEFAULT_FONT_SIZE, DEFAULT_FONT_COLOR
 from pygame import sprite, font
 from typing import *
 
@@ -17,7 +17,7 @@ class Text(sprite.Sprite):
 
         # Configure text
         self.text = text
-        self.font = font.Font("THE ACTUAL GAME/text/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf", size)
+        self.font = font.Font("components/text/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf", size)
         self.color = color
 
         # Call Pygame Constructors

@@ -1,8 +1,8 @@
 from pygame import *
 from typing import *
-from constants import WALL_THICKNESS, all_attacks
-from trigger import Trigger
-from attack import Projectile
+from components.constants import WALL_THICKNESS, all_attacks
+from components.trigger import Trigger
+from components.attack import Projectile
 import time
 # from room import Room
 
@@ -23,7 +23,7 @@ class Arrow_Spitter(sprite.Sprite):
         
         super().__init__(*groups if groups else [])
 
-        self.png = image.load("THE ACTUAL GAME/images/arrow.png").convert_alpha()
+        self.png = image.load("components/images/arrow.png").convert_alpha()
 
         self.image = Surface((width, height))
 
@@ -43,7 +43,7 @@ class Arrow_Spitter(sprite.Sprite):
 
         self.fade_time = 1
 
-        self.lazer_sound = mixer.Sound("THE ACTUAL GAME/sounds/lazer-cannon.mp3")
+        self.lazer_sound = mixer.Sound("components/sounds/lazer-cannon.mp3")
 
     def set_linked_trigger(self, trigger):
         self.linked_trigger = trigger

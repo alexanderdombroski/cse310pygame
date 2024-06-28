@@ -1,5 +1,5 @@
-from constants import  SCREEN_HEIGHT, SCREEN_WIDTH, WALL_THICKNESS#, current_room, all_sprites
-from room import Room
+from components.constants import  SCREEN_HEIGHT, SCREEN_WIDTH, WALL_THICKNESS#, current_room, all_sprites
+from components.room import Room
 tutorial_room = Room(start_x = SCREEN_WIDTH // 2, start_y=SCREEN_HEIGHT - WALL_THICKNESS * 3)
 start_room = Room(start_x = (SCREEN_WIDTH -35) // 2, start_y=SCREEN_HEIGHT - WALL_THICKNESS * 5, default_wall_color=(128, 128, 128))
 

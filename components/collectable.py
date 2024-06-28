@@ -1,15 +1,15 @@
 from pygame import *
 from typing import *
-from player import PLAYER
+from components.player import PLAYER
 
 COLLECTABLE_DATA = {
     "key": [
-        "THE ACTUAL GAME/images/key.png",
-        "THE ACTUAL GAME/sounds/key-get.mp3"
+        "components/images/key.png",
+        "components/sounds/key-get.mp3"
     ],
     "coin": [
-        "THE ACTUAL GAME/images/coin.png",
-        "THE ACTUAL GAME/sounds/coin-collect.mp3"
+        "components/images/coin.png",
+        "components/sounds/coin-collect.mp3"
     ]
 }
 

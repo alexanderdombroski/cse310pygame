@@ -1,19 +1,16 @@
 from pygame import *
 from pygame.locals import *
 import os
-from constants import WINDOW, all_sprites, SCREEN_HEIGHT, SCREEN_WIDTH, WALL_THICKNESS, current_room, all_spikes
-from room import Room
-from exit import Exit
-from player import PLAYER
-from rooms import create_scotts_room, create_start_room, create_room_two, create_tutorial_room, start_room, tutorial_room
-from attack import Projectile
+from components.constants import WINDOW, all_sprites, current_room
+from components.player import PLAYER
+from components.rooms import create_scotts_room, create_start_room, create_room_two, create_tutorial_room, start_room, tutorial_room
 
 # init pygame, window, room
 init()
 
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 
-background_image = image.load("THE ACTUAL GAME/images/test_background.png").convert()
+background_image = image.load("components/images/test_background.png").convert()
 
 #define background color -- remove this later
 background_color = (0,0,0)

@@ -1,9 +1,9 @@
 from pygame import *
 from typing import *
-from constants import WALL_THICKNESS, all_sprites
-from player import PLAYER
 import time
-from constants import WINDOW
+from components.constants import WALL_THICKNESS, all_sprites
+from components.player import PLAYER
+from components.constants import WINDOW
 
 class Exit(sprite.Sprite):
     def __init__(
@@ -24,7 +24,7 @@ class Exit(sprite.Sprite):
 
         self.locked = locked
 
-        tile_image = image.load("THE ACTUAL GAME/images/locked.png" if locked else "THE ACTUAL GAME/images/gate.png")
+        tile_image = image.load("components/images/locked.png" if locked else "components/images/gate.png")
 
         if direction == "l":
             tile_image = transform.rotate(tile_image, 90)
@@ -36,7 +36,7 @@ class Exit(sprite.Sprite):
         self.image.blit(tile_image, (0, 0))
 
         # Sounds
-        self.unlock_sound = mixer.Sound("THE ACTUAL GAME/sounds/unlock-door.mp3")
+        self.unlock_sound = mixer.Sound("components/sounds/unlock-door.mp3")
         
     def change_room(self) -> None:
         if self.locked:
@@ -48,7 +48,7 @@ class Exit(sprite.Sprite):
 
     def unlock(self) -> None:
         # Unlock door
-        self.image.blit(image.load("THE ACTUAL GAME/images/gate.png"), (0, 0))
+        self.image.blit(image.load("components/images/gate.png"), (0, 0))
         all_sprites.update()
         all_sprites.draw(WINDOW)
         display.flip()

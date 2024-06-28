@@ -1,6 +1,6 @@
 from typing import * # Used for fixed typing
 from pygame import *
-from constants import all_sprites, all_walls, all_exits, all_ice, all_mud, all_spikes, all_triggers, all_attacks, all_collectables, SCREEN_HEIGHT, SCREEN_WIDTH, PLAYER_SPEED, current_room
+from components.constants import all_sprites, all_walls, all_exits, all_ice, all_mud, all_spikes, all_triggers, all_attacks, all_collectables, SCREEN_HEIGHT, SCREEN_WIDTH, PLAYER_SPEED, current_room
 
 class Square(sprite.Sprite):
     def __init__(
@@ -15,7 +15,7 @@ class Square(sprite.Sprite):
         self.facing = "right"
         self.speed = PLAYER_SPEED
 
-        self.image = image.load("THE ACTUAL GAME/images/antler_blob.png")
+        self.image = image.load("components/images/antler_blob.png")
         
         # Center the square in the screen
         self.rect = self.image.get_rect(center=(start_x, start_y))
