@@ -43,6 +43,8 @@ class Arrow_Spitter(sprite.Sprite):
 
         self.fade_time = 1
 
+        self.lazer_sound = mixer.Sound("THE ACTUAL GAME/sounds/lazer-cannon.mp3")
+
     def set_linked_trigger(self, trigger):
         self.linked_trigger = trigger
 
@@ -65,6 +67,8 @@ class Arrow_Spitter(sprite.Sprite):
 
         self.draw_image(self.second_color)
         self.last_fire_time = time.time()
+
+        self.lazer_sound.play()
     
     def update(self):
         self.delta_time = time.time() - self.last_fire_time
