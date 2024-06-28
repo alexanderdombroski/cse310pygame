@@ -25,8 +25,8 @@ class Exit(sprite.Sprite):
         self.locked = locked
 
         self.direction = direction
-        self.__change_image("components/images/locked.png" if locked else "components/images/gate.png")
-        # self.__rotate_image()
+        self.__change_image("components/images/locked.png" if locked else "components/images/gate.png", render=False)
+        
 
         # Sounds
         self.unlock_sound = mixer.Sound("components/sounds/unlock-door.mp3")
@@ -59,17 +59,16 @@ class Exit(sprite.Sprite):
 
     def __change_image(self, path: str, render: bool = True):
         self.tile_image = image.load(path)
-        self.image.blit(self.tile_image, (0, 0))
-        # self.__rotate_image()
-        if render:
-            all_sprites.update()
-            all_sprites.draw(WINDOW)
-            display.flip()
-        
-    def __rotate_image(self):
         if self.direction == "l":
             self.tile_image = transform.rotate(self.tile_image, 90)
         elif self.direction == "d":
             self.tile_image = transform.rotate(self.tile_image, 180)
         elif self.direction == "r":
             self.tile_image = transform.rotate(self.tile_image, 270)
+        self.image.blit(self.tile_image, (0, 0))
+        if render:
+            all_sprites.update()
+            all_sprites.draw(WINDOW)
+            display.flip()
+        
+        
