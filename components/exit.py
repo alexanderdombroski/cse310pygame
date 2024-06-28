@@ -24,36 +24,28 @@ class Exit(sprite.Sprite):
 
         self.locked = locked
 
-        tile_image = image.load("components/images/locked.png" if locked else "components/images/gate.png")
-
-        if direction == "l":
-            tile_image = transform.rotate(tile_image, 90)
-        elif direction == "d":
-            tile_image = transform.rotate(tile_image, 180)
-        elif direction == "r":
-            tile_image = transform.rotate(tile_image, 270)
-        
-        self.image.blit(tile_image, (0, 0))
+        self.direction = direction
+        self.__change_image("components/images/locked.png" if locked else "components/images/gate.png")
+        # self.__rotate_image()
 
         # Sounds
         self.unlock_sound = mixer.Sound("components/sounds/unlock-door.mp3")
-        self.door_sound = mixer.Sound("components\sounds\open-door.mp3")
+        self.door_sound = mixer.Sound("components/sounds/open-door.mp3")
         
     def change_room(self) -> None:
         if self.locked:
             if (PLAYER.inventory["key"]):
                 self.unlock()
         else:
-            self.destination.enter_room()
             self.door_sound.play()
+            self.__change_image("components/images/gate_open.png")
+            time.sleep(0.5)
+            self.destination.enter_room()
+            self.__change_image("components/images/gate.png", render=False)
 
     def unlock(self) -> None:
         # Unlock door
-        self.image.blit(image.load("components/images/gate.png"), (0, 0))
-        all_sprites.update()
-        all_sprites.draw(WINDOW)
-        display.flip()
-
+        self.__change_image("components/images/gate.png")
 
         self.locked = False
         PLAYER.inventory["key"] -= 1
@@ -63,4 +55,21 @@ class Exit(sprite.Sprite):
         time.sleep(1)
 
         # Enter Room
-        self.destination.enter_room()
+        self.change_room()
+
+    def __change_image(self, path: str, render: bool = True):
+        self.tile_image = image.load(path)
+        self.image.blit(self.tile_image, (0, 0))
+        # self.__rotate_image()
+        if render:
+            all_sprites.update()
+            all_sprites.draw(WINDOW)
+            display.flip()
+        
+    def __rotate_image(self):
+        if self.direction == "l":
+            self.tile_image = transform.rotate(self.tile_image, 90)
+        elif self.direction == "d":
+            self.tile_image = transform.rotate(self.tile_image, 180)
+        elif self.direction == "r":
+            self.tile_image = transform.rotate(self.tile_image, 270)
