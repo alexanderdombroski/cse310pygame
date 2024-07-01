@@ -25,6 +25,10 @@ class Square(sprite.Sprite):
             "coin": 0
         }
 
+        walking_sound = mixer.Sound("components/sounds/walking-cartoon-short.mp3")
+
+
+
 
     def print_direction(self) -> None:
         print(self.facing)
@@ -90,6 +94,7 @@ class Square(sprite.Sprite):
 
 
     def move(self) -> None:
+
         keys = key.get_pressed()
         self.update_collisions(all_walls)
         if (keys[K_w] or keys[K_UP]) and not self.collisions["top"]:
@@ -103,8 +108,7 @@ class Square(sprite.Sprite):
             self.facing = "left"
         if (keys[K_d] or keys[K_RIGHT]) and not self.collisions["right"]:
             self.rect.x += self.speed
-            self.facing = "right"
-    
+            self.facing = "right"    
 
     def teleport(self, x: int = None, y: int = None) -> None:
         # Allows player to teleport to a new x/y value(s) if provided
