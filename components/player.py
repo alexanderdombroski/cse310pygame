@@ -25,9 +25,6 @@ class Square(sprite.Sprite):
             "coin": 0
         }
 
-        walking_sound = mixer.Sound("components/sounds/walking-cartoon-short.mp3")
-
-
 
 
     def print_direction(self) -> None:
