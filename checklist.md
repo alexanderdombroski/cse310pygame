@@ -3,6 +3,9 @@ Feature Ideas
 * Patrol Enemy
 * Pushable/Object
 * Sounds
+* Trophy Collectable
+* UI Inventory Toggleable display
+
 
 [ ] NPC 
 1. Prompts for an item
