@@ -17,8 +17,10 @@ background_color = (0,0,0)
 
 create_start_room()
 
+# Main game sound
 game_sound = mixer.Sound("components/sounds/tutorial-room-sound.mp3")
-game_sound.play()
+game_sound.play(loops=-1) # Makes the program loop indefinitely.
+
 # Room Two
 create_room_two()
 
