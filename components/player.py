@@ -1,6 +1,8 @@
 from typing import * # Used for fixed typing
 from pygame import *
 from components.constants import all_sprites, all_walls, all_exits, all_ice, all_mud, all_spikes, all_triggers, all_attacks, all_collectables, SCREEN_HEIGHT, SCREEN_WIDTH, PLAYER_SPEED, current_room
+from math import ceil, sqrt
+from random import randint
 
 class Square(sprite.Sprite):
     def __init__(
@@ -41,6 +43,7 @@ class Square(sprite.Sprite):
     def update_collisions(self, walls: sprite.Group) -> None:
         for spike in all_spikes:
             if self.rect.colliderect(spike.rect):
+                self.drop_coins()
                 self.teleport(current_room[0].start_x, current_room[0].start_y)
 
         for trigger in all_triggers:
@@ -133,7 +136,14 @@ class Square(sprite.Sprite):
         )
 
     def drop_coins(self) -> None:
-        coins = self.inventory["coin"]
-        
+        coins_dropped = ceil(sqrt(self.inventory["coin"]))
+        self.inventory["coin"] -= coins_dropped
+        for _ in range(coins_dropped):
+            current_room[0].build_collectable(
+                randint(self.rect.left - 20, self.rect.right + 20),
+                randint(self.rect.top - 20, self.rect.bottom + 20),
+                "coin",
+                [all_collectables, all_sprites]
+            )
 
 PLAYER = Square(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, all_sprites)
