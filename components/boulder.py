@@ -23,3 +23,19 @@ class Boulder(sprite.Sprite):
 
         # Create a rectangle object for positioning
         self.rect = self.image.get_rect(topleft=(left, top))
+
+        def collide_left(self, sprite_group):
+            if pygame.sprite.spritecollide(self, sprite_group, False):
+                return
+
+        def collide_bottom(self, sprite_group):
+            if pygame.sprite.spritecollide(self, sprite_group, False):
+                return
+
+        def collide_right(self, sprite_group):
+            if pygame.sprite.spritecollide(self, sprite_group, False):
+                return
+
+        def collide_top(self, sprite_group):
+            if pygame.sprite.spritecollide(self, sprite_group, False):
+                return
