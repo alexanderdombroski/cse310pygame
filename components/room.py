@@ -122,8 +122,9 @@ class Room:
         Boulder(left, top, width, height, boulder_x, boulder_y, [self.room_boulder, self.room_sprites])
 
 
-    def build_collectable(self, left: int, top: int, name: str):
-        Collectable(left, top, name, [self.room_collectables, self.room_sprites])
+    def build_collectable(self, left: int, top: int, name: str, extra_groups: List[sprite.Group] = []):
+        extra_groups.extend([self.room_collectables, self.room_sprites])
+        Collectable(left, top, name, extra_groups)
 
 
     def build_trigger(
