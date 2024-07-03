@@ -132,4 +132,8 @@ class Square(sprite.Sprite):
             round(self.rect.y / self.speed) * self.speed
         )
 
+    def drop_coins(self) -> None:
+        coins = self.inventory["coin"]
+        
+
 PLAYER = Square(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, all_sprites)
