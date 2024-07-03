@@ -1,6 +1,7 @@
 from pygame import *
 from typing import *
 from components.player import PLAYER
+from datetime import datetime, timedelta
 
 COLLECTABLE_DATA = {
     "key": [
@@ -29,7 +30,7 @@ class Collectable(sprite.Sprite):
         self.name = name
 
         # Draw Image
-        self.image = Surface((35, 35))
+        self.image = Surface((35, 35), SRCALPHA)
         tile_image = image.load(COLLECTABLE_DATA[name][0])
         self.image.blit(tile_image, (0, 0))
         
@@ -38,7 +39,10 @@ class Collectable(sprite.Sprite):
         # Sounds
         self.pickup_sound = mixer.Sound(COLLECTABLE_DATA[name][1])
 
+        self.time_created = datetime.now()
+
     def pickup(self):
-        self.pickup_sound.play()
-        PLAYER.inventory[self.name] += 1
-        sprite.Sprite.kill(self) # Remove from groups and delete
+        if datetime.now() - self.time_created > timedelta(seconds=1):
+            self.pickup_sound.play()
+            PLAYER.inventory[self.name] += 1
+            sprite.Sprite.kill(self) # Remove from groups and delete
