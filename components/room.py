@@ -80,14 +80,6 @@ class Room:
         current_room[0] = self
         PLAYER.teleport(self.start_x, self.start_y)
 
-#         color: Tuple[int, int, int], 
-#         left: int, 
-#         top: int, 
-#         length: int,
-#         is_horizontal: bool,
-#         # width: int, 
-#         # height: int, 
-#         groups: List[sprite.Group] = None
 
     # --------- Add Room Features ---------
     def build_wall(self, left: int, top: int, length: int = WALL_THICKNESS, width: int = WALL_THICKNESS, color: Tuple[int, int, int] = None) -> None:
