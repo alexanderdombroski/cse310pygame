@@ -26,6 +26,10 @@ class Square(sprite.Sprite):
             "key": 0,
             "coin": 0
         }
+        if not mixer.get_init():
+            mixer.init()
+
+        self.coins_dropping_sound = mixer.Sound("components\sounds\coins_dropping.mp3")
 
 
 
@@ -61,6 +65,7 @@ class Square(sprite.Sprite):
 
         for attack in all_attacks:
             if self.rect.colliderect(attack.rect):
+                self.drop_coins()
                 self.teleport(current_room[0].start_x, current_room[0].start_y)
 
         for exit in all_exits:
@@ -146,5 +151,9 @@ class Square(sprite.Sprite):
                 "coin",
                 [all_collectables, all_sprites]
             )
+        
+        if coins_dropped > 0:
+            self.coins_dropping_sound.play()
+
 
 PLAYER = Square(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, all_sprites)

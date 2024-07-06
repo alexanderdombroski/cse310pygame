@@ -24,10 +24,10 @@ game_sound.play(loops=-1) # Makes the program loop indefinitely.
 # Room Two
 create_room_two()
 
-#create scotts room
+# Create scotts room
 create_scotts_room()
 
-#create tutorial room
+# Create tutorial room
 create_tutorial_room()
 
 current_room.append(tutorial_room)
@@ -38,7 +38,7 @@ while running:
     # Handles Quitting
     running = not any(event.type == QUIT for event in event.get())
 
-    #GIVE KEYBOARD SHORTCUT to quit (hold `q` `u` `i` `t` simultaneously) or `R_ctrl` & `q`
+    # GIVE KEYBOARD SHORTCUT to quit (hold `q` `u` `i` `t` simultaneously) or `R_ctrl` & `q`
     keys = key.get_pressed()
     if keys[K_q] and keys[K_u] and keys[K_i] and keys[K_t]:
         running = False
