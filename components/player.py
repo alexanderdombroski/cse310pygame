@@ -29,7 +29,7 @@ class Square(sprite.Sprite):
         if not mixer.get_init():
             mixer.init()
 
-        self.coins_dropping_sound = mixer.Sound("components\sounds\coins_dropping.mp3")
+        self.coins_dropping_sound = mixer.Sound("components/sounds/coins_dropping.mp3")
 
 
 
