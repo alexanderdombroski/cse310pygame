@@ -13,7 +13,8 @@ class Exit(sprite.Sprite):
         top: int,
         direction: str = "u", # Left means you enter from the left (it is facing left).
         color: Tuple[int, int, int] = (0, 0, 0),
-        locked: bool = False
+        locked: bool = False,
+        max_entries = None
     ) -> None:
         super().__init__()
 
@@ -27,6 +28,7 @@ class Exit(sprite.Sprite):
         self.direction = direction
         self.__change_image("components/images/locked.png" if locked else "components/images/gate.png", render=False)
         
+        self.max_entries = max_entries
 
         # Sounds
         self.unlock_sound = mixer.Sound("components/sounds/unlock-door.mp3")
@@ -42,6 +44,11 @@ class Exit(sprite.Sprite):
             time.sleep(0.5)
             self.destination.enter_room()
             self.__change_image("components/images/gate.png", render=False)
+            if self.max_entries != None:
+                if (self.max_entries - 1):
+                    self.max_entries -= 1
+                else:
+                    self.kill()
 
     def unlock(self) -> None:
         # Unlock door

@@ -1,21 +1,26 @@
 from components.constants import  SCREEN_HEIGHT, SCREEN_WIDTH, WALL_THICKNESS#, current_room, all_sprites
 from components.room import Room
-tutorial_room = Room(start_x = SCREEN_WIDTH // 2, start_y=SCREEN_HEIGHT - WALL_THICKNESS * 3)
-start_room = Room(start_x = (SCREEN_WIDTH -35) // 2, start_y=SCREEN_HEIGHT - WALL_THICKNESS * 5, default_wall_color=(128, 128, 128))
+from components.timed_room import Timed_Room
 
-def create_start_room():
-    pass
+
+tutorial_room = Room(start_x = SCREEN_WIDTH // 2, start_y=SCREEN_HEIGHT - WALL_THICKNESS * 3)
+start_hub = Room(start_x = (SCREEN_WIDTH -35) // 2, start_y=SCREEN_HEIGHT // 2, default_wall_color=(128, 128, 128))
+
+
+def create_start_hub():
+    start_hub.build_passage(bonus_room, 700,35, locked=True, max_entries=1)
+    start_hub.build_collectable(90,90,"key") # Testing Key can be removed later
 
 def create_room_two():
     room2 = Room(start_x=WALL_THICKNESS, start_y= (SCREEN_HEIGHT -WALL_THICKNESS) // 2)
-    start_room.build_passage(room2, SCREEN_WIDTH - WALL_THICKNESS * 2, SCREEN_HEIGHT / 2, "r")
-    room2.build_passage(start_room, SCREEN_WIDTH // 2 + SCREEN_WIDTH // 3, SCREEN_HEIGHT // 2, "u")
+    start_hub.build_passage(room2, SCREEN_WIDTH - WALL_THICKNESS * 2, SCREEN_HEIGHT / 2, "r")
+    room2.build_passage(start_hub, SCREEN_WIDTH // 2 + SCREEN_WIDTH // 3, SCREEN_HEIGHT // 2, "u")
 
 def create_scotts_room():
     scotts_room = Room(start_x=SCREEN_WIDTH - WALL_THICKNESS * 4, start_y=100 , default_wall_color=(190, 0, 0))
-    scotts_room.build_passage(start_room,  2.5 * WALL_THICKNESS, SCREEN_HEIGHT - 2 * WALL_THICKNESS, "u")
-    start_room.build_passage(scotts_room, SCREEN_WIDTH // 2 - WALL_THICKNESS // 2, WALL_THICKNESS)
-    scotts_room.build_passage(start_room, SCREEN_WIDTH - WALL_THICKNESS * 3.5, 5, "u")
+    scotts_room.build_passage(start_hub,  2.5 * WALL_THICKNESS, SCREEN_HEIGHT - 2 * WALL_THICKNESS, "u")
+    start_hub.build_passage(scotts_room, SCREEN_WIDTH // 2 - WALL_THICKNESS // 2, WALL_THICKNESS)
+    scotts_room.build_passage(start_hub, SCREEN_WIDTH - WALL_THICKNESS * 3.5, 5, "u")
 
     scotts_room.build_wall(5*35,5*35,14*35)
     scotts_room.build_wall(6*35,5*35,14*35)
@@ -69,12 +74,13 @@ def create_scotts_room():
         if i > 17 and i < 20:
             scotts_room.build_spike((255,255,255), (WALL_THICKNESS * i, WALL_THICKNESS * 5), "u")
 
+        scotts_room.build_collectable(400, SCREEN_HEIGHT - 115, "key")
 
 def create_tutorial_room():
 
     #create doorways
-    start_room.build_passage(tutorial_room, (SCREEN_WIDTH-WALL_THICKNESS) // 2, SCREEN_HEIGHT - WALL_THICKNESS * 2, "u")
-    tutorial_room.build_passage(start_room, (SCREEN_WIDTH -WALL_THICKNESS) // 2, WALL_THICKNESS, "u", True)
+    start_hub.build_passage(tutorial_room, (SCREEN_WIDTH-WALL_THICKNESS) // 2, SCREEN_HEIGHT - WALL_THICKNESS * 2, "u")
+    tutorial_room.build_passage(start_hub, (SCREEN_WIDTH -WALL_THICKNESS) // 2, WALL_THICKNESS, "u", True)
 
     # TODO add text to explain how to play and describe objects 
 
@@ -120,3 +126,18 @@ def create_tutorial_room():
     arrow_spitter2.set_linked_trigger(trigger2)
     arrow_spitter3.set_linked_trigger(trigger3)
     arrow_spitter4.set_linked_trigger(trigger4)
+
+bonus_room = Timed_Room(start_hub, 10, 35, 35, build_border = True)
+
+def create_bonus_room():
+    bonus_room.build_ice(90, 90, SCREEN_WIDTH - 180, SCREEN_HEIGHT - 180)
+    for i in range(90, SCREEN_WIDTH - 180, 90):
+        for j in range(90, SCREEN_HEIGHT - 180, 90):
+            bonus_room.build_collectable(i, j, "coin")
+
+    for i in range(90, SCREEN_HEIGHT - 90, 180):
+        bonus_room.build_spike((255,255,255), (300, i), "u")
+        bonus_room.build_spike((255,255,255), (600, i), "u")
+        bonus_room.build_spike((255,255,255), (900, i), "u")
+
+    

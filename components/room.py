@@ -80,6 +80,8 @@ class Room:
         current_room[0] = self
         PLAYER.teleport(self.start_x, self.start_y)
 
+    def looped_updates(self) -> None:
+        pass # This function doesn't do anything in this class, but must be inherited because some subclasses use it
 
     # --------- Add Room Features ---------
     def build_wall(self, left: int, top: int, length: int = WALL_THICKNESS, width: int = WALL_THICKNESS, color: Tuple[int, int, int] = None) -> None:
@@ -96,8 +98,8 @@ class Room:
         self.build_wall(0, SCREEN_HEIGHT - WALL_THICKNESS, width=SCREEN_WIDTH) # Bottom
 
 
-    def build_passage(self, destination: Self, left: int, top: int, direction: Literal["u", "l", "d", "r"] = "u", locked: bool = False) -> None:
-        exit = Exit(destination, left, top, direction, locked = locked)
+    def build_passage(self, destination: Self, left: int, top: int, direction: Literal["u", "l", "d", "r"] = "u", locked: bool = False, max_entries: int = None) -> None:
+        exit = Exit(destination, left, top, direction, locked = locked, max_entries= max_entries)
         self.room_sprites.add(exit)
         self.room_exits.add(exit)
     
@@ -122,9 +124,13 @@ class Room:
         Boulder(left, top, width, height, boulder_x, boulder_y, [self.room_boulder, self.room_sprites])
 
 
-    def build_collectable(self, left: int, top: int, name: str, extra_groups: List[sprite.Group] = []):
-        extra_groups.extend([self.room_collectables, self.room_sprites])
-        Collectable(left, top, name, extra_groups)
+    # def build_collectable(self, left: int, top: int, name: str, extra_groups: List[sprite.Group] = []):
+    #     extra_groups.extend([self.room_collectables, self.room_sprites])
+    #     Collectable(left, top, name, extra_groups)
+
+    def build_collectable(self, left: int, top: int, name: str, insta_render: bool = False):
+        Collectable(left, top, name, [self.room_collectables, self.room_sprites, all_sprites, all_collectables] if insta_render else [self.room_collectables, self.room_sprites])
+    
 
 
     def build_trigger(

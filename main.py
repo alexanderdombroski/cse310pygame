@@ -3,7 +3,7 @@ from pygame.locals import *
 import os
 from components.constants import WINDOW, all_sprites, current_room
 from components.player import PLAYER
-from components.rooms import create_scotts_room, create_start_room, create_room_two, create_tutorial_room, start_room, tutorial_room
+from components.rooms import create_scotts_room, create_start_hub, create_room_two, create_tutorial_room, tutorial_room, create_bonus_room
 
 # init pygame, window, room
 init()
@@ -15,7 +15,9 @@ background_image = image.load("components/images/test_background.png").convert()
 #define background color -- remove this later
 background_color = (0,0,0)
 
-create_start_room()
+create_start_hub()
+
+create_bonus_room()
 
 # Main game sound
 game_sound = mixer.Sound("components/sounds/tutorial-room-sound.mp3")
@@ -49,6 +51,8 @@ while running:
     WINDOW.blit(background_image, (0,0))
 
     PLAYER.move()
+
+    current_room[0].looped_updates()
 
     all_sprites.update()
     all_sprites.draw(WINDOW)

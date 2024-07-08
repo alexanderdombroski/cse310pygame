@@ -148,8 +148,7 @@ class Square(sprite.Sprite):
             current_room[0].build_collectable(
                 randint(self.rect.left - 20, self.rect.right + 20),
                 randint(self.rect.top - 20, self.rect.bottom + 20),
-                "coin",
-                [all_collectables, all_sprites]
+                "coin", insta_render = True
             )
         
         if coins_dropped > 0:
