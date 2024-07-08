@@ -82,7 +82,6 @@ def create_tutorial_room():
     start_hub.build_passage(tutorial_room, (SCREEN_WIDTH-WALL_THICKNESS) // 2, SCREEN_HEIGHT - WALL_THICKNESS * 2, "u")
     tutorial_room.build_passage(start_hub, (SCREEN_WIDTH -WALL_THICKNESS) // 2, WALL_THICKNESS, "u", True)
 
-    # TODO add text to explain how to play and describe objects 
 
     # wall example
     tutorial_room.build_wall(700, 500, 70, 210) # pillar
@@ -126,6 +125,9 @@ def create_tutorial_room():
     arrow_spitter2.set_linked_trigger(trigger2)
     arrow_spitter3.set_linked_trigger(trigger3)
     arrow_spitter4.set_linked_trigger(trigger4)
+
+    # Add text to explain how to play and describe objects 
+    tutorial_room.build_text("Tutorial Room", SCREEN_WIDTH // 2, 100, (255,255,255), 50)
 
 bonus_room = Timed_Room(start_hub, 10, 35, 35, build_border = True)
 
