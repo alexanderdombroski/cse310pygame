@@ -78,51 +78,25 @@ def create_scotts_room():
 
 def create_tutorial_room():
 
+    # Split the screen into thirds for each tutorial room section.
     zone_1 = 0
-    zone_2 = SCREEN_WIDTH * 1/3
-    zone_3 = SCREEN_WIDTH * 2/3
+    zone_2 = round(SCREEN_WIDTH * 1/3)
+    zone_3 = round(SCREEN_WIDTH * 2/3)
 
     #create doorways
     start_hub.build_passage(tutorial_room, (SCREEN_WIDTH-WALL_THICKNESS) // 2, SCREEN_HEIGHT - WALL_THICKNESS * 2, "u")
     tutorial_room.build_passage(start_hub, (SCREEN_WIDTH -WALL_THICKNESS) // 2, WALL_THICKNESS, "u", True)
 
-
-    # # wall example
-    # tutorial_room.build_wall(700, 500, 70, 210) # pillar
-
-    # spike example
-    tutorial_room.build_spike((255,255,255), start_coordinate=(700, 300), direction= "l")
-
     # boulder example
     tutorial_room.build_boulder(35,35,300,300,500,200)
-
-    for i in range(175, 600, 35):
-        tutorial_room.build_collectable(35, i, "coin")
     
     room_name = tutorial_room
     
-    #trigger example
-    trigger1 = room_name.build_trigger(385, SCREEN_HEIGHT - WALL_THICKNESS * 5)
-    trigger2 = room_name.build_trigger(455, SCREEN_HEIGHT - WALL_THICKNESS * 5)
-    trigger3 = room_name.build_trigger(525, SCREEN_HEIGHT - WALL_THICKNESS * 5)
-    trigger4 = room_name.build_trigger(595, SCREEN_HEIGHT - WALL_THICKNESS * 5)
-
     #trap example
     arrow_spitter1 = room_name.build_arrow_spitter(280, 0, rotation_degrees_ccw=180)
     arrow_spitter2 = room_name.build_arrow_spitter(350, SCREEN_HEIGHT - WALL_THICKNESS, rotation_degrees_ccw=0)
     arrow_spitter3 = room_name.build_arrow_spitter(0, SCREEN_HEIGHT - WALL_THICKNESS * 4, rotation_degrees_ccw=270)
     arrow_spitter4 = room_name.build_arrow_spitter(SCREEN_WIDTH - WALL_THICKNESS, SCREEN_HEIGHT - WALL_THICKNESS * 6, rotation_degrees_ccw=90)
-
-    # connect trap and trigger
-    trigger1.set_linked_trap(arrow_spitter1)
-    trigger2.set_linked_trap(arrow_spitter2)
-    trigger3.set_linked_trap(arrow_spitter3)
-    trigger4.set_linked_trap(arrow_spitter4)
-
-    arrow_spitter1.set_linked_trigger(trigger1)
-    arrow_spitter2.set_linked_trigger(trigger2)
-    arrow_spitter3.set_linked_trigger(trigger3)
-    arrow_spitter4.set_linked_trigger(trigger4)
 
     # Main Title
     tutorial_room.build_text("Tutorial Room", 385, 100, (255,255,255), 50)
@@ -133,15 +107,45 @@ def create_tutorial_room():
     # Key example
     tutorial_room.build_collectable(SCREEN_WIDTH // 2 - 20, 280, "key")
 
+    # Coins example
+    for i in range(zone_2 + 10, zone_3 - 35, 35):
+        for j in range(350, 490, 35):
+            tutorial_room.build_collectable(i, j, "coin")
+
     # Surface titles
     tutorial_room.build_text("Surfaces", zone_3 + 75, 200, (255,255,255), 30)
     tutorial_room.build_text("Ice", zone_3 + 130, 250, (255,255,255), 20)
     tutorial_room.build_text("Mud", zone_3 + 130, 400, (255,255,255), 20)
 
-
     # Ice / Mud example
     tutorial_room.build_ice(zone_3, 280, 300, 100)
     tutorial_room.build_mud(zone_3, 430, 300, 100)
+
+    # Hazard Title
+    tutorial_room.build_text("Hazards", zone_2 // 2 - 55, 200, (255,255,255), 30)
+
+    # Spikes example
+    for i in range(55, zone_2, 90):
+        for j in range(300, 470, 70):
+            tutorial_room.build_spike((255,255,255), (i, j), "u")
+
+    # Trigger example
+    trigger1 = room_name.build_trigger(55, 480)
+    trigger2 = room_name.build_trigger(145, 480)
+    trigger3 = room_name.build_trigger(235, 480)
+    trigger4 = room_name.build_trigger(325, 480)
+
+    # Connect trap and trigger
+    trigger1.set_linked_trap(arrow_spitter1)
+    trigger2.set_linked_trap(arrow_spitter2)
+    trigger3.set_linked_trap(arrow_spitter3)
+    trigger4.set_linked_trap(arrow_spitter4)
+
+    arrow_spitter1.set_linked_trigger(trigger1)
+    arrow_spitter2.set_linked_trigger(trigger2)
+    arrow_spitter3.set_linked_trigger(trigger3)
+    arrow_spitter4.set_linked_trigger(trigger4)
+
 
 bonus_room = Timed_Room(start_hub, 10, 35, 35, build_border = True)
 
