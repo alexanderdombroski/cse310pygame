@@ -4,6 +4,7 @@ import os
 from components.constants import WINDOW, all_sprites, current_room
 from components.player import PLAYER
 from components.rooms import create_scotts_room, create_start_hub, create_room_two, create_tutorial_room, tutorial_room, create_bonus_room
+from components.inventory import toggle_inventory
 
 # init pygame, window, room
 init()
@@ -57,6 +58,7 @@ while running:
     all_sprites.update()
     all_sprites.draw(WINDOW)
 
+    toggle_inventory()
     display.flip()
 
     time.Clock().tick(60)

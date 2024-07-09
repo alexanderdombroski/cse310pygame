@@ -74,7 +74,7 @@ def create_scotts_room():
         if i > 17 and i < 20:
             scotts_room.build_spike((255,255,255), (WALL_THICKNESS * i, WALL_THICKNESS * 5), "u")
 
-        scotts_room.build_collectable(400, SCREEN_HEIGHT - 115, "key")
+    scotts_room.build_collectable(400, SCREEN_HEIGHT - 115, "key")
 
 def create_tutorial_room():
 

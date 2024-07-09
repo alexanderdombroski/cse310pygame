@@ -2,6 +2,8 @@ from components.constants import DEFAULT_FONT_SIZE, DEFAULT_FONT_COLOR
 from pygame import sprite, font
 from typing import *
 
+font.init()
+
 class Text(sprite.Sprite):
     def __init__(self, 
         text: str,
