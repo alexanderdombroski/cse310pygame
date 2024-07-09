@@ -78,17 +78,17 @@ def create_scotts_room():
 
 def create_tutorial_room():
 
+    zone_1 = 0
+    zone_2 = SCREEN_WIDTH * 1/3
+    zone_3 = SCREEN_WIDTH * 2/3
+
     #create doorways
     start_hub.build_passage(tutorial_room, (SCREEN_WIDTH-WALL_THICKNESS) // 2, SCREEN_HEIGHT - WALL_THICKNESS * 2, "u")
     tutorial_room.build_passage(start_hub, (SCREEN_WIDTH -WALL_THICKNESS) // 2, WALL_THICKNESS, "u", True)
 
 
-    # wall example
-    tutorial_room.build_wall(700, 500, 70, 210) # pillar
-
-    # Ice / Mud example
-    tutorial_room.build_ice(105, 105, 300, 100)
-    tutorial_room.build_mud(105, 305, 300, 100)
+    # # wall example
+    # tutorial_room.build_wall(700, 500, 70, 210) # pillar
 
     # spike example
     tutorial_room.build_spike((255,255,255), start_coordinate=(700, 300), direction= "l")
@@ -96,8 +96,6 @@ def create_tutorial_room():
     # boulder example
     tutorial_room.build_boulder(35,35,300,300,500,200)
 
-    #key example
-    tutorial_room.build_collectable(35, 105, "key")
     for i in range(175, 600, 35):
         tutorial_room.build_collectable(35, i, "coin")
     
@@ -126,8 +124,24 @@ def create_tutorial_room():
     arrow_spitter3.set_linked_trigger(trigger3)
     arrow_spitter4.set_linked_trigger(trigger4)
 
-    # Add text to explain how to play and describe objects 
-    tutorial_room.build_text("Tutorial Room", SCREEN_WIDTH // 2, 100, (255,255,255), 50)
+    # Main Title
+    tutorial_room.build_text("Tutorial Room", 385, 100, (255,255,255), 50)
+
+    # Collectable title
+    tutorial_room.build_text("Collectables", zone_2 + 80, 200, (255,255,255), 30)
+
+    # Key example
+    tutorial_room.build_collectable(SCREEN_WIDTH // 2 - 20, 280, "key")
+
+    # Surface titles
+    tutorial_room.build_text("Surfaces", zone_3 + 75, 200, (255,255,255), 30)
+    tutorial_room.build_text("Ice", zone_3 + 130, 250, (255,255,255), 20)
+    tutorial_room.build_text("Mud", zone_3 + 130, 400, (255,255,255), 20)
+
+
+    # Ice / Mud example
+    tutorial_room.build_ice(zone_3, 280, 300, 100)
+    tutorial_room.build_mud(zone_3, 430, 300, 100)
 
 bonus_room = Timed_Room(start_hub, 10, 35, 35, build_border = True)
 
