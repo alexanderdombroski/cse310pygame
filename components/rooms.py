@@ -8,8 +8,10 @@ start_hub = Room(start_x = (SCREEN_WIDTH -35) // 2, start_y=SCREEN_HEIGHT // 2, 
 
 
 def create_start_hub():
+    font_size = 100
     start_hub.build_passage(bonus_room, 700,35, locked=True, max_entries=1)
     start_hub.build_collectable(90,90,"key") # Testing Key can be removed later
+    start_hub.build_text("Main Hub", 365, 280, (255,255,255), font_size)
 
 def create_room_two():
     room2 = Room(start_x=WALL_THICKNESS, start_y= (SCREEN_HEIGHT -WALL_THICKNESS) // 2)
