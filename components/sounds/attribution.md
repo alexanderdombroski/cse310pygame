@@ -12,3 +12,8 @@ Bonus Room Track: bit-shift
 - Music from #Uppbeat (free for Creators!):
 - https://uppbeat.io/t/kevin-macleod/bit-shift
 - License code: YMNZY4AURQZUOE6I
+
+Hub track: itty bitty 8-bit
+- Music from #Uppbeat (free for Creators!):
+- https://uppbeat.io/t/kevin-macleod/itty-bitty-8-bit
+- License code: YLOZXNUDCWAMPEFS

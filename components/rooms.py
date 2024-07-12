@@ -4,7 +4,7 @@ from components.timed_room import Timed_Room
 
 
 tutorial_room = Room(start_x = SCREEN_WIDTH // 2, start_y=SCREEN_HEIGHT - WALL_THICKNESS * 3, music_path="components/sounds/tutorial-room-sound.mp3")
-start_hub = Room(start_x = (SCREEN_WIDTH -35) // 2, start_y=SCREEN_HEIGHT // 2, default_wall_color=(128, 128, 128))
+start_hub = Room(start_x = (SCREEN_WIDTH -35) // 2, start_y=SCREEN_HEIGHT // 2, default_wall_color=(128, 128, 128), music_path = "components/sounds/itty-bitty-8-bit.mp3")
 
 
 def create_start_hub():
