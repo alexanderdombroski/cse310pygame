@@ -63,8 +63,6 @@ while running:
         start_hub.build_text("YOU WON", 100, 100, (255,255,255), 90)
         created_you_win_text = True
 
-
-    
     display.flip()
 
     time.Clock().tick(60)
