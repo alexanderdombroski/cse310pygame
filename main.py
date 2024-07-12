@@ -20,9 +20,6 @@ create_start_hub()
 
 create_bonus_room()
 
-# Main game sound
-game_sound = mixer.Sound("components/sounds/tutorial-room-sound.mp3")
-game_sound.play(loops=-1) # Makes the program loop indefinitely.
 
 # Room Two
 create_room_two()

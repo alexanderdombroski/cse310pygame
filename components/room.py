@@ -20,7 +20,8 @@ class Room:
         start_x: int = None,
         start_y: int = None,
         default_wall_color: Tuple[int, int, int] = (128, 128, 128),
-        build_border: bool = True
+        build_border: bool = True,
+        music_path: str = None
     ) -> None:
         
         self.room_sprites = sprite.Group()
@@ -44,10 +45,20 @@ class Room:
         # Wall Properties
         self.default_wall_color = default_wall_color
         if build_border:
-            self.build_border()        
+            self.build_border()   
+
+        self.music_path = music_path
+
     
 
     def enter_room(self) -> None:
+        # Chagne sound
+        if self.music_path:
+            mixer.music.stop()
+            mixer.music.load(self.music_path)
+            mixer.music.play(-1)
+
+        
         # Makes a room visible
         all_sprites.empty()
 

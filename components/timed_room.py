@@ -11,10 +11,11 @@ class Timed_Room(Room):
         start_y: int = None, 
         default_wall_color: Tuple[int, int, int] = (128, 128, 128), 
         build_border: bool = True,
-        timeout_callback: Callable = None
+        timeout_callback: Callable = None,
+        music_path: str = None
     ) -> None:
         
-        super().__init__(start_x, start_y, default_wall_color, build_border = build_border)
+        super().__init__(start_x, start_y, default_wall_color, build_border = build_border, music_path = music_path)
         self.previous_room = previous_room
         self.timeout_callback = timeout_callback
         self.room_duration = timedelta(seconds=room_duration)
