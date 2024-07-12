@@ -36,8 +36,9 @@ def create_scotts_room():
     
     for i in range(1, 33):
         # Spikes on the left and right walls of the screen.
-        scotts_room.build_spike((255,255,255), (WALL_THICKNESS, WALL_THICKNESS * i), "r")
-        scotts_room.build_spike((255,255,255), (SCREEN_WIDTH - WALL_THICKNESS, WALL_THICKNESS * i), "l")
+        if i < 19:
+            scotts_room.build_spike((255,255,255), (WALL_THICKNESS, WALL_THICKNESS * i), "r")
+            scotts_room.build_spike((255,255,255), (SCREEN_WIDTH - WALL_THICKNESS, WALL_THICKNESS * i), "l")
 
         # Left and right spikes on pillars from the bottom.
         if i > 4:
