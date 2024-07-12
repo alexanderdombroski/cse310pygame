@@ -3,7 +3,7 @@ from components.room import Room
 from components.timed_room import Timed_Room
 
 
-tutorial_room = Room(start_x = SCREEN_WIDTH // 2, start_y=SCREEN_HEIGHT - WALL_THICKNESS * 3)
+tutorial_room = Room(start_x = SCREEN_WIDTH // 2, start_y=SCREEN_HEIGHT - WALL_THICKNESS * 3, music_path="components/sounds/tutorial-room-sound.mp3")
 start_hub = Room(start_x = (SCREEN_WIDTH -35) // 2, start_y=SCREEN_HEIGHT // 2, default_wall_color=(128, 128, 128))
 
 
@@ -147,7 +147,7 @@ def create_tutorial_room():
     arrow_spitter4.set_linked_trigger(trigger4)
 
 
-bonus_room = Timed_Room(start_hub, 10, 35, 35, build_border = True)
+bonus_room = Timed_Room(start_hub, 10, 35, 35, build_border = True, music_path="components/sounds/bit-shift.mp3" )
 
 def create_bonus_room():
     bonus_room.build_ice(90, 90, SCREEN_WIDTH - 180, SCREEN_HEIGHT - 180)

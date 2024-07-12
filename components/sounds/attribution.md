@@ -7,3 +7,8 @@
 * [ouch](https://pixabay.com/sound-effects/search/ouch%20sound/)
 * [coin-collect](https://pixabay.com/sound-effects/coin-collect-retro-8-bit-sound-effect-145251/)
 * [door-opening](https://pixabay.com/sound-effects/dorm-door-opening-6038/)
+
+Bonus Room Track: bit-shift
+- Music from #Uppbeat (free for Creators!):
+- https://uppbeat.io/t/kevin-macleod/bit-shift
+- License code: YMNZY4AURQZUOE6I
