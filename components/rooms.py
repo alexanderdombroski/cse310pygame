@@ -8,8 +8,10 @@ start_hub = Room(start_x = (SCREEN_WIDTH -35) // 2, start_y=SCREEN_HEIGHT // 2, 
 
 
 def create_start_hub():
+    font_size = 100
     start_hub.build_passage(bonus_room, 700,35, locked=True, max_entries=1)
     start_hub.build_collectable(90,90,"key") # Testing Key can be removed later
+    start_hub.build_text("Main Hub", 365, 280, (255,255,255), font_size)
 
 def create_room_two():
     room2 = Room(start_x=WALL_THICKNESS, start_y= (SCREEN_HEIGHT -WALL_THICKNESS) // 2)
@@ -36,11 +38,12 @@ def create_scotts_room():
     
     for i in range(1, 33):
         # Spikes on the left and right walls of the screen.
-        scotts_room.build_spike((255,255,255), (WALL_THICKNESS, WALL_THICKNESS * i), "r")
-        scotts_room.build_spike((255,255,255), (SCREEN_WIDTH - WALL_THICKNESS, WALL_THICKNESS * i), "l")
+        if i < 19:
+            scotts_room.build_spike((255,255,255), (WALL_THICKNESS, WALL_THICKNESS * i), "r")
+            scotts_room.build_spike((255,255,255), (SCREEN_WIDTH - WALL_THICKNESS, WALL_THICKNESS * i), "l")
 
         # Left and right spikes on pillars from the bottom.
-        if i > 4:
+        if i > 4 and i < 19:
             scotts_room.build_spike((255,255,255), (WALL_THICKNESS * 5, WALL_THICKNESS * i), "l")
             scotts_room.build_spike((255,255,255), (WALL_THICKNESS * 7, WALL_THICKNESS * i), "r")
             scotts_room.build_spike((255,255,255), (WALL_THICKNESS * 18, WALL_THICKNESS * i), "l")
@@ -65,7 +68,14 @@ def create_scotts_room():
         # Second section of down spikes from ceiling.
         if i > 14 and i < 24:
             scotts_room.build_spike((255,255,255), (WALL_THICKNESS * i, WALL_THICKNESS), "d")
-        
+
+        # First spikes on floor
+        if i > 7 and i < 17:
+            scotts_room.build_spike((255,255,255), (WALL_THICKNESS * i, SCREEN_HEIGHT - WALL_THICKNESS), "u")
+
+        if i > 20 and i < 30:
+            scotts_room.build_spike((255,255,255), (WALL_THICKNESS * i, SCREEN_HEIGHT - WALL_THICKNESS), "u")
+
         # First up spikes.
         if i > 4 and i < 7:
             scotts_room.build_spike((255,255,255), (WALL_THICKNESS * i, WALL_THICKNESS * 5), "u")
