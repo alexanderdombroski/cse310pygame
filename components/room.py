@@ -54,9 +54,10 @@ class Room:
     def enter_room(self) -> None:
         # Chagne sound
         if self.music_path:
-            mixer.music.stop()
-            mixer.music.load(self.music_path)
-            mixer.music.play(-1)
+            if (self.music_path != current_room[0].music_path):
+                mixer.music.stop()
+                mixer.music.load(self.music_path)
+                mixer.music.play(-1)
 
         
         # Makes a room visible
