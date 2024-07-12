@@ -24,7 +24,8 @@ class Square(sprite.Sprite):
 
         self.inventory = {
             "key": 0,
-            "coin": 0
+            "coin": 0,
+            "trophy":0
         }
         if not mixer.get_init():
             mixer.init()

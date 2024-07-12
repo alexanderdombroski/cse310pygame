@@ -11,6 +11,10 @@ COLLECTABLE_DATA = {
     "coin": [
         "components/images/coin.png",
         "components/sounds/coin-collect.mp3"
+    ],
+    "trophy":[
+        "components/images/trophy.png",
+        "components/sounds/coin-collect.mp3"
     ]
 }
 

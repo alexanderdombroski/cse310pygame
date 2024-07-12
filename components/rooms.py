@@ -83,6 +83,8 @@ def create_tutorial_room():
     zone_2 = round(SCREEN_WIDTH * 1/3)
     zone_3 = round(SCREEN_WIDTH * 2/3)
 
+    tutorial_room.build_collectable(SCREEN_WIDTH // 2 - 60, 280, "trophy")
+
     #create doorways
     start_hub.build_passage(tutorial_room, (SCREEN_WIDTH-WALL_THICKNESS) // 2, SCREEN_HEIGHT - WALL_THICKNESS * 2, "u")
     tutorial_room.build_passage(start_hub, (SCREEN_WIDTH -WALL_THICKNESS) // 2, WALL_THICKNESS, "u", True)
