@@ -55,12 +55,10 @@ class Room:
         # Chagne sound
         if self.music_path:
             if (self.music_path != current_room[0].music_path and current_room[0].music_path != None):
-                print("Not equal")
                 mixer.music.stop()
                 mixer.music.load(self.music_path)
                 mixer.music.play(-1)
             elif not mixer.music.get_busy():
-                print("Busty")
                 mixer.music.load(self.music_path)
                 mixer.music.play(-1)
 
