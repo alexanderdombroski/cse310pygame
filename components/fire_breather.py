@@ -74,8 +74,6 @@ class Fire_Breather(sprite.Sprite):
         self.draw_image(self.second_color)
         self.last_fire_time = time.time()
 
-        print("Fired fire breather")
-
         # self.lazer_sound.play()
     
     def update(self):
