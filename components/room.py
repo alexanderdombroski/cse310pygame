@@ -2,7 +2,7 @@ from typing import * # Used for fixed typing
 from pygame import *
 from components.wall import Wall
 from components.player import PLAYER
-from components.constants import all_sprites, all_walls, all_exits, all_ice, all_mud, all_spikes, all_text, all_collectables, all_triggers, all_arrow_spitters, all_attacks, WALL_THICKNESS, SCREEN_HEIGHT, SCREEN_WIDTH, DEFAULT_FONT_COLOR, DEFAULT_FONT_SIZE, current_room
+from components.constants import all_sprites, all_walls, all_exits, all_ice, all_mud, all_spikes, all_text, all_collectables, all_triggers, all_arrow_spitters, all_attacks, all_fire_breathers, WALL_THICKNESS, SCREEN_HEIGHT, SCREEN_WIDTH, DEFAULT_FONT_COLOR, DEFAULT_FONT_SIZE, current_room
 from components.exit import Exit
 from components.ice import Ice
 from components.mud import Mud
@@ -12,6 +12,7 @@ from components.text.text import Text
 from components.collectable import Collectable
 from components.trigger import Trigger
 from components.arrow_spitter import Arrow_Spitter
+from components.fire_breather import Fire_Breather
 
 
 class Room:
@@ -36,6 +37,7 @@ class Room:
         self.room_triggers =  sprite.Group()
         self.room_arrow_spitters = sprite.Group()
         self.room_attacks = sprite.Group()
+        self.room_fire_breathers = sprite.Group()
 
         self.start_x = start_x
         self.start_y = start_y
@@ -76,6 +78,7 @@ class Room:
         all_triggers.empty()
         all_arrow_spitters.empty()
         all_attacks.empty()
+        all_arrow_spitters.empty()
 
         all_sprites.add(self.room_sprites.copy())
         all_sprites.add(PLAYER)
@@ -90,6 +93,7 @@ class Room:
         all_triggers.add(self.room_triggers.copy())
         all_arrow_spitters.add(self.room_arrow_spitters.copy())
         all_attacks.add(self.room_attacks)
+        all_fire_breathers.add(self.room_fire_breathers)
         
         # Reset movement
         current_room[0] = self
@@ -174,3 +178,20 @@ class Room:
             rotation_degrees_ccw:int = 0 # 0:up, 90:left, 180:down, 270:right
     ):
         return Arrow_Spitter(left=left, top=top, width=width, height=height, color=color, groups=[self.room_arrow_spitters, self.room_sprites], attack_groups= [all_attacks, self.room_sprites, all_sprites], linked_trigger=linked_trigger, second_color=second_color, rotation_degrees_ccw=rotation_degrees_ccw)
+    
+    
+    def build_fire_breather(
+            self, 
+            left: int, 
+            top: int, 
+            width: int = WALL_THICKNESS, 
+            height: int = WALL_THICKNESS, 
+            color: Tuple[int, int, int] = (0,0,255), 
+            second_color: Tuple[int, int, int] = (255, 0, 255),
+            groups: List[sprite.Group] = None, 
+            attack_groups: List[sprite.Group] = None,
+            linked_trigger = "",
+            rotation_degrees_ccw:int = 0, # 0:up, 90:left, 180:down, 270:right
+            proj_max_height:int = 3 * 35
+    ):
+        return Fire_Breather(left=left, top=top, width=width, height=height, color=color, groups=[self.room_fire_breathers, self.room_sprites], attack_groups= [all_attacks, self.room_sprites, all_sprites], second_color=second_color, rotation_degrees_ccw=rotation_degrees_ccw, proj_h=proj_max_height)

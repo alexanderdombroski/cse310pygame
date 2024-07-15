@@ -15,6 +15,7 @@ all_collectables = Group()
 all_triggers = Group()
 all_arrow_spitters = Group()
 all_attacks = Group()
+all_fire_breathers = Group()
 
 # Constants
 SCREEN_WIDTH = 1050 + 70

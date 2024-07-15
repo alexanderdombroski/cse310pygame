@@ -3,7 +3,7 @@ from pygame.locals import *
 import os
 from components.constants import WINDOW, all_sprites, current_room
 from components.player import PLAYER
-from components.rooms import create_scotts_room, create_start_hub, create_room_two, create_tutorial_room, tutorial_room, create_bonus_room, start_hub
+from components.rooms import create_scotts_room, create_start_hub, create_room_two, create_tutorial_room, tutorial_room, create_bonus_room, start_hub, createTrapRoom, trap_room
 from components.inventory import toggle_inventory
 
 # init pygame, window, room
@@ -30,8 +30,12 @@ create_scotts_room()
 # Create tutorial room
 create_tutorial_room()
 
-current_room.append(tutorial_room)
-tutorial_room.enter_room()
+# create e's trap room
+createTrapRoom()
+
+# current_room.append(tutorial_room)
+current_room.append(trap_room)
+trap_room.enter_room()
 running = True
 
 created_you_win_text = False
