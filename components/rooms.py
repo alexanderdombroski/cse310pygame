@@ -92,7 +92,7 @@ def create_tutorial_room():
     zone_2 = round(SCREEN_WIDTH * 1/3)
     zone_3 = round(SCREEN_WIDTH * 2/3)
 
-    tutorial_room.build_collectable(SCREEN_WIDTH // 2 - 60, 280, "trophy")
+    tutorial_room.build_collectable(SCREEN_WIDTH // 2 + 90, 385, "trophy")
 
     #create doorways
     start_hub.build_passage(tutorial_room, (SCREEN_WIDTH-WALL_THICKNESS) // 2, SCREEN_HEIGHT - WALL_THICKNESS * 2, "u")
@@ -116,12 +116,12 @@ def create_tutorial_room():
     tutorial_room.build_text("Collectables", zone_2 + 80, 200, (255,255,255), 30)
 
     # Key example
-    tutorial_room.build_collectable(SCREEN_WIDTH // 2 - 20, 280, "key", callback=create_maze_room)
+    tutorial_room.build_collectable(SCREEN_WIDTH // 2 + 90, 315, "key", callback=create_maze_room)
 
     # Coins example
-    for i in range(zone_2 + 10, zone_3 - 35, 35):
-        for j in range(350, 490, 35):
-            tutorial_room.build_collectable(i, j, "coin")
+    for x in range(zone_2 + 10, zone_3 - 35*4, 35):
+        for y in range(315, 490, 70):
+            tutorial_room.build_collectable(x, y, "coin")
 
     # Surface titles
     tutorial_room.build_text("Surfaces", zone_3 + 75, 200, (255,255,255), 30)

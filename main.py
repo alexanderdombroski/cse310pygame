@@ -59,7 +59,7 @@ while running:
 
     toggle_inventory()
 
-    if PLAYER.inventory["trophy"] >= 1 and not created_you_win_text:
+    if PLAYER.inventory["trophy"] >= 3 and not created_you_win_text:
         start_hub.build_text("YOU WON", 100, 100, (255,255,255), 90)
         created_you_win_text = True
 
