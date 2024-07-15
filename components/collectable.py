@@ -14,7 +14,7 @@ COLLECTABLE_DATA = {
     ],
     "trophy":[
         "components/images/trophy.png",
-        "components/sounds/coin-collect.mp3"
+        "components/sounds/magic-ding.mp3"
     ]
 }
 
