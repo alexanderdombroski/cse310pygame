@@ -172,7 +172,7 @@ def create_bonus_room():
         bonus_room.build_spike((255,255,255), (900, i), "u")
 
 
-maze_room = Room(35, 70, build_border=True)
+maze_room = Room(35, 70, build_border=True, music_path="components/sounds/maze-track.mp3")
 maze_room2 = Room(SCREEN_WIDTH - 105, SCREEN_HEIGHT - 140, build_border=True)
 
 def create_maze_room():
