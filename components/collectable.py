@@ -24,7 +24,8 @@ class Collectable(sprite.Sprite):
         left: int, 
         top: int, 
         name: str,
-        groups: List[sprite.Group] = None
+        groups: List[sprite.Group] = None,
+        callback: callable = None
     ) -> None:
         
         # Add the sprites to groups
@@ -45,8 +46,12 @@ class Collectable(sprite.Sprite):
 
         self.time_created = datetime.now()
 
+        self.callback = callback
+
     def pickup(self):
         if datetime.now() - self.time_created > timedelta(seconds=1):
             self.pickup_sound.play()
             PLAYER.inventory[self.name] += 1
             sprite.Sprite.kill(self) # Remove from groups and delete
+            if self.callback != None:
+                self.callback()

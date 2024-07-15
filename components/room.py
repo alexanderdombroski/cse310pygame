@@ -143,8 +143,8 @@ class Room:
     #     extra_groups.extend([self.room_collectables, self.room_sprites])
     #     Collectable(left, top, name, extra_groups)
 
-    def build_collectable(self, left: int, top: int, name: str, insta_render: bool = False):
-        Collectable(left, top, name, [self.room_collectables, self.room_sprites, all_sprites, all_collectables] if insta_render else [self.room_collectables, self.room_sprites])
+    def build_collectable(self, left: int, top: int, name: str, insta_render: bool = False, callback: callable = None):
+        Collectable(left, top, name, [self.room_collectables, self.room_sprites, all_sprites, all_collectables] if insta_render else [self.room_collectables, self.room_sprites], callback)
     
 
 
