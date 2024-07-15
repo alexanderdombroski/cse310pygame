@@ -9,7 +9,7 @@ start_hub = Room(start_x = (SCREEN_WIDTH -35) // 2, start_y=SCREEN_HEIGHT // 2, 
 
 def create_start_hub():
     font_size = 100
-    start_hub.build_collectable(90,90,"key") # Testing Key can be removed later
+    start_hub.build_collectable(90, SCREEN_HEIGHT - 115, "key")
     start_hub.build_text("Main Hub", 365, 280, (255,255,255), font_size)
 
 def create_room_two():
@@ -116,7 +116,7 @@ def create_tutorial_room():
     tutorial_room.build_text("Collectables", zone_2 + 80, 200, (255,255,255), 30)
 
     # Key example
-    tutorial_room.build_collectable(SCREEN_WIDTH // 2 - 20, 280, "key")
+    tutorial_room.build_collectable(SCREEN_WIDTH // 2 - 20, 280, "key", callback=create_maze_room)
 
     # Coins example
     for i in range(zone_2 + 10, zone_3 - 35, 35):
@@ -171,4 +171,36 @@ def create_bonus_room():
         bonus_room.build_spike((255,255,255), (600, i), "u")
         bonus_room.build_spike((255,255,255), (900, i), "u")
 
+
+maze_room = Room(35, 70, build_border=True)
+
+def create_maze_room():
+    start_hub.build_passage(maze_room, 50, 10, locked=True)
+    maze_room.build_passage(start_hub, 50, 10)
+    maze_room.build_collectable(SCREEN_WIDTH - 70, SCREEN_HEIGHT - 70, "trophy", callback=reset_maze)
     
+    # Left Walls
+    maze_room.build_wall(105, 35, 35 * 4)
+    maze_room.build_wall(105, 35 * 8, 35 * 4)
+    maze_room.build_wall(105, 35 * 15, 35 * 4)
+
+    # Second Left Walls
+    maze_room.build_wall(210, 35 * 3, 35 * 4)
+    maze_room.build_wall(245, 35 * 3, width=35 * 3)
+
+    maze_room.build_wall(210, 35 * 9, 35 * 4)
+    maze_room.build_wall(245, 35 * 9, width=35 * 4)
+
+
+    maze_room.build_wall(210, 35 * 16, 35 * 3)
+    
+    # Bottom middle 
+    maze_room.build_wall(315, 35 * 16, width=35 * 6)
+    maze_room.build_wall(315, 35 * 16, width=35 * 6)
+
+
+
+def reset_maze():
+    maze_room.build_wall(70, 35, length=180)
+
+create_maze_room() # Remove later

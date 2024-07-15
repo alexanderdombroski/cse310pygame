@@ -82,14 +82,14 @@ class Room:
         
         all_walls.add(self.room_walls.copy())
         all_exits.add(self.room_exits.copy())
-        all_ice.add(self.room_ice.copy())
-        all_mud.add(self.room_mud.copy())
         all_spikes.add(self.room_spikes.copy())
         all_text.add(self.room_text.copy())
         all_collectables.add(self.room_collectables.copy())
         all_triggers.add(self.room_triggers.copy())
         all_arrow_spitters.add(self.room_arrow_spitters.copy())
         all_attacks.add(self.room_attacks)
+        all_ice.add(self.room_ice.copy())
+        all_mud.add(self.room_mud.copy())
         
         # Reset movement
         current_room[0] = self
