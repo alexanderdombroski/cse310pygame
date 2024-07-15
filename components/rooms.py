@@ -173,6 +173,7 @@ def create_bonus_room():
 
 
 maze_room = Room(35, 70, build_border=True)
+maze_room2 = Room(SCREEN_WIDTH - 105, SCREEN_HEIGHT - 140, build_border=True)
 
 def create_maze_room():
     start_hub.build_passage(maze_room, 50, 10, locked=True)
@@ -190,6 +191,7 @@ def create_maze_room():
 
     maze_room.build_wall(210, 35 * 9, 35 * 4)
     maze_room.build_wall(245, 35 * 9, width=35 * 4)
+    maze_room.build_wall(350, 35 * 6, 35 * 3)
 
 
     maze_room.build_wall(210, 35 * 16, 35 * 3)
@@ -197,10 +199,73 @@ def create_maze_room():
     # Bottom middle 
     maze_room.build_wall(315, 35 * 16, width=35 * 6)
     maze_room.build_wall(315, 35 * 16, width=35 * 6)
+    maze_room.build_wall(315, 35 * 12, 35*4)
+    maze_room.build_wall(420, 35 * 14, 35 * 2)
 
+    # Middle Right (bottom to top)
+    maze_room.build_wall(525, 35 * 12, 35 * 2)
+    maze_room.build_wall(595, 35 * 16, 35 * 3)
+    maze_room.build_wall(630, 35 * 11, 35 * 6)
+    maze_room.build_wall(455, 35 * 11, width=35 * 5)
+    maze_room.build_wall(455, 35 * 7, 35 * 4)
 
+    # Top Middle
+    maze_room.build_wall(35*9, 35, 70)
+    maze_room.build_wall(35*12, 35, 35*3)
+    maze_room.build_wall(35*15, 35*3, 35*2, 35*4) 
+    maze_room.build_wall(35*19, 35, 35*4) 
+
+    # Middle
+    maze_room.build_wall(35*16, 35*5, 35*4)
+    maze_room.build_wall(35*17, 35*8, width=35*2)
+
+    # Second Right
+    maze_room.build_wall(35*21, 35 * 11, 35 * 6)
+    maze_room.build_wall(35*22, 35 * 16, width=35 * 6)
+
+    maze_room.build_wall(35*21, 35*7, 35*2)
+    
+    
+    # Right
+    maze_room.build_wall(35*25, 35 * 6, 35 * 4)
+    maze_room.build_wall(35*24, 35 * 10, width=35 * 5)
+    maze_room.build_wall(35*24, 35 * 11, 35 * 3)
+    maze_room.build_wall(35*25, 35 * 13, width=35 * 3)
+    maze_room.build_wall(35*28, 35 * 13, 35 * 6)
+
+    # Top Right
+    maze_room.build_wall(35*28, 35, 35 * 7)
+    maze_room.build_wall(35*22, 35*3, width=35*6)
 
 def reset_maze():
-    maze_room.build_wall(70, 35, length=180)
+    maze_room2.build_passage(start_hub, 50, 10)
 
-create_maze_room() # Remove later
+    maze_room2.build_wall(35, 35*3, width=35*3)
+    maze_room2.build_wall(35*3, 35*6, width=35*7)
+    maze_room2.build_wall(35*10, 35*6, 35*7)
+
+    # Long Top
+    maze_room2.build_wall(35*10, 35, 35*3)
+    maze_room2.build_wall(35*7, 35*3, width=35*22)
+    maze_room2.build_wall(35*6, 35*3, 35*3)
+
+    # Second Long Top
+    maze_room2.build_wall(35*13, 35*6, 35*5)
+    maze_room2.build_wall(35*14, 35*6, width=35*15)
+    for x in range(35*16, 35*24, 35):
+        maze_room2.build_collectable(x, 35*5, "coin")
+
+    maze_room2.build_wall(35, 35*9, width=35*7)
+
+    maze_room2.build_mud(35*17, 35*10, 35*11, 35*6)
+
+    maze_room2.build_wall(35*13, 35*14, 35*6)
+
+    # Bottom Left
+    maze_room2.build_wall(35*4, 35*12, width=35*6)
+    maze_room2.build_wall(35*3, 35*12, 35*5)
+
+    maze_room2.build_ice(35*6, 35*15, 35*5, 35*2)
+
+    maze_room2.enter_room()
+
