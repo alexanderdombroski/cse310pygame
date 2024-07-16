@@ -91,12 +91,8 @@ class Room:
         all_triggers.add(self.room_triggers.copy())
         all_arrow_spitters.add(self.room_arrow_spitters.copy())
         all_attacks.add(self.room_attacks)
-<<<<<<< HEAD
         all_ice.add(self.room_ice.copy())
         all_mud.add(self.room_mud.copy())
-=======
-        all_fire_breathers.add(self.room_fire_breathers)
->>>>>>> trap-room
         
         # Reset movement
         current_room[0] = self
