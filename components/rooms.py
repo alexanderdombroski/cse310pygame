@@ -172,7 +172,6 @@ def create_bonus_room():
         bonus_room.build_spike((255,255,255), (900, i), "u")
 
 
-<<<<<<< HEAD
 maze_room = Room(35, 70, build_border=True, music_path="components/sounds/maze-track.mp3")
 maze_room2 = Room(SCREEN_WIDTH - 105, SCREEN_HEIGHT - 140, build_border=True)
 
@@ -270,7 +269,6 @@ def reset_maze():
 
     maze_room2.enter_room()
 
-=======
 trap_room = Room(start_x=35 * 3 / 2, start_y=35 * 3 / 2)
 def createTrapRoom():
 
@@ -361,4 +359,3 @@ def createTrapRoom():
     spitter8 = room_name.build_arrow_spitter(left=10*WALL_THICKNESS, top=14* WALL_THICKNESS, rotation_degrees_ccw=90)
     trigger8.set_linked_trap(spitter8)
     spitter8.set_linked_trigger(trigger8)
->>>>>>> trap-room
