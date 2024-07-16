@@ -93,6 +93,7 @@ class Room:
         all_attacks.add(self.room_attacks)
         all_ice.add(self.room_ice.copy())
         all_mud.add(self.room_mud.copy())
+        all_fire_breathers.add(self.room_fire_breathers)
         
         # Reset movement
         current_room[0] = self
@@ -152,14 +153,15 @@ class Room:
 
 
     def build_trigger(
-            self,
-            left: int, 
-            top: int, 
-            width: int = WALL_THICKNESS, 
-            height: int = WALL_THICKNESS, 
-            color: Tuple[int, int, int] = (0,255,0), 
-            groups: List[sprite.Group] = None, 
-            linked_trap = "",):
+        self,
+        left: int, 
+        top: int, 
+        width: int = WALL_THICKNESS, 
+        height: int = WALL_THICKNESS, 
+        color: Tuple[int, int, int] = (0,255,0), 
+        groups: List[sprite.Group] = None, 
+        linked_trap = "",
+    ):
         return Trigger(left, top, width, height, color, [self.room_triggers, self.room_sprites], linked_trap)
 
 
@@ -180,17 +182,17 @@ class Room:
     
     
     def build_fire_breather(
-            self, 
-            left: int, 
-            top: int, 
-            width: int = WALL_THICKNESS, 
-            height: int = WALL_THICKNESS, 
-            color: Tuple[int, int, int] = (0,0,255), 
-            second_color: Tuple[int, int, int] = (255, 0, 255),
-            groups: List[sprite.Group] = None, 
-            attack_groups: List[sprite.Group] = None,
-            linked_trigger = "",
-            rotation_degrees_ccw:int = 0, # 0:up, 90:left, 180:down, 270:right
-            proj_max_height:int = 3 * 35
+        self, 
+        left: int, 
+        top: int, 
+        width: int = WALL_THICKNESS, 
+        height: int = WALL_THICKNESS, 
+        color: Tuple[int, int, int] = (0,0,255), 
+        second_color: Tuple[int, int, int] = (255, 0, 255),
+        groups: List[sprite.Group] = None, 
+        attack_groups: List[sprite.Group] = None,
+        linked_trigger = "",
+        rotation_degrees_ccw:int = 0, # 0:up, 90:left, 180:down, 270:right
+        proj_max_height:int = 3 * 35
     ):
         return Fire_Breather(left=left, top=top, width=width, height=height, color=color, groups=[self.room_fire_breathers, self.room_sprites], attack_groups= [all_attacks, self.room_sprites, all_sprites], second_color=second_color, rotation_degrees_ccw=rotation_degrees_ccw, proj_h=proj_max_height)

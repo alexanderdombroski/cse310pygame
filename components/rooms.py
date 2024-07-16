@@ -269,3 +269,93 @@ def reset_maze():
 
     maze_room2.enter_room()
 
+trap_room = Room(start_x=35 * 3 / 2, start_y=35 * 3 / 2)
+def createTrapRoom():
+
+    room_name = trap_room
+
+    start_hub.build_passage(room_name, WALL_THICKNESS, SCREEN_HEIGHT // 2 - WALL_THICKNESS // 2, direction="l")
+
+    room_name.build_wall(left=1*WALL_THICKNESS, top=4 * WALL_THICKNESS, width=21* WALL_THICKNESS, length=2*WALL_THICKNESS)
+
+    room_name.build_wall(left=21*WALL_THICKNESS, top=5 * WALL_THICKNESS, length=3* WALL_THICKNESS)
+    room_name.build_wall(left=22*WALL_THICKNESS, top=7 * WALL_THICKNESS, width=5* WALL_THICKNESS)
+
+    room_name.build_wall(left=26*WALL_THICKNESS, top=8*WALL_THICKNESS, length=8* WALL_THICKNESS)
+    room_name.build_wall(left=25*WALL_THICKNESS, top=15*WALL_THICKNESS, width=2* WALL_THICKNESS)
+
+    room_name.build_wall(left=17*WALL_THICKNESS, top=15*WALL_THICKNESS, length=5* WALL_THICKNESS)
+    room_name.build_wall(left=17*WALL_THICKNESS, top=11*WALL_THICKNESS, width=9* WALL_THICKNESS)
+
+    room_name.build_wall(left=17*WALL_THICKNESS, top=4* WALL_THICKNESS, length=4* WALL_THICKNESS, width=5*WALL_THICKNESS)
+    room_name.build_wall(left=17*WALL_THICKNESS, top=7* WALL_THICKNESS, length=5* WALL_THICKNESS, width=9*WALL_THICKNESS)
+
+    room_name.build_wall(left=4*WALL_THICKNESS, top=9* WALL_THICKNESS, length=7* WALL_THICKNESS, width=10*WALL_THICKNESS )
+    room_name.build_wall(left=13*WALL_THICKNESS, top=15*WALL_THICKNESS, width=5* WALL_THICKNESS, length=4* WALL_THICKNESS)
+    room_name.build_wall(left=7*WALL_THICKNESS, top=16* WALL_THICKNESS, length=4* WALL_THICKNESS, width=7*WALL_THICKNESS )
+
+
+    room_name.build_passage(start_hub, 6.5*WALL_THICKNESS, 17*WALL_THICKNESS)
+    room_name.build_collectable(5*WALL_THICKNESS, 17*WALL_THICKNESS, name="trophy")
+
+
+    room_name.build_fire_breather(6*WALL_THICKNESS, 4 * WALL_THICKNESS, rotation_degrees_ccw=0)
+    room_name.build_fire_breather(12*WALL_THICKNESS, 4 * WALL_THICKNESS, rotation_degrees_ccw=0)
+    room_name.build_fire_breather(18*WALL_THICKNESS, 4 * WALL_THICKNESS, rotation_degrees_ccw=0)
+
+    room_name.build_fire_breather(26*WALL_THICKNESS, 7 * WALL_THICKNESS, rotation_degrees_ccw=270, proj_max_height=4* WALL_THICKNESS)
+    room_name.build_fire_breather(31*WALL_THICKNESS, 9 * WALL_THICKNESS, rotation_degrees_ccw=90, proj_max_height=4* WALL_THICKNESS)
+
+    room_name.build_fire_breather(26*WALL_THICKNESS, 14 * WALL_THICKNESS, rotation_degrees_ccw=270, proj_max_height=4* WALL_THICKNESS)
+
+    room_name.build_fire_breather(25*WALL_THICKNESS, 15 * WALL_THICKNESS, rotation_degrees_ccw=180, proj_max_height=3* WALL_THICKNESS)
+
+    room_name.build_fire_breather(18*WALL_THICKNESS, 11 * WALL_THICKNESS, rotation_degrees_ccw=180, proj_max_height=4* WALL_THICKNESS)
+
+    room_name.build_fire_breather(13*WALL_THICKNESS, 9 * WALL_THICKNESS, rotation_degrees_ccw=0)
+    room_name.build_fire_breather(11*WALL_THICKNESS, 5 * WALL_THICKNESS, rotation_degrees_ccw=180)
+
+    room_name.build_fire_breather(6*WALL_THICKNESS, 5 * WALL_THICKNESS, rotation_degrees_ccw=180)
+
+    room_name.build_fire_breather(4*WALL_THICKNESS,13 * WALL_THICKNESS, rotation_degrees_ccw=90)
+
+
+    arrow_spitter1 = room_name.build_arrow_spitter(31*WALL_THICKNESS, 2* WALL_THICKNESS, rotation_degrees_ccw=90)
+    trigger1 = room_name.build_trigger(19*WALL_THICKNESS, 2 * WALL_THICKNESS)
+    trigger1.set_linked_trap(arrow_spitter1)
+    arrow_spitter1.set_linked_trigger(trigger1)
+
+    arrow_spitter2 = room_name.build_arrow_spitter(31*WALL_THICKNESS, 15 * WALL_THICKNESS, rotation_degrees_ccw=90)
+    trigger2 = room_name.build_trigger(28.5*WALL_THICKNESS, 13 * WALL_THICKNESS)
+    trigger2.set_linked_trap(arrow_spitter2)
+    arrow_spitter2.set_linked_trigger(trigger2)
+
+    spitter3=room_name.build_arrow_spitter(left=17*WALL_THICKNESS, top=17*WALL_THICKNESS, rotation_degrees_ccw=270)
+    spitter4=room_name.build_arrow_spitter(left=22*WALL_THICKNESS, top=9*WALL_THICKNESS, rotation_degrees_ccw=180)
+    trigger4=room_name.build_trigger(22*WALL_THICKNESS, 17 * WALL_THICKNESS)
+    trigger3=room_name.build_trigger(25*WALL_THICKNESS, 17* WALL_THICKNESS)
+
+    trigger3.set_linked_trap(spitter3)
+    spitter3.set_linked_trigger(trigger3)
+    trigger4.set_linked_trap(spitter4)
+    spitter4.set_linked_trigger(trigger4)
+
+    trigger5 = room_name.build_trigger(left=15*WALL_THICKNESS, top=9* WALL_THICKNESS)
+    spitter5 = room_name.build_arrow_spitter(left=15*WALL_THICKNESS, top=15* WALL_THICKNESS)
+    trigger5.set_linked_trap(spitter5)
+    spitter5.set_linked_trigger(trigger5)
+
+    trigger6 = room_name.build_trigger(left=12*WALL_THICKNESS, top=7* WALL_THICKNESS)
+    spitter6 = room_name.build_arrow_spitter(left=7*WALL_THICKNESS, top=15* WALL_THICKNESS)
+    trigger6.set_linked_trap(spitter6)
+    spitter6.set_linked_trigger(trigger6)
+
+    trigger7 = room_name.build_trigger(left=2*WALL_THICKNESS,top=10 * WALL_THICKNESS)
+    spitter7 = room_name.build_arrow_spitter(left=2*WALL_THICKNESS, top=5* WALL_THICKNESS, rotation_degrees_ccw=180)
+    trigger7.set_linked_trap(spitter7)
+    spitter7.set_linked_trigger(trigger7)
+
+    trigger8 = room_name.build_trigger(left=2*WALL_THICKNESS,top=12 * WALL_THICKNESS)
+    spitter8 = room_name.build_arrow_spitter(left=10*WALL_THICKNESS, top=14* WALL_THICKNESS, rotation_degrees_ccw=90)
+    trigger8.set_linked_trap(spitter8)
+    spitter8.set_linked_trigger(trigger8)
