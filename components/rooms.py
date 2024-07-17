@@ -266,7 +266,7 @@ def reset_maze():
 
     maze_room2.enter_room()
 
-trap_room = Room(start_x=35 * 3, start_y=35*3 / 2)
+trap_room = Room(start_x=35 * 3, start_y=35 * 3 / 2, music_path="components/sounds/cyborg-ninja.mp3")
 
 def create_trap_room():
 
