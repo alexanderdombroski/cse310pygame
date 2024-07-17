@@ -20,7 +20,6 @@ create_start_hub()
 
 create_bonus_room()
 
-
 # Room Two
 create_room_two()
 
@@ -65,7 +64,8 @@ while running:
 
     if PLAYER.inventory["trophy"] >= 3 and not created_you_win_text:
         start_hub.build_text("YOU WON", 100, 100, (255,255,255), 90)
-        created_you_win_text = True
+        created_you_wein_text = True
+
 
     display.flip()
 

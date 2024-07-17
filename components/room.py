@@ -54,7 +54,7 @@ class Room:
     
 
     def enter_room(self) -> None:
-        # Chagne sound
+        # Change sound
         if self.music_path:
             if (self.music_path != current_room[0].music_path and current_room[0].music_path != None):
                 mixer.music.stop()

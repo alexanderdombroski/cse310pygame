@@ -93,7 +93,7 @@ def create_tutorial_room():
     zone_3 = round(SCREEN_WIDTH * 2/3)
 
     tutorial_room.build_collectable(SCREEN_WIDTH // 2 + 90, 385, "trophy")
-
+    
     #create doorways
     start_hub.build_passage(tutorial_room, (SCREEN_WIDTH-WALL_THICKNESS) // 2, SCREEN_HEIGHT - WALL_THICKNESS * 2, "u")
     tutorial_room.build_passage(start_hub, (SCREEN_WIDTH -WALL_THICKNESS) // 2, WALL_THICKNESS, "u", True)
@@ -158,7 +158,7 @@ def create_tutorial_room():
     arrow_spitter4.set_linked_trigger(trigger4)
 
 
-bonus_room = Timed_Room(start_hub, 10, 35, 35, build_border = True, music_path="components/sounds/bit-shift.mp3" )
+bonus_room = Timed_Room(start_hub, 15, 35, 35, build_border = True, music_path="components/sounds/bit-shift.mp3" )
 
 def create_bonus_room():
     bonus_room.build_ice(90, 90, SCREEN_WIDTH - 180, SCREEN_HEIGHT - 180)
@@ -171,6 +171,34 @@ def create_bonus_room():
         bonus_room.build_spike((255,255,255), (600, i), "u")
         bonus_room.build_spike((255,255,255), (900, i), "u")
 
+bonus_room_two = Timed_Room(start_hub, 15, 35, 35, build_border = True, music_path="components/sounds/bit-shift.mp3" )
+def create_bonus_room_two():
+    start_hub.build_passage(bonus_room_two, SCREEN_WIDTH - 70, SCREEN_HEIGHT - 70, max_entries= 1)
+    # for x in range(35, SCREEN_WIDTH - 105, 280): # Mud 
+    #     for y in range(105, SCREEN_HEIGHT - 105, 140):
+    #         bonus_room_two.build_mud(x, y, width= 50)
+    # for x in range(105, SCREEN_WIDTH - 105, 140): # Coins and Ice
+    #     for y in range(52, SCREEN_HEIGHT - 52, 140):
+    #         bonus_room_two.build_ice(x,y)
+    #         bonus_room_two.build_collectable(x, y, "coin")
+
+    for y in range(35, SCREEN_HEIGHT - 105, 280): # Mud Right
+        bonus_room_two.build_mud(105, y+5, height=60, width=SCREEN_WIDTH-140)
+        bonus_room_two.build_ice(35, y, 70, 70)
+
+    for y in range(105, SCREEN_HEIGHT - 105, 140): # Full Ice and Coins
+        bonus_room_two.build_ice(35, y, width=SCREEN_WIDTH-70, height=70)
+        for x in (300, 500, 700, 900):
+            bonus_room_two.build_collectable(x, y + 15, "coin")
+
+    for y in range(175, SCREEN_HEIGHT - 105, 280): # Mud left
+        bonus_room_two.build_mud(35, y+5, height=60, width=SCREEN_WIDTH-140)
+        bonus_room_two.build_ice(SCREEN_WIDTH - 105, y, 70, 70)
+
+# Testing so, do not need to acquire key to access 2nd bonus room. 
+create_bonus_room_two()
+
+
 
 maze_room = Room(35, 70, build_border=True, music_path="components/sounds/maze-track.mp3")
 maze_room2 = Room(SCREEN_WIDTH - 105, SCREEN_HEIGHT - 140, build_border=True)
@@ -178,7 +206,7 @@ maze_room2 = Room(SCREEN_WIDTH - 105, SCREEN_HEIGHT - 140, build_border=True)
 def create_maze_room():
     start_hub.build_passage(maze_room, 50, 10, locked=True)
     maze_room.build_passage(start_hub, 50, 10)
-    maze_room.build_collectable(SCREEN_WIDTH - 70, SCREEN_HEIGHT - 70, "trophy", callback=reset_maze)
+    maze_room.build_collectable(SCREEN_WIDTH - 70, SCREEN_HEIGHT - 70, "trophy", callback= lambda: (reset_maze(), create_bonus_room_two()))
     
     # Left Walls
     maze_room.build_wall(105, 35, 35 * 4)

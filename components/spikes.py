@@ -14,6 +14,7 @@ class Spike(sprite.Sprite):
         long_side = 34
         short_side = 20
 
+         # Determine spike points and set image/rect based on direction
         match (direction):
             case "l": 
                 point_1 = (short_side, 0)

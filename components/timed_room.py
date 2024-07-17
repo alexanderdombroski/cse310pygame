@@ -24,6 +24,7 @@ class Timed_Room(Room):
         super().enter_room()
         self.start_time = datetime.now()
 
+    # Kills sprites and returns player to previous room after "room_duration" seconds.
     def looped_updates(self) -> None:
         super().looped_updates()
         if datetime.now() - self.start_time > self.room_duration:
