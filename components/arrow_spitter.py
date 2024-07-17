@@ -23,6 +23,7 @@ class Arrow_Spitter(sprite.Sprite):
         
         super().__init__(*groups if groups else [])
 
+        # convert_alpha() ensures optimal display
         self.png = image.load("components/images/arrow.png").convert_alpha()
 
         self.image = Surface((width, height))

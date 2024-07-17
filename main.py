@@ -20,7 +20,6 @@ create_start_hub()
 
 create_bonus_room()
 
-
 # Room Two
 create_room_two()
 
