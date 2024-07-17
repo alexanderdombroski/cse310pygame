@@ -56,7 +56,7 @@ class Room:
     def enter_room(self) -> None:
         # Chagne sound
         if self.music_path:
-            if (self.music_path != current_room[0].music_path and current_room[0].music_path != None):
+            if (self.music_path != current_room[0].music_path and current_room[0].music_path != None) or (current_room[0].music_path == None and self.music_path != None):
                 mixer.music.stop()
                 mixer.music.load(self.music_path)
                 mixer.music.play(-1)
