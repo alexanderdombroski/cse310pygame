@@ -133,6 +133,7 @@ def create_puzzle_room():
     # Example collectables or keys to unlock passages
     puzzle_room.build_collectable(SCREEN_WIDTH - 115, SCREEN_HEIGHT - 115, "key",)
 
+create_puzzle_room()
 
 def create_tutorial_room():
 
