@@ -13,7 +13,7 @@ def create_start_hub():
     start_hub.build_text("Main Hub", 365, 280, (255,255,255), font_size)
 
 def create_room_two():
-    room2 = Room(start_x=WALL_THICKNESS, start_y= (SCREEN_HEIGHT -WALL_THICKNESS) // 2)
+    room2 = Room(start_x=3 * WALL_THICKNESS, start_y= (SCREEN_HEIGHT -WALL_THICKNESS) // 2)
     start_hub.build_passage(room2, SCREEN_WIDTH - WALL_THICKNESS * 2, SCREEN_HEIGHT / 2, "r")
     room2.build_passage(start_hub, SCREEN_WIDTH // 2 + SCREEN_WIDTH // 3, SCREEN_HEIGHT // 2, "u")
 
@@ -269,11 +269,13 @@ def reset_maze():
 
     maze_room2.enter_room()
 
-trap_room = Room(start_x=35 * 3 / 2, start_y=35 * 3 / 2)
+trap_room = Room(start_x=35 * 3, start_y=35 * 3 / 2, music_path="components/sounds/cyborg-ninja.mp3")
+
 def createTrapRoom():
 
     room_name = trap_room
 
+    room_name.build_passage(start_hub,35 * 1.5 / 2, 35 * 4 / 2, direction="l")
     start_hub.build_passage(room_name, WALL_THICKNESS, SCREEN_HEIGHT // 2 - WALL_THICKNESS // 2, direction="l")
 
     room_name.build_wall(left=1*WALL_THICKNESS, top=4 * WALL_THICKNESS, width=21* WALL_THICKNESS, length=2*WALL_THICKNESS)
