@@ -13,7 +13,7 @@ def create_start_hub():
     start_hub.build_text("Main Hub", 365, 280, (255,255,255), font_size)
 
 def create_room_two():
-    room2 = Room(start_x=WALL_THICKNESS, start_y= (SCREEN_HEIGHT -WALL_THICKNESS) // 2)
+    room2 = Room(start_x=3 * WALL_THICKNESS, start_y= (SCREEN_HEIGHT -WALL_THICKNESS) // 2)
     start_hub.build_passage(room2, SCREEN_WIDTH - WALL_THICKNESS * 2, SCREEN_HEIGHT / 2, "r")
     room2.build_passage(start_hub, SCREEN_WIDTH // 2 + SCREEN_WIDTH // 3, SCREEN_HEIGHT // 2, "u")
 
