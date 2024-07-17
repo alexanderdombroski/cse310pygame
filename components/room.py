@@ -14,6 +14,7 @@ from components.trigger import Trigger
 from components.arrow_spitter import Arrow_Spitter
 from components.fire_breather import Fire_Breather
 
+current_music: str = None
 
 class Room:
     def __init__(
@@ -55,14 +56,13 @@ class Room:
 
     def enter_room(self) -> None:
         # Chagne sound
-        if self.music_path:
-            if (self.music_path != current_room[0].music_path and current_room[0].music_path != None) or (current_room[0].music_path == None and self.music_path != None):
+        global current_music
+        if self.music_path != current_music and self.music_path != None:
+            if mixer.music.get_busy():
                 mixer.music.stop()
-                mixer.music.load(self.music_path)
-                mixer.music.play(-1)
-            elif not mixer.music.get_busy():
-                mixer.music.load(self.music_path)
-                mixer.music.play(-1)
+            mixer.music.load(self.music_path)
+            mixer.music.play(-1)
+            current_music = self.music_path
 
         
         # Makes a room visible
