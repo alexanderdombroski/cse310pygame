@@ -22,3 +22,8 @@ Maze Track: Game Over
 - Music from #Uppbeat (free for Creators!):
 - https://uppbeat.io/t/danijel-zambo/game-over
 - License code: UKNKBUCLYRC9EZNJ
+
+Trap Room: Cyborg Ninja
+- Music from #Uppbeat (free for Creators!):
+- https://uppbeat.io/t/kevin-macleod/cyborg-ninja
+- License code: U2SVWX6VWOJT0O5U
