@@ -193,7 +193,7 @@ def create_bonus_room_two():
         bonus_room_two.build_ice(SCREEN_WIDTH - 105, y, 70, 70)
 
 # Testing so, do not need to acquire key to access 2nd bonus room. 
-create_bonus_room_two()
+# create_bonus_room_two()
 
 
 
