@@ -85,6 +85,56 @@ def create_scotts_room():
 
     scotts_room.build_collectable(400, SCREEN_HEIGHT - 115, "key", callback= lambda: start_hub.build_passage(bonus_room, 700,35, locked=True, max_entries=1))
 
+def create_puzzle_room():
+    puzzle_room = Room(start_x=72, start_y=580, default_wall_color=(50, 50, 50))
+    start_hub.build_passage(puzzle_room, 200, 615, "u")
+    puzzle_room.build_passage(start_hub, 1000, 615)  
+    # Build outer walls
+    #puzzle_room.build_wall(3 * WALL_THICKNESS, WALL_THICKNESS, SCREEN_WIDTH - 6 * WALL_THICKNESS)  # Top border
+    #puzzle_room.build_wall(3 * WALL_THICKNESS, SCREEN_HEIGHT - 2 * WALL_THICKNESS, SCREEN_WIDTH - 6 * WALL_THICKNESS)  # Bottom border
+    #puzzle_room.build_wall(WALL_THICKNESS, 3 * WALL_THICKNESS, SCREEN_HEIGHT - 6 * WALL_THICKNESS)  # Left border
+    #puzzle_room.build_wall(SCREEN_WIDTH - 4 * WALL_THICKNESS, 3 * WALL_THICKNESS, SCREEN_HEIGHT - 6 * WALL_THICKNESS)  # Right border
+
+    # Inner walls for creating maze paths
+    puzzle_room.build_wall(5 * WALL_THICKNESS, 5 * WALL_THICKNESS, 20 * WALL_THICKNESS)  # Horizontal wall near top
+    #puzzle_room.build_wall(5 * WALL_THICKNESS, 12 * WALL_THICKNESS, 15 * WALL_THICKNESS, 5 * WALL_THICKNESS)  # Vertical wall near left
+    #puzzle_room.build_wall(20 * WALL_THICKNESS, 5 * WALL_THICKNESS, 5 * WALL_THICKNESS, 10 * WALL_THICKNESS)  # Vertical wall near right
+    puzzle_room.build_wall(5 * WALL_THICKNESS, 18 * WALL_THICKNESS, 20 * WALL_THICKNESS)  # Horizontal wall near bottom
+
+    # Additional walls to create complexity
+    # puzzle_room.build_wall(5 * WALL_THICKNESS, 7 * WALL_THICKNESS, 5 * WALL_THICKNESS, 5 * WALL_THICKNESS)  # Small vertical wall in middle
+    #puzzle_room.build_wall(15 * WALL_THICKNESS, 12 * WALL_THICKNESS, 5 * WALL_THICKNESS, 5 * WALL_THICKNESS)  # Small vertical wall in middle
+    #puzzle_room.build_wall(10 * WALL_THICKNESS, 12 * WALL_THICKNESS, 5 * WALL_THICKNESS, 5 * WALL_THICKNESS)  # Small vertical wall in middle
+    #puzzle_room.build_wall(10 * WALL_THICKNESS, 7 * WALL_THICKNESS, 5 * WALL_THICKNESS, 5 * WALL_THICKNESS)  # Small vertical wall in middle
+
+    # # Spikes as obstacles
+    # for i in range(6, 18):  # Spikes on left side
+    #     puzzle_room.build_spike((255, 255, 255), (WALL_THICKNESS, WALL_THICKNESS * i), "r")
+
+    # for i in range(6, 18):  # Spikes on right side
+    #     puzzle_room.build_spike((255, 255, 255), (SCREEN_WIDTH - WALL_THICKNESS, WALL_THICKNESS * i), "l")
+
+    #for i in range(4, 20, 2):  # Spikes on top and bottom
+        # puzzle_room.build_spike((255, 255, 255), (WALL_THICKNESS * i, WALL_THICKNESS), "d")
+        # puzzle_room.build_spike((255, 255, 255), (WALL_THICKNESS * i, SCREEN_HEIGHT - WALL_THICKNESS), "u")
+
+    # Additional spikes in the maze
+    for i in range(8, 18, 2):  # Spikes in the middle
+        puzzle_room.build_spike((255, 255, 255), (WALL_THICKNESS * i, 10 * WALL_THICKNESS), "u")
+
+    for i in range(10, 30, 6):
+        for j in range(4, 20, 4):
+            puzzle_room.build_spike((255,255,255), (WALL_THICKNESS * i, j * WALL_THICKNESS), "u")
+
+
+
+
+
+    # Example collectables or keys to unlock passages
+    puzzle_room.build_collectable(SCREEN_WIDTH - 115, SCREEN_HEIGHT - 115, "key",)
+
+create_puzzle_room()
+
 def create_tutorial_room():
 
     # Split the screen into thirds for each tutorial room section.
