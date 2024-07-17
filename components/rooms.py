@@ -3,7 +3,7 @@ from components.room import Room
 from components.timed_room import Timed_Room
 
 
-tutorial_room = Room(start_x = SCREEN_WIDTH // 2, start_y=SCREEN_HEIGHT - WALL_THICKNESS * 3, music_path="components/sounds/tutorial-room-sound.mp3")
+tutorial_room = Room(start_x = SCREEN_WIDTH // 2 - (35*.75), start_y=SCREEN_HEIGHT - WALL_THICKNESS * 3 -(35*.5), music_path="components/sounds/tutorial-room-sound.mp3")
 start_hub = Room(start_x = (SCREEN_WIDTH -35) // 2, start_y=SCREEN_HEIGHT // 2, default_wall_color=(128, 128, 128), music_path = "components/sounds/itty-bitty-8-bit.mp3")
 
 
@@ -97,9 +97,6 @@ def create_tutorial_room():
     #create doorways
     start_hub.build_passage(tutorial_room, (SCREEN_WIDTH-WALL_THICKNESS) // 2, SCREEN_HEIGHT - WALL_THICKNESS * 2, "u")
     tutorial_room.build_passage(start_hub, (SCREEN_WIDTH -WALL_THICKNESS) // 2, WALL_THICKNESS, "u", True)
-
-    # boulder example
-    tutorial_room.build_boulder(35,35,300,300,500,200)
     
     room_name = tutorial_room
     
@@ -269,9 +266,9 @@ def reset_maze():
 
     maze_room2.enter_room()
 
-trap_room = Room(start_x=35 * 3, start_y=35 * 3 / 2)
+trap_room = Room(start_x=35 * 3, start_y=35*3 / 2)
 
-def createTrapRoom():
+def create_trap_room():
 
     room_name = trap_room
 
@@ -295,7 +292,6 @@ def createTrapRoom():
     room_name.build_wall(left=4*WALL_THICKNESS, top=9* WALL_THICKNESS, length=7* WALL_THICKNESS, width=10*WALL_THICKNESS )
     room_name.build_wall(left=13*WALL_THICKNESS, top=15*WALL_THICKNESS, width=5* WALL_THICKNESS, length=4* WALL_THICKNESS)
     room_name.build_wall(left=7*WALL_THICKNESS, top=16* WALL_THICKNESS, length=4* WALL_THICKNESS, width=7*WALL_THICKNESS )
-
 
     room_name.build_passage(start_hub, 6.5*WALL_THICKNESS, 17*WALL_THICKNESS)
     room_name.build_collectable(5*WALL_THICKNESS, 17*WALL_THICKNESS, name="trophy")
