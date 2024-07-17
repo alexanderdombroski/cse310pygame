@@ -3,7 +3,7 @@ from pygame.locals import *
 import os
 from components.constants import WINDOW, all_sprites, current_room
 from components.player import PLAYER
-from components.rooms import create_scotts_room, create_start_hub, create_room_two, create_tutorial_room, tutorial_room, create_bonus_room, start_hub, createTrapRoom
+from components.rooms import create_scotts_room, create_start_hub, create_room_two, create_tutorial_room, tutorial_room, create_bonus_room, start_hub, create_trap_room
 from components.inventory import toggle_inventory
 
 # init pygame, window, room
@@ -20,7 +20,6 @@ create_start_hub()
 
 create_bonus_room()
 
-
 # Room Two
 create_room_two()
 
@@ -31,7 +30,7 @@ create_scotts_room()
 create_tutorial_room()
 
 # create e's trap room
-createTrapRoom()
+create_trap_room()
 
 # current_room.append(tutorial_room)
 current_room.append(tutorial_room)
@@ -64,7 +63,7 @@ while running:
     toggle_inventory()
 
     if PLAYER.inventory["trophy"] >= 3 and not created_you_win_text:
-        start_hub.build_text("YOU WON", 100, 100, (255,255,255), 90)
+        start_hub.build_text("YOU WON", 35+50, 350, (255,255,255), 250)
         created_you_win_text = True
 
     display.flip()
