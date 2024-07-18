@@ -12,9 +12,9 @@ For images to load correctly, the Python "Execute In File Dir" setting must be t
 
 # Development Environment
 
-Development Environment: Visual Studio Code
-Programming Language: Python
-Libraries: Pygame, Time, Random, Math
+* Development Environment: Visual Studio Code
+* Programming Language: Python
+* Libraries: Pygame, Time, Random, Math
 
 # Collaborators
 
