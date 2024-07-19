@@ -9,12 +9,13 @@ We chose this project because all of us wanted to get better at creating and imp
 * Type Ctrl + Q to quit the program.
 * Press E to see your current inventory.
 
-[Software Demo Video](http://youtube.link.goes.here)
-
 # Run Requirements
 
 * For images to load correctly, the Python "Execute In File Dir" setting must be turned on.
 * Use main.py to run the program or use the VS Code launch configuration that allows you to run the game from the debugger menu in any of the files.
+
+# Demo
+[Software Demo Video](http://youtube.link.goes.here)
 
 # Development Environment
 
