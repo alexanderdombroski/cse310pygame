@@ -15,7 +15,7 @@ We chose this project because all of us wanted to get better at creating and imp
 * Use main.py to run the program or use the VS Code launch configuration that allows you to run the game from the debugger menu in any of the files.
 
 # Demo
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://www.youtube.com/watch?v=wtdjSdKffdc)
 
 # Development Environment
 
